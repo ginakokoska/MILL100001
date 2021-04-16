@@ -1,4 +1,4 @@
-name := "testSBT1"
+name := "Mill"
 version := "0.1"
 scalaVersion := "2.13.5"
 

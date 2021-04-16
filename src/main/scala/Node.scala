@@ -1,3 +1,6 @@
-case class Node(value: Int) {
-  def isSet: Boolean = value != 0
+case class Node(stone: Option[Stone]) {
+  def isSet: Boolean =  stone match {
+    case Some (s: Stone) => true
+    case None => false
+  } // check if stone is set , s stands for black or white stone // stone must be created as enum in scala 2 4 lines of code
 }

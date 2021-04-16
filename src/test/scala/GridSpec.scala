@@ -5,30 +5,23 @@
 //class GridSpec extends AnyWordSpec with Matchers {
 //  "A Grid is the playingfield of Sudoku. A Grid" when {
 //    "to be constructed" should {
-//      "be created with 3 squares with each square smaller than the next." in {
-//        val outSquare = new Square(1)
-//        val midSquare = new Square(1)
-//        val inSquare = new Square(1)
-//        val cross12 = new Cross(1)
-//        val cross3 = new Cross(1)
-//        val cross6 = new Cross(1)
-//        val cross9 = new Cross(1)
+//      "be created with 3 squares. All of which have less possibilities for a mill." in {
+        val threeSquares = new Node(24)
+        val twoSquares = new Node(16)
+        val oneSquare = new Node(8)
+
 //
 //
 //      }
 //      "for test purposes only created with a Matrix of Cells" in {
-////        val awkwardGrid = Grid(new Matrix(2, Cell(0)))
-//        val testOutSquare = Grid(Matrix[Cell](Vector(Vector(Cell(0), Cell(0)), Vector(Cell(0), Cell(0)))))
+////        val threeSquare = Grid(new Matrix(2, Cell(0)))
+//        val twoSquare = Grid(Matrix[Cell](Vector(Vector(Cell(0), Cell(0)), Vector(Cell(0), Cell(0)))))
 //      }
 //    }
-//    "created properly but empty" should {
-//      val outSquare = new Square(1)
-//      val midSquare = new Square(1)
-//      val inSquare = new Square(1)
-//      val cross12 = new Cross(1)
-//      val cross3 = new Cross(1)
-//      val cross6 = new Cross(1)
-//      val cross9 = new Cross(1)
+    "created properly but empty" should {
+            val threeSquares = new Node(24)
+            val twoSquares = new Node(16)
+            val oneSquare = new Node(8)
 //      "give access to its Cells" in {
 //        tinygrid.cell(0, 0) should be(Cell(0))
 //        smallGrid.cell(0, 0) should be(Cell(0))

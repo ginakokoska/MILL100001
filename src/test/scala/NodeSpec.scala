@@ -7,16 +7,16 @@ class NodeSpec extends AnyWordSpec with Matchers{
     "not set to any value " should {
       val emptyNode = Node(0)
       "have value 0" in {
-        emptyNode.value should be(0)
+        emptyNode.stone should be(0)
       }
       "not be set" in {
         emptyNode.isSet should be(false)
       }
     }
     "set to white(1) value" should {
-      val NodeWhite = Node(1)
+      val NodeWhite = Node(Option: Stone)
       "return value 1" in {
-        NodeWhite.value should be(1)
+        NodeWhite.stone should be(1)
       }
       "be set" in {
         NodeWhite.isSet should be(true)
@@ -25,7 +25,7 @@ class NodeSpec extends AnyWordSpec with Matchers{
     "set to black(2) value" should {
       val NodeBlack = Node(2)
       "return value 2" in {
-        NodeBlack.value should be(2)
+        NodeBlack.stone should be(2)
       }
       "be set" in {
         NodeBlack.isSet should be(true)
