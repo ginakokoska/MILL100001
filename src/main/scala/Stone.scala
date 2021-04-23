@@ -1,7 +1,4 @@
-case class Stone(s: Stone) {
-
-  object Stone extends Enumeration {
-    val black, white = Value
-  }
+object Stone extends Enumeration {
+  type Stone = Value
+  val white, black = Value
 }
-
