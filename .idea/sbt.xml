@@ -4,7 +4,7 @@
     <option name="customVMPath" />
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/../../../../Software Engineering/MILL" />
+        <option name="externalProjectPath" value="/Software Engineering/MILL" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/../../../../Software Engineering/MILL" />
@@ -24,6 +24,7 @@
           </set>
         </option>
         <option name="resolveSbtClassifiers" value="true" />
+        <option name="sbtVersion" value="1.4.7" />
         <option name="useSbtShellForBuild" value="true" />
         <option name="useSbtShellForImport" value="true" />
       </SbtProjectSettings>

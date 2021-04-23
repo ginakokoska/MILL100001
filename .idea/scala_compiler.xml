@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="Mill,mill_1016,mill_1761,mill_6026,testSBT1,testsbt1" />
+    <plugins>
+      <plugin path="$PROJECT_DIR$/build.sbt" />
+    </plugins>
+    <profile name="sbt 1" modules="Mill,mill,mill_1016,mill_1761,mill_6026,testSBT1,testsbt1" />
+    <profile name="SCALA" modules="" />
   </component>
 </project>
