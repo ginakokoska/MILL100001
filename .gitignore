@@ -3,6 +3,50 @@
 *.iml
 out
 gen
+[11:11]
 *.class
 *.log
-*.target
+[11:14]
+# Mac
+.DS_Store
+
+# Eclipse
+bin/
+.settings/
+.classpath
+
+# Intellij
+.idea/
+.idea/workspace.xml
+target/
+
+# Maven
+log/
+
+# Gradle
+.gradle/
+build/
+pom.xml
+
+# sbt
+.cache
+.history
+.lib/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+project/target/
+project/project/
+logs/
+project/.sbtserver
+.sbtserver/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+# Sonar
+.sonar/
+
