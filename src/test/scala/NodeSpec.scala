@@ -2,6 +2,8 @@ import org.scalatest._
 import wordspec._
 import matchers.should._
 
+import model._
+
 class NodeSpec extends AnyWordSpec with Matchers{
   "A Node" when {
     "not set to any value " should {

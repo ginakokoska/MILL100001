@@ -2,6 +2,8 @@ import org.scalatest._
 import wordspec._
 import matchers.should._
 
+import model._
+
 class GridSpec extends AnyWordSpec with Matchers {
   "A Grid(outSquare) at the beginning" when {
     "created" should {
