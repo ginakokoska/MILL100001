@@ -6,14 +6,19 @@ import util._
 class Controller(var player1: Player, var player2: Player, var grid: Grid) extends Observable {
 
   def createPlayer1(name: String, tmpColor: String):Unit = {
-    if(tmpColor == "b") player1 = new Player(name,Stone.black)
-    else player1 = new Player(name,Stone.white)
+
+    if (tmpColor == "b")
+      player1 = player1.setPlayer(name, "b")
+    else
+      player1 = player1.setPlayer(name, "w")
     notifyObservers
   }
 
   def createPlayer2(name: String):Unit = {
-    if(player1.color == Stone.white) player2 = new Player(name,Stone.black)
-    else player2 = new Player(name,Stone.white)
+    if(player1.color == Stone.white)
+      player2 = player2.setPlayer(name,"b")
+    else
+      player2 = player2.setPlayer(name, "w")
     notifyObservers
   }
 
@@ -24,7 +29,7 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   }
 
   def createGrid():Unit = {
-    grid = new Grid()
+    grid = Grid()
     notifyObservers
   }
 
