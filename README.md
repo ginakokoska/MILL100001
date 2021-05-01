@@ -1,2 +1,2 @@
 ##Travis-Build
-https://travis-ci.com/ginakokoska/MILL100001.svg?branch=ContinuousDeployment
+[![Build Status](https://travis-ci.com/ginakokoska/MILL100001.svg?branch=ContinuousDeployment)](https://travis-ci.com/ginakokoska/MILL100001)
