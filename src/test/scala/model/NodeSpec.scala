@@ -1,8 +1,8 @@
-import org.scalatest._
-import wordspec._
-import matchers.should._
+package model
 
-import model._
+import org.scalatest._
+import org.scalatest.matchers.should._
+import org.scalatest.wordspec._
 
 class NodeSpec extends AnyWordSpec with Matchers{
   "A Node" when {

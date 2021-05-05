@@ -1,8 +1,8 @@
-import org.scalatest._
-import wordspec._
-import matchers.should._
+package model
 
-import model._
+import org.scalatest._
+import org.scalatest.matchers.should._
+import org.scalatest.wordspec._
 
 class GridSpec extends AnyWordSpec with Matchers {
   "A Grid(outSquare) at the beginning" when {

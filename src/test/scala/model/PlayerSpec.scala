@@ -1,9 +1,8 @@
-import org.scalatest.matchers
+package model
+
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import org.scalatest.wordspec.AnyWordSpec
-
-import model._
 
 class PlayerSpec extends AnyWordSpec with Matchers {
   "A Player" when {
