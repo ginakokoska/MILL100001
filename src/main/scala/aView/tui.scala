@@ -1,24 +1,35 @@
 package aView
 
+import util._
 import controller._
 import model.Stone
 
 import scala.io.StdIn.readLine
 
-class tui (controller: Controller) {
-  def startGame:Unit = {
-    println("Welcome to our Game, Mill!")
-    println("Player one, please enter your name and select color w(hite) or b(lack):")
-    val playerOneName = readLine()
-    val playerOneColor = readLine()
-    controller.createPlayer1(playerOneName, playerOneColor)
+class tui (controller: Controller) extends Observer {
+//  controller.add(this)
 
-    println("Now Player two:")
-    val playerTwoName = readLine()
-    controller.createPlayer2(playerTwoName)
+  def startGame():String = {
+    val welcome = "Welcome to our Game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):"
+    welcome
+  }
 
-    controller.sayHello()
-    controller.createGrid()
-    controller.printGrid()
+  def createPlayers(player1 :String, player2 :String):Unit = {
+    val playerOne :Array[String] = player1.split(" ")
+    controller.createPlayer1(playerOne(0), playerOne(1))
+    controller.createPlayer2(player2)
+  }
+
+  def createGrid(size :String):Unit = controller.gridSize(size)
+
+  def moveTui (pos :String) :Unit = {
+    controller.moveController(pos)
+  }
+
+  override def update :Boolean = {
+//    println(startGame())
+    println(controller.sayHello())
+    println(controller.printGrid())
+    true
   }
 }

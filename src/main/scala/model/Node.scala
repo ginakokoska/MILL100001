@@ -6,10 +6,6 @@ case class Node(stone: Option[Stone.Value]) {
     case None => false
   }
 
-//  def nodeColor:Stone.Value = {
-//    stone
-//  }
-
   def isColor: Option[Stone.Value] =
     if(isSet) stone
     else None

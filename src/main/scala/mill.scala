@@ -2,6 +2,8 @@ import controller.Controller
 import aView._
 import model.{Grid, Player, Stone}
 
+import scala.io.StdIn.readLine
+
 
 object mill {
   val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), Grid())
@@ -9,6 +11,29 @@ object mill {
   controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
-    tui.startGame
+    println(tui.startGame)
+    val playerOne = readLine()
+    val playerTwo = readLine()
+    tui.createPlayers(playerOne, playerTwo)
+//    tui.update
+
+    println("Choose your Grid Size(1,2,3):")
+    val gridSize = readLine()
+    tui.createGrid(gridSize)
+
+    tui.update
+
+    if (controller.player1.color.equals(Stone.white)) {
+      println(controller.player1.name + " please set your Stone!")
+    } else {
+      println(controller.player2.name + " please set your Stone!")
+    }
+    var i = 0
+    while (i < 10) {
+      val pos = readLine()
+      tui.moveTui(pos)
+      i += 1
+    }
+
   }
 }
