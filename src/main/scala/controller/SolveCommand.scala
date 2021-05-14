@@ -9,7 +9,6 @@ class SolveCommand(controller:Controller) extends Command {
 
   override def doStep: Unit = {
     memento = controller.grid
-    //...
   }
 
   //unterschied zwischen undo und redo?

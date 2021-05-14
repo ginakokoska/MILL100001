@@ -32,8 +32,7 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   def moveController(pos :String) :Unit = {
     val posArray :Array[String] = pos.split(" ")
     undoManager.doStep(new SetCommand("", this, posArray(0),posArray(1).charAt(0), posArray(1).charAt(1)))
-
-    gamePlayState = gamePlayState.handle(posArray(0), posArray(1).charAt(0), posArray(1).charAt(1), grid)
+//    gamePlayState = gamePlayState.handle(posArray(0), posArray(1).charAt(0), posArray(1).charAt(1), grid)
     notifyObservers
   }
 }

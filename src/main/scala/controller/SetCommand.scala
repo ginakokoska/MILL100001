@@ -14,8 +14,8 @@ class SetCommand(gridSize :String, controller: Controller, square :String, pos1 
       }
     } else {
       controller.gamePlayState match {
-        case WhiteTurn() => WhiteTurn().handle(square, pos1, pos2, controller.grid)
-        case BlackTurn() => BlackTurn().handle(square, pos1, pos2, controller.grid)
+        case WhiteTurn() => controller.gamePlayState = WhiteTurn().handle(square, pos1, pos2, controller.grid)
+        case BlackTurn() => controller.gamePlayState = BlackTurn().handle(square, pos1, pos2, controller.grid)
         case _ => throw new UnsupportedOperationException("")
       }
     }
