@@ -7,3 +7,6 @@ script:
 
 after_success:
   - sbt coverageReport coveralls
+
+cache-control:
+  - no-Cache
