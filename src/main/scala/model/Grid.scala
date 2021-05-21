@@ -112,9 +112,18 @@ case class Grid() {
 
   def moveGrid(pos :String, color: Stone.Value): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ")
-    val square = posArray(0)
-    val intPos1 = posArray(1).charAt(0).asDigit
-    val intPos2 = posArray(1).charAt(1).asDigit
+
+      val square = posArray(0)
+    var intPos1 = 0
+    var intPos2 = 0
+    Try(posArray(1).charAt(0).asDigit) match {
+      case Success(v) => intPos1 = v
+      case Failure(_) => Failure(exception = new Exception)
+    }
+    Try(posArray(1).charAt(1).asDigit) match {
+      case Success(v) => intPos2 = v
+      case Failure(_) => Failure(exception = new Exception)
+    }
 
     square match {
         case "OS:" =>
