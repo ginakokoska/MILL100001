@@ -3,39 +3,30 @@ package controller
 import model.{BlackTurn, Stone, WhiteTurn}
 import util._
 
-class SetCommand(gridSize :String, controller: Controller, square :String, pos1 :Char, pos2:Char) extends Command {
+class SetCommand(controller: Controller, pos: String) extends Command {
   override def doStep: Unit = {
-//    controller.grid = controller.gridSize(gridSize) //controller method returns unit
-    if(controller.grid.gridList.isEmpty) {
-      gridSize match {
-        case "1" => controller.grid.gridList = controller.grid.gridOutSquare()
-        case "2" => controller.grid.gridList = controller.grid.gridOutMidSquare()
-        case _ => controller.grid.gridList = controller.grid.createFullGrid()
+    if (controller.player1.mapState.isEmpty && controller.player2.mapState.isEmpty) {
+      controller.gamePlayState match {
+        case WhiteTurn() => controller.gamePlayState = WhiteTurn().handle2(pos, controller.grid)
+        case BlackTurn() => controller.gamePlayState = BlackTurn().handle2(pos, controller.grid)
       }
     } else {
       controller.gamePlayState match {
-        case WhiteTurn() => controller.gamePlayState = WhiteTurn().handle(square, pos1, pos2, controller.grid)
-        case BlackTurn() => controller.gamePlayState = BlackTurn().handle(square, pos1, pos2, controller.grid)
-        case _ => throw new UnsupportedOperationException("")
+        case WhiteTurn() =>
+          controller.gamePlayState = WhiteTurn().handle(pos, controller.grid)
+          controller.player1.numStones()
+        case BlackTurn() =>
+          controller.gamePlayState = BlackTurn().handle(pos, controller.grid)
+          controller.player2.numStones()
       }
     }
   }
 
+
   override def undoStep: Unit = controller.grid.createFullGrid()
 
   override def redoStep: Unit = {
-    if(controller.grid.gridList.isEmpty) {
-      gridSize match {
-        case "1" => controller.grid.gridOutSquare
-        case "2" => controller.grid.gridOutMidSquare()
-        case _ => controller.grid.createFullGrid()
-      }
-    } else {
-      controller.gamePlayState match {
-        case WhiteTurn() => WhiteTurn().handle(square, pos1, pos2, controller.grid)
-        case BlackTurn() => BlackTurn().handle(square, pos1, pos2, controller.grid)
-        case _ => throw new UnsupportedOperationException("")
-      }
-    }
+    //redoStep handle like reload, so do doStep again
+    doStep
   }
 }

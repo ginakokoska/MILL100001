@@ -8,7 +8,7 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   var gamePlayState = new GamePlay(new WhiteTurn).state
 
   def createPlayer1(name: String, tmpColor: String):Unit = {
-    if(tmpColor == "b") player1 = new Player(name,Stone.black)  //Template? abstract Class: Player; SubMethod: player1
+    if(tmpColor == "b") player1 = new Player(name,Stone.black)
     else player1 = new Player(name,Stone.white)
     notifyObservers
   }
@@ -22,17 +22,18 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   def sayHello(): String = player1.playerToString(player1, player2)
 
   def gridSize(gridSize: String): Unit = {
-    //command Pattern
-    undoManager.doStep(new SetCommand(gridSize, this, "", ' ', ' '))
+    gridSize match {
+      case "1" => grid.gridList = grid.gridOutSquare()
+      case "2" => grid.gridList = grid.gridOutMidSquare()
+      case _ => grid.gridList = grid.createFullGrid()
+    }
     notifyObservers
   }
 
   def printGrid():String = grid.printGrid
 
   def moveController(pos :String) :Unit = {
-    val posArray :Array[String] = pos.split(" ")
-    undoManager.doStep(new SetCommand("", this, posArray(0),posArray(1).charAt(0), posArray(1).charAt(1)))
-//    gamePlayState = gamePlayState.handle(posArray(0), posArray(1).charAt(0), posArray(1).charAt(1), grid)
+    undoManager.doStep(new SetCommand(this, pos))
     notifyObservers
   }
 }

@@ -10,8 +10,6 @@ case class Player(name: String, color: Stone.Value) {
   }
 
   def numStones() :ListBuffer[Stone.Value] = {
-    //kontrolliert Anzahl an Steinen
     mapState -= mapState(0)
-    mapState
   }
 }

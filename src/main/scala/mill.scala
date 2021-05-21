@@ -1,6 +1,6 @@
 import controller.Controller
 import aView._
-import model.{Grid, Player, Stone}
+import model._
 
 import scala.io.StdIn.readLine
 
@@ -23,13 +23,16 @@ object mill {
 
     tui.update
 
-    if (controller.player1.color.equals(Stone.white)) {
-      println(controller.player1.name + " please set your Stone!")
-    } else {
-      println(controller.player2.name + " please set your Stone!")
-    }
+//    if (controller.player1.color.equals(Stone.white)) {
+//      println(controller.player1.name + " please set your Stone!")
+//    } else {
+//      println(controller.player2.name + " please set your Stone!")
+//    }
     var i = 0
     while (i < 10) {
+      if(controller.gamePlayState == WhiteTurn()) println("White please set your Stone:")
+      else println("Black please set your Stone:")
+
       val pos = readLine()
       tui.moveTui(pos)
       i += 1

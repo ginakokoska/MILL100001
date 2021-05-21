@@ -2,12 +2,17 @@ package model
 
 //State Pattern
 trait State {
-  def handle(square :String, pos1 :Char, pos2:Char, grid: Grid):State
+  def handle(pos :String, grid: Grid):State
+  def handle2(pos :String , grid: Grid):State
 }
 
 case class GamePlay(state: State) {
-  def handle(square :String, pos1 :Char, pos2:Char, grid: Grid):State = {
-    state.handle(square :String, pos1 :Char, pos2:Char, grid:Grid)
+  def handle(pos :String, grid: Grid):State = {
+    state.handle(pos :String, grid:Grid)
+    state
+  }
+  def handle2(pos :String , grid: Grid):State = {
+    state.handle2(pos :String, grid:Grid)
     state
   }
 }
