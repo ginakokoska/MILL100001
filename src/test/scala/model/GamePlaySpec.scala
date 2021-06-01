@@ -1,27 +1,56 @@
-//package model
-//
-//import org.scalatest.matchers.should._
-//import org.scalatest.wordspec._
-//
-//class GamePlaySpec extends AnyWordSpec with Matchers{
-//  "A GamePlay" when {
-//    val gamePlayWhite = GamePlay(new WhiteTurn)
-//    val grid = Grid()
-//    grid.gridList = grid.createFullGrid()
-//    val state1 = gamePlayWhite.state.handle("OS:", '0', '0', grid)
-//    "started with White" should {
-//      "state should return BlackState" in {
-//        state1 should be(new BlackTurn())
-//      }
-//      val state2 = GamePlay(state1).state.handle("MS:", '0', '1', grid)
-//      "and continues with BlackState and returns WhiteState" in {
-//        state2 should be(WhiteTurn())
-//      }
-//      val state3 = GamePlay(state2).state.handle("IS:", '2', '2', grid)
-//      "and continues with WhiteState and returns BlackState" in {
-//        state3 should be(BlackTurn())
-//      }
-//    }
-//  }
-//
-//}
+package model
+
+import controller.Controller
+import org.scalatest.matchers.should._
+import org.scalatest.wordspec._
+
+class GamePlaySpec extends AnyWordSpec with Matchers{
+  "A GamePlay" when {
+    val tmpGrid = grid()
+    tmpGrid.gridList = grid().createFullGrid()
+    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), tmpGrid)
+    "handle" should {
+      val stateBlack = GamePlay(WhiteTurn()).handle("OS: 00", tmpGrid, controller)
+      val stateWhite = GamePlay(BlackTurn()).handle("OS: 10", tmpGrid, controller)
+      "with WhiteTurn should return BlackTurn" in {
+        stateBlack should be(GamePlay(new BlackTurn).state)
+      }
+      "with BlackTurn should return WhiteTurn" in {
+        stateWhite should be(GamePlay(new WhiteTurn).state)
+      }
+    }
+    "handle2" should {
+      val stateBlack = GamePlay(WhiteTurn()).handle2("move OS: 00 to OS: 01", tmpGrid, controller)
+      val stateWhite = GamePlay(BlackTurn()).handle2("move OS: 10 to OS: 20", tmpGrid, controller)
+      "with WhiteTurn should return BlackTurn" in {
+        stateBlack should be(GamePlay(new BlackTurn).state)
+      }
+      "with BlackTurn should return WhiteTurn" in {
+        stateWhite should be(GamePlay(new WhiteTurn).state)
+      }
+    }
+    "jumpStone" should {
+      val stateBlack = GamePlay(WhiteTurn()).jumpStone("jump OS: 01 to IS: 02", tmpGrid, controller)
+      val stateWhite = GamePlay(BlackTurn()).jumpStone("jump OS: 20 to IS: 20", tmpGrid, controller)
+      "with WhiteTurn should return BlackTurn" in {
+        stateBlack should be(GamePlay(new BlackTurn).state)
+      }
+      "with BlackTurn should return WhiteTurn" in {
+        stateWhite should be(GamePlay(new WhiteTurn).state)
+      }
+    }
+    "handleTakeStone" should {
+      tmpGrid.createFullGrid()
+      WhiteTurn().handle("IS: 02", tmpGrid, controller)
+      BlackTurn().handle("IS: 20", tmpGrid, controller)
+      val stateBlack = GamePlay(TakeStone(Stone.white)).handleTakeStone("IS: 20", tmpGrid)
+      val stateWhite = GamePlay(TakeStone(Stone.black)).handleTakeStone("IS: 02", tmpGrid)
+      "with WhiteTurn should return BlackTurn" in {
+        stateBlack should be(GamePlay(new BlackTurn).state)
+      }
+      "with BlackTurn should return WhiteTurn" in {
+        stateWhite should be(GamePlay(new WhiteTurn).state)
+      }
+    }
+  }
+}

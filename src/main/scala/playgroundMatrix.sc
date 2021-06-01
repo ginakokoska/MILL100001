@@ -4,7 +4,7 @@ import model._
 
 val player1 = Player("PlayerOne", Stone.white)
 val player2 = Player("PlayerTwo", Stone.black)
-var grid = new Grid()
+var grid = new grid()
 
 println("Player1: " + player1)
 println("Player2: " + player2)
@@ -16,8 +16,8 @@ println("Color Player2: " + player2.color)
 println("Name player2: " + player2.name)
 
 //grid.outSquare(0)(0) = Node(Some(Stone.white))
-def test(): Grid = {
-  var grid1 = Grid()
+def test(): grid = {
+  var grid1 = grid()
   grid1.gridList(0)(0)(0) = Node(Some(player1.color))
   grid1
 }

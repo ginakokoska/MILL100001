@@ -1,27 +1,52 @@
 package controller
 
-import model.{BlackTurn, Stone, WhiteTurn}
+import model.{BlackTurn, _}
 import util._
 
 class SetCommand(controller: Controller, pos: String) extends Command {
   override def doStep: Unit = {
-    if (controller.player1.mapState.isEmpty && controller.player2.mapState.isEmpty) {
-      controller.gamePlayState match {
-        case WhiteTurn() => controller.gamePlayState = WhiteTurn().handle2(pos, controller.grid)
-        case BlackTurn() => controller.gamePlayState = BlackTurn().handle2(pos, controller.grid)
-      }
-    } else {
-      controller.gamePlayState match {
-        case WhiteTurn() =>
-          controller.gamePlayState = WhiteTurn().handle(pos, controller.grid)
-          controller.player1.numStones()
-        case BlackTurn() =>
-          controller.gamePlayState = BlackTurn().handle(pos, controller.grid)
-          controller.player2.numStones()
-      }
+    controller.gamePlayState match {
+      case WhiteTurn() =>
+        if(controller.player1.countState(StoneState.notUsed) > 0)
+          controller.gamePlayState = WhiteTurn().handle(pos, controller.grid, controller)
+        else if(controller.player1.countState(StoneState.notUsed) == 0)
+          controller.gamePlayState = WhiteTurn().handle2(pos, controller.grid, controller)
+        else if(controller.player1.countState(StoneState.outOfGame) >= 6)
+          controller.gamePlayState = WhiteTurn().jumpStone(pos, controller.grid, controller)
+      case BlackTurn() =>
+        if(controller.player2.countState(StoneState.notUsed) > 0)
+          controller.gamePlayState = BlackTurn().handle(pos, controller.grid, controller)
+        else if(controller.player2.countState(StoneState.notUsed) == 0)
+          controller.gamePlayState = BlackTurn().handle2(pos, controller.grid, controller)
+        else if(controller.player2.countState(StoneState.outOfGame) >= 6)
+          controller.gamePlayState = BlackTurn().jumpStone(pos, controller.grid, controller)
+//      case TakeStone(controller.player1.color) =>
+//        controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+//      case TakeStone(controller.player2.color) =>
+//        controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
     }
-  }
+    if(controller.gamePlayState == TakeStone(controller.player1.color))
+      controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+    else if(controller.gamePlayState == TakeStone(controller.player2.color))
+      controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
 
+
+//    if(controller.gamePlayState == WhiteTurn()) {
+//      if (controller.player1.countState(StoneState.notUsed) == 0 &&
+//        controller.player1.countState(StoneState.outOfGame) <= 6)
+//        controller.gamePlayState = WhiteTurn().handle2(pos, controller.grid, controller)
+//      else controller.gamePlayState = WhiteTurn().handle(pos, controller.grid, controller)
+//    } else if(controller.gamePlayState == BlackTurn()) {
+//      if (controller.player2.countState(StoneState.notUsed) == 0 &&
+//        controller.player2.countState(StoneState.outOfGame) <= 6)
+//        controller.gamePlayState = BlackTurn().handle2(pos, controller.grid, controller)
+//      else controller.gamePlayState = BlackTurn().handle(pos, controller.grid, controller)
+//    } else if(controller.gamePlayState == TakeStone(controller.player1.color))
+//      controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+//    else if(controller.gamePlayState == TakeStone(controller.player2.color))
+//      controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
+
+  }
 
   override def undoStep: Unit = controller.grid.createFullGrid()
 

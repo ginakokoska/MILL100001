@@ -1,21 +1,23 @@
 package controller
 
-import model.{GamePlay, Grid, Player, Stone, WhiteTurn}
+import model.{GamePlay, grid, Player, Stone, WhiteTurn}
 import util._
 
-class Controller(var player1: Player, var player2: Player, var grid: Grid) extends Observable {
+class Controller(var player1: Player, var player2: Player, var grid: grid) extends Observable {
   private val undoManager = new UndoManager
   var gamePlayState = new GamePlay(new WhiteTurn).state
 
   def createPlayer1(name: String, tmpColor: String):Unit = {
     if(tmpColor == "b") player1 = new Player(name,Stone.black)
     else player1 = new Player(name,Stone.white)
+    player1.fillStone()
     notifyObservers
   }
 
   def createPlayer2(name: String):Unit = {
     if(player1.color == Stone.white) player2 = Player(name,Stone.black)
     else player2 = Player(name,Stone.white)
+    player2.fillStone()
     notifyObservers
   }
 

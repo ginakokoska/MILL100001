@@ -5,7 +5,7 @@ import util._
 
 class SolveCommand(controller:Controller) extends Command {
   //memento Pattern
-  var memento: Grid = controller.grid
+  var memento: grid = controller.grid
 
   override def doStep: Unit = {
     memento = controller.grid

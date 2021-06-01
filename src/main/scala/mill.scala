@@ -6,7 +6,7 @@ import scala.io.StdIn.readLine
 
 
 object mill {
-  val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), Grid())
+  val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
   val tui = new tui(controller)
   controller.notifyObservers
 
@@ -31,7 +31,7 @@ object mill {
     var i = 0
     while (i < 10) {
       if(controller.gamePlayState == WhiteTurn()) println("White please set your Stone:")
-      else println("Black please set your Stone:")
+      else if(controller.gamePlayState == BlackTurn()) println("Black please set your Stone:")
 
       val pos = readLine()
       tui.moveTui(pos)
