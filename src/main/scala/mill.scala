@@ -1,16 +1,21 @@
+import aView.Gui.{Gui, StartGui}
 import controller.Controller
 import aView._
 import model._
 
 import scala.io.StdIn.readLine
+import scala.swing._
 
 
-object mill {
+object mill  extends Frame{
   val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
   val tui = new tui(controller)
   controller.notifyObservers
+  val gui = new Gui()
 
   def main(args: Array[String]): Unit = {
+    gui.startGui()
+//    gui.grid
     println(tui.startGame)
     val playerOne = readLine()
     val playerTwo = readLine()
