@@ -4,7 +4,8 @@ import scalafx.scene.image.ImageView
 
 import scala.swing.Component
 import scalafx.scene.paint._
-import scala.swing.{MainFrame,TextField, FlowPanel,Button,Label}
+
+import scala.swing.{Button, FlowPanel, Label, MainFrame, TextField}
 import java.awt.{Color, Dimension, Graphics2D}
 import javax.imageio.ImageIO
 import scala.reflect.internal.util.NoFile.file
@@ -20,6 +21,9 @@ import scalafx.scene.layout.HBox
 import scalafx.scene.paint.Color.{DarkGray, DarkRed, Red, White}
 import scalafx.scene.paint.{Color, LinearGradient, Stops}
 import scalafx.scene.text.Text
+
+import javax.swing.ImageIcon
+import scala.swing.Action.NoAction.icon
 
 case class Gui() extends MainFrame {
 //  def main(args: Array[String]): Unit = {
@@ -50,7 +54,7 @@ case class Gui() extends MainFrame {
       columns = 15
     }
 
-    val continue = new Button("continue")
+//    val continue = new Button("continue")
 
     def startGui() = {
       contents = new FlowPanel() {
@@ -58,7 +62,7 @@ case class Gui() extends MainFrame {
         contents += readPlayer1
         contents += new Label("Name Player 2")
         contents += readPlayer2
-        contents += continue
+//        contents += continue
       }
     }
 
@@ -73,6 +77,10 @@ case class Gui() extends MainFrame {
           g.drawLine(100,200,250,200)
           g.drawLine(350,200,500,200)
           p(g)
+//          val tmp = new ImageIcon("src/main/resources/blackstone.png").getImage
+          //                val resize = tmp.getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH)
+//          val g :Graphics2D = ImageIO.read(getClass.getResource("src/main/resources/blackstone.png")
+//            icon = new ImageIcon(tmp).paintIcon(MouseClicked, g, 100, 100)
         }
 
         listenTo(this.mouse.clicks)
@@ -140,7 +148,15 @@ case class Gui() extends MainFrame {
 
             val map = ValidMove().validClick(point.x, point.y)
             for((k,v)<-map){
-              if(v) println("Success:" + k)
+              if(v) {
+                println("Success:" + k)
+
+                val tmp = new ImageIcon("src/main/resources/blackstone.png").getImage
+//                val resize = tmp.getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH)
+//                val g :Graphics2D = ImageIO.read(getClass.getResource("src/main/resources/blackstone.png")
+//                icon = new ImageIcon(tmp).paintIcon()
+
+              }
               else println("Fail")
               tmpPS = k
             }
@@ -202,19 +218,21 @@ case class Gui() extends MainFrame {
       }
     }
     def p(g :Graphics2D): Unit = {
-      g.drawImage(ImageIO.read(getClass.getResource("/blackMillStone.JPG")), null, 300, 200)
+      g.drawImage(ImageIO.read(getClass.getResource("src/main/resources/blackstone.png")), null, 300, 200)
     }
 
+    def paintIcon(): Unit = {
 
+    }
 
-    contents = continue
-    listenTo(readPlayer1, readPlayer2, continue)
+//    contents = continue
+    listenTo(readPlayer1, readPlayer2 /*continue*/)
     reactions += {
       case EditDone(readPlayer1) =>
         println(readPlayer1)
       case EditDone(readPlayer2) =>
         println(readPlayer2)
-      case ButtonClicked(continue) =>
+//      case ButtonClicked(continue) =>
 //        readPlayer1.visible = false
 //        readPlayer2.visible = false
 

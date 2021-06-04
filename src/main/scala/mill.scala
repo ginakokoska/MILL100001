@@ -14,7 +14,7 @@ object mill  extends Frame{
   val gui = new Gui()
 
   def main(args: Array[String]): Unit = {
-    gui.startGui()
+    gui.grid()
 //    gui.grid
     println(tui.startGame)
     val playerOne = readLine()
