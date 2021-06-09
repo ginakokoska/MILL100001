@@ -1,15 +1,31 @@
 import scala.swing._
 import scala.swing.event.EditDone
-val point =  new Point(100, 4)
-val map = Map(100 -> 4)
+import java.awt.geom.Point2D
+import scala.collection.immutable.ListMap
+import scala.collection.mutable
+import scala.swing.Point
 
-for ((k, v) <- map) {
-  if(k - 15 < k && k + 15 > k){
+case class test() {
+  var l: ListMap[Int,Int] = ListMap()
+  var testArray: Array[Point] = Array()
+  var testList: List[Int] = Nil
 
+  def setC(p: Int): Unit = {
+    testList = p::testList
+//    l.updated(p.x,p.y)
+  }
+
+  def getList(): List[Int] = {
+    testList
   }
 }
-
-
-//point.x match {
-//  case (>85) /*&& point.x < 115 && point.y < 15 && point.y > -15*/ => println("Success")
-//}
+val i1 = 1
+val i2 = 2
+val i3 = 3
+val p1 = new Point(100,1)
+val p2 = new Point(200,1)
+val p3 = new Point(300,1)
+test().setC(i1)
+test().setC(i2)
+test().setC(i2)
+test().getList()

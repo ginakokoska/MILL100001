@@ -1,6 +1,6 @@
 package controller
 
-import model.{GamePlay, grid, Player, Stone, WhiteTurn}
+import model.{GamePlay, grid, Player, Stone, WhiteTurn, State}
 import util._
 
 class Controller(var player1: Player, var player2: Player, var grid: grid) extends Observable {

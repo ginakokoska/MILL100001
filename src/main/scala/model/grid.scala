@@ -114,10 +114,14 @@ case class grid() {
 
   def moveGrid(pos :String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ")
-
-    val square = posArray(0)
-    val intPos1 = posArray(1).charAt(0).asDigit
-    val intPos2 = posArray(1).charAt(1).asDigit
+    var square = ""
+    var intPos1 = 0
+    var intPos2 = 0
+    if(posArray.size == 2) {
+      square = posArray(0)
+      intPos1 = posArray(1).charAt(0).asDigit
+      intPos2 = posArray(1).charAt(1).asDigit
+    }
 //    var intPos1 = 0
 //    var intPos2 = 0
 //    Try(posArray(1).charAt(0).asDigit) match {
@@ -187,7 +191,9 @@ case class grid() {
     val intPos1 = posArray(1).charAt(0).asDigit
     val intPos2 = posArray(1).charAt(1).asDigit
 
-    if(gridList(square)(intPos1)(intPos2).isColor.contains(color)) {
+    if(gridList(square)(intPos1)(intPos2).isColor.contains(color) &&
+      !(millProof().proofTypeCorner(square, intPos1, intPos2, color, this) ||
+      millProof().proofTypeMid(square, intPos1, intPos2, color, this))) {
       gridList(square)(intPos1)(intPos2) = Node(None)
       Success()
     } else

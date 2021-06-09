@@ -9,26 +9,34 @@ class SetCommand(controller: Controller, pos: String) extends Command {
       case WhiteTurn() =>
         if(controller.player1.countState(StoneState.notUsed) > 0)
           controller.gamePlayState = WhiteTurn().handle(pos, controller.grid, controller)
-        else if(controller.player1.countState(StoneState.notUsed) == 0)
+        else if(controller.player1.countState(StoneState.notUsed) == 0 &&
+          controller.player1.countState(StoneState.outOfGame) < 6)
           controller.gamePlayState = WhiteTurn().handle2(pos, controller.grid, controller)
         else if(controller.player1.countState(StoneState.outOfGame) >= 6)
           controller.gamePlayState = WhiteTurn().jumpStone(pos, controller.grid, controller)
       case BlackTurn() =>
         if(controller.player2.countState(StoneState.notUsed) > 0)
           controller.gamePlayState = BlackTurn().handle(pos, controller.grid, controller)
-        else if(controller.player2.countState(StoneState.notUsed) == 0)
+        else if(controller.player2.countState(StoneState.notUsed) == 0 &&
+          controller.player2.countState(StoneState.outOfGame) < 6)
           controller.gamePlayState = BlackTurn().handle2(pos, controller.grid, controller)
-        else if(controller.player2.countState(StoneState.outOfGame) >= 6)
+        else if(controller.player2.countState(StoneState.outOfGame) >= 6) {
           controller.gamePlayState = BlackTurn().jumpStone(pos, controller.grid, controller)
-//      case TakeStone(controller.player1.color) =>
+        }
+      case _ =>
+        if(controller.gamePlayState == TakeStone(controller.player1.color))
+          controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+        else if(controller.gamePlayState == TakeStone(controller.player2.color))
+          controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
+      //      case TakeStone(controller.player1.color) =>
 //        controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
 //      case TakeStone(controller.player2.color) =>
 //        controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
     }
-    if(controller.gamePlayState == TakeStone(controller.player1.color))
-      controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
-    else if(controller.gamePlayState == TakeStone(controller.player2.color))
-      controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
+//    if(controller.gamePlayState == TakeStone(controller.player1.color))
+//      controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+//    else if(controller.gamePlayState == TakeStone(controller.player2.color))
+//      controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
 
 
 //    if(controller.gamePlayState == WhiteTurn()) {

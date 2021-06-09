@@ -1,4 +1,4 @@
-import aView.Gui.{Gui, StartGui}
+import aView.Gui.{Gui, Gui2}
 import controller.Controller
 import aView._
 import model._
@@ -10,11 +10,12 @@ import scala.swing._
 object mill  extends Frame{
   val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
   val tui = new tui(controller)
+  val _ = new Gui(controller)
   controller.notifyObservers
-  val gui = new Gui()
+//  val gui = new Gui()
 
   def main(args: Array[String]): Unit = {
-    gui.grid()
+
 //    gui.grid
     println(tui.startGame)
     val playerOne = readLine()
