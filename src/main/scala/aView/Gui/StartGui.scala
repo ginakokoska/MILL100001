@@ -1,19 +1,13 @@
 package aView.Gui
 import aView.tui
+import controller.RedrawGrid
 import controller.base.Controller
 import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 import model.playerComponent.Stone
-import org.w3c.dom.html.HTMLFontElement
-import scalafx.geometry.Orientation.Vertical
 
-import java.awt.image.BufferedImage
+
 import java.awt.{Color, ComponentOrientation, Font, Point}
-import java.io.File
-import java.util.Locale
-import javax.imageio.ImageIO
 import javax.swing.ImageIcon
-import javax.swing.text.html.HTML
-import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, Key, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
 import scala.swing.{Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, Orientation, Panel, Point, PopupMenu, RadioMenuItem, Rectangle, RootPanel, Swing, TextField}
 
@@ -164,7 +158,7 @@ case class StartGui(controller: Controller) extends MainFrame {
                 }
             }
           }
-          boardGui2.repaint()
+//          boardGui2.repaint()
           tui.gameState()
         }
       case MouseDragged(_,p,m) =>
@@ -202,7 +196,7 @@ case class StartGui(controller: Controller) extends MainFrame {
                   boardGui2.remCoords(v)
                   controller.moveController(k)
               }
-              boardGui2.repaint()
+//              boardGui2.repaint()
               tui.gameState()
               pArray = Array()
             }
@@ -212,13 +206,20 @@ case class StartGui(controller: Controller) extends MainFrame {
 
   }
 
+  listenTo(controller)
+  reactions += {
+    case event: RedrawGrid => boardGui2.repaint()
+  }
+
   val undo = new Button("restart") {
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked =>
         controller.undo()
         boardGui2.remAll()
-        boardGui2.repaint()
+        controller.gridSize("3")
+        tui.update
+//        boardGui2.repaint()
     }
   }
 
@@ -230,8 +231,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       contents += new Label(controller.player1.name, null, Alignment.Leading) {
         font = new Font("monoSpaceD", Font.BOLD, 40)
       }
-      contents += new Label("   ", null, Alignment.Trailing) {
-        font = new Font("monoSpaceD", Font.BOLD, 60)
+      contents += new Label("  vs  ", null, Alignment.Trailing) {
+        font = new Font("monoSpaceD", Font.BOLD, 40)
       }
       contents += new Label(controller.player2.name, null, Alignment.Trailing) {
         font = new Font("monoSpaceD", Font.BOLD, 40)
@@ -246,6 +247,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       background = Color.lightGray
     }
   }
+
+
 
   visible = true
 

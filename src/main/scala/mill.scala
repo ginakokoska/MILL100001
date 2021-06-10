@@ -1,5 +1,6 @@
 import aView.Gui.{Gui, Gui2, StartGui}
 import aView._
+import controller.RedrawGrid
 import controller.base.Controller
 import model.{playerComponent, _}
 import model.gridComponent.gridBase.grid
@@ -13,7 +14,7 @@ object mill  extends Frame{
   val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
   val tui = new tui(controller)
   val gui = new StartGui(controller)
-  controller.notifyObservers
+  controller.publish(new RedrawGrid)
 //  val gui = new Gui()
 
   def main(args: Array[String]): Unit = {
