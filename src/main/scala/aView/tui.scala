@@ -2,7 +2,8 @@ package aView
 
 import util._
 import controller._
-import model.Stone
+import controller.base.Controller
+import model.{BlackTurn, Stone, WhiteTurn}
 
 import scala.io.StdIn.readLine
 
@@ -24,6 +25,16 @@ class tui (controller: Controller) extends Observer {
 
   def moveTui (pos :String) :Unit = {
     controller.moveController(pos)
+  }
+
+  def gameState(): Unit = {
+    if(controller.gamePlayState == WhiteTurn()) println("White please set your Stone:")
+    else if(controller.gamePlayState == BlackTurn()) println("Black please set your Stone:")
+    else println("")
+  }
+
+  def stoneSet(pos :String, act :String): Unit = {
+    println("Stone " + act + pos)
   }
 
   override def update :Boolean = {

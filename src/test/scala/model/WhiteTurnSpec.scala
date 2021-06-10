@@ -1,6 +1,6 @@
 package model
 
-import controller.Controller
+import controller.base.Controller
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 

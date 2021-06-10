@@ -1,6 +1,6 @@
-package controller
+package controller.base
 
-import model.{GamePlay, grid, Player, Stone, WhiteTurn, State}
+import model._
 import util._
 
 class Controller(var player1: Player, var player2: Player, var grid: grid) extends Observable {
@@ -38,4 +38,7 @@ class Controller(var player1: Player, var player2: Player, var grid: grid) exten
     undoManager.doStep(new SetCommand(this, pos))
     notifyObservers
   }
+
+  def undo(): Unit = undoManager.undoStep
+
 }

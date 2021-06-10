@@ -1,6 +1,6 @@
 package model
 
-import controller.Controller
+import controller.base.Controller
 
 //State Pattern
 trait State {

@@ -1,5 +1,6 @@
 package controller
 
+import controller.base.Controller
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 import model.{Node, Player, Stone, WhiteTurn, grid}

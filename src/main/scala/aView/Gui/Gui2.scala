@@ -37,6 +37,12 @@ case class Gui2() extends Component {
     cordList += (nw._1->nw._2)
   }
 
+  def remAll(): Unit = {
+    for((k,v)<-cordList){
+      cordList -= k
+    }
+  }
+
   override def paintComponent(g: Graphics2D): Unit = {
     g.drawImage(backgroundImage,0,0,null)
     if(cordList.nonEmpty) {

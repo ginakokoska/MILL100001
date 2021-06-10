@@ -1,4 +1,4 @@
-package controller
+package controller.base
 
 import model.{BlackTurn, _}
 import util._

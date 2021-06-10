@@ -1,6 +1,6 @@
 package aView.Gui
 import aView.Gui._
-import controller.Controller
+import controller.base.Controller
 import model.{BlackTurn, Stone, TakeStone, WhiteTurn}
 
 import scala.swing.{BorderPanel, BoxPanel, Button, Component, FlowPanel, Graphics2D, Label, MainFrame, Orientation, Point, TextField}

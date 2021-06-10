@@ -1,4 +1,4 @@
-package controller
+package controller.base
 
 import model._
 import util._
