@@ -1,8 +1,10 @@
 package controller
 
+import util.Observer
+
 import scala.swing.Publisher
 
-trait ControllerInterface extends Publisher {
+trait ControllerInterface extends Observer {
 
   def cretePlayer1(name: String, tmpColor: String): Unit
   def createPlayer2(name: String): Unit
