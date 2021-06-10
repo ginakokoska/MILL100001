@@ -1,7 +1,7 @@
 package model
 
 import controller.base.Controller
-import model.gridComponent.gridBase.{Node, grid}
+import model.gridComponent.gridBase.{Node, Grid}
 import model.playerComponent.{Player, Stone}
 import org.scalatest._
 import org.scalatest.matchers.should._
@@ -11,7 +11,7 @@ import scala.util.{Failure, Success}
 
 class GridSpec extends AnyWordSpec with Matchers {
   "A Grid" when {
-    val tmpGrid = grid()
+    val tmpGrid = Grid()
     tmpGrid.gridList = tmpGrid.gridOutSquare()
     "created with size 1" should {
       tmpGrid.gridList = tmpGrid.gridOutSquare()
@@ -48,7 +48,7 @@ class GridSpec extends AnyWordSpec with Matchers {
     }
   }
   "A Grid during Game"  when {
-    val tmpGrid = grid()
+    val tmpGrid = Grid()
     tmpGrid.gridList = tmpGrid.createFullGrid()
     val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), tmpGrid)
     "player set a Stone at beginning" should {

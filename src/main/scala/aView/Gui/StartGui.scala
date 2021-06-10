@@ -1,19 +1,13 @@
 package aView.Gui
-import aView.tui
+import aView.Tui
+import controller.RedrawGrid
 import controller.base.Controller
 import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 import model.playerComponent.Stone
-import org.w3c.dom.html.HTMLFontElement
-import scalafx.geometry.Orientation.Vertical
 
-import java.awt.image.BufferedImage
+
 import java.awt.{Color, ComponentOrientation, Font, Point}
-import java.io.File
-import java.util.Locale
-import javax.imageio.ImageIO
 import javax.swing.ImageIcon
-import javax.swing.text.html.HTML
-import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, Key, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
 import scala.swing.{Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, Orientation, Panel, Point, PopupMenu, RadioMenuItem, Rectangle, RootPanel, Swing, TextField}
 
@@ -21,17 +15,17 @@ import scala.swing.{Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox
 case class StartGui(controller: Controller) extends MainFrame {
 
   title = "Mill"
-  preferredSize = new Dimension(850, 850)
+  preferredSize = new Dimension(400, 200)
+  centerOnScreen()
 
   val namePlayer1 = new TextField {
-    text = "Name of Player1"
+    text = "enter Name of Player1"
     listenTo(mouse.clicks)
     reactions += {
       case event: MouseClicked => text = ""
     }
     columns = 20
     visible = true
-
   }
 
   val colors = Seq("white", "black")
@@ -45,12 +39,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       case _ : MouseClicked =>
         createPl2()
         controller.createPlayer1(namePlayer1.text, cb.toString())
-//        println(namePlayer1.text)
     }
   }
-
-
-
 
 
   def createPl2(): Unit = {
@@ -64,7 +54,6 @@ case class StartGui(controller: Controller) extends MainFrame {
 
   val namePlayer2 = new TextField {
     text = "enter Name of Player2"
-//    title = "mill"
     listenTo(mouse.clicks)
     reactions += {
       case event: MouseClicked =>
@@ -80,14 +69,14 @@ case class StartGui(controller: Controller) extends MainFrame {
     icon = new ImageIcon(resizew)
     enabled = true
     background = Color.yellow
-
   }
-
 
   val welcome = new Label {
     text = "Welcome to Mill"
   }
-  val tui = new tui(controller)
+
+  val tui = new Tui(controller)
+
   val startgame = new Button {
     text = "start game"
     listenTo(mouse.clicks)
@@ -103,25 +92,26 @@ case class StartGui(controller: Controller) extends MainFrame {
   }
   listenTo(startgame)
   reactions += {
-    case clicked: ButtonClicked => controller.createPlayer2(namePlayer2.text)
+    case clicked: ButtonClicked =>
+      controller.createPlayer2(namePlayer2.text)
+      preferredSize = new Dimension(750, 850)
   }
+
   def wel(): Unit = {
     contents = new FlowPanel() {
       contents += welcome
       contents += namePlayer1
       contents += choosePLbt
       contents += cb
-
-
     }
   }
-  var boardGui2 = new Gui2()
+
+  var boardGui2 = new Gui()
   var pArray :Array[Point] = Array()
   var pCl = new Point()
   var pClStr = ""
   var pRe = new Point()
   var pReStr = ""
-
 
   val xPanel = new BoxPanel(Orientation.Vertical) {
 
@@ -164,7 +154,6 @@ case class StartGui(controller: Controller) extends MainFrame {
                 }
             }
           }
-          boardGui2.repaint()
           tui.gameState()
         }
       case MouseDragged(_,p,m) =>
@@ -187,7 +176,7 @@ case class StartGui(controller: Controller) extends MainFrame {
                   controller.moveController("move " + k1 + " to " + k)
                   if(controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
                     tui.stoneSet(k, "moved from " + k1 + " to ")
-                    boardGui2.remOldSetNew(v1, (v, Color.WHITE))
+                  boardGui2.remOldSetNew(v1, (v, Color.WHITE))
                 case BlackTurn() =>
                   controller.moveController("move " + k1 + " to " + k)
                   if(controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
@@ -202,7 +191,6 @@ case class StartGui(controller: Controller) extends MainFrame {
                   boardGui2.remCoords(v)
                   controller.moveController(k)
               }
-              boardGui2.repaint()
               tui.gameState()
               pArray = Array()
             }
@@ -212,13 +200,20 @@ case class StartGui(controller: Controller) extends MainFrame {
 
   }
 
+  listenTo(controller)
+  reactions += {
+    case event: RedrawGrid => boardGui2.repaint()
+  }
+
   val undo = new Button("restart") {
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked =>
         controller.undo()
         boardGui2.remAll()
-        boardGui2.repaint()
+        controller.gridSize("3")
+        tui.update
+
     }
   }
 
@@ -230,8 +225,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       contents += new Label(controller.player1.name, null, Alignment.Leading) {
         font = new Font("monoSpaceD", Font.BOLD, 40)
       }
-      contents += new Label("   ", null, Alignment.Trailing) {
-        font = new Font("monoSpaceD", Font.BOLD, 60)
+      contents += new Label("  vs  ", null, Alignment.Trailing) {
+        font = new Font("monoSpaceD", Font.BOLD, 40)
       }
       contents += new Label(controller.player2.name, null, Alignment.Trailing) {
         font = new Font("monoSpaceD", Font.BOLD, 40)
@@ -246,6 +241,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       background = Color.lightGray
     }
   }
+
+
 
   visible = true
 

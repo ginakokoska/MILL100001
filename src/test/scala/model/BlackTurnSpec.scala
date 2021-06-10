@@ -2,7 +2,7 @@ package model
 
 import controller.base.Controller
 import model.gridComponent.gridBase
-import model.gridComponent.gridBase.{BlackTurn, GamePlay, TakeStone, WhiteTurn, grid}
+import model.gridComponent.gridBase.{BlackTurn, GamePlay, TakeStone, WhiteTurn, Grid}
 import model.playerComponent.{Player, Stone}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
@@ -10,8 +10,8 @@ import org.scalatest.wordspec._
 
 case class BlackTurnSpec() extends AnyWordSpec with Matchers {
   "BlackTurn" when {
-    val tmpGrid = grid()
-    tmpGrid.gridList = grid().createFullGrid()
+    val tmpGrid = Grid()
+    tmpGrid.gridList = Grid().createFullGrid()
     val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), tmpGrid)
     "handle() should be return " should {
       val state = BlackTurn().handle("OS: 00", tmpGrid, controller)

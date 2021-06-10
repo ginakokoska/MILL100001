@@ -7,7 +7,7 @@ import model.gridComponent.GridInterface
 
 import scala.util.{Failure, Try}
 
-class grid() extends GridInterface{
+class Grid() extends GridInterface{
   var playGround: String = ""
   var gridList: List[Array[Array[Node]]] = List()
   override def gridOutSquare(): List[Array[Array[Node]]] = this.gridList

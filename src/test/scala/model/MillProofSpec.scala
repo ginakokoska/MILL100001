@@ -1,15 +1,15 @@
 package model
 
-import model.gridComponent.gridBase.{Node, grid, millProof}
+import model.gridComponent.gridBase.{Node, Grid, millProof}
 import model.playerComponent.Stone
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 
 class MillProofSpec extends AnyWordSpec with Matchers {
   "A MillProofSpec" when {
-    val tmpGrid = grid()
+    val tmpGrid = Grid()
     "player takes a move to a corner" should {
-      tmpGrid.gridList = grid().createFullGrid()
+      tmpGrid.gridList = Grid().createFullGrid()
       tmpGrid.gridList(0)(0)(2) = Node(Some(Stone.white))
       tmpGrid.gridList(0)(1)(2) = Node(Some(Stone.white))
       tmpGrid.gridList(0)(2)(2) = Node(Some(Stone.white))
@@ -23,7 +23,7 @@ class MillProofSpec extends AnyWordSpec with Matchers {
       }
     }
     "player takes a move to a MidNode" should {
-      tmpGrid.gridList = grid().createFullGrid()
+      tmpGrid.gridList = Grid().createFullGrid()
       tmpGrid.gridList(0)(0)(2) = Node(Some(Stone.white))
       tmpGrid.gridList(0)(1)(2) = Node(Some(Stone.white))
       tmpGrid.gridList(0)(2)(2) = Node(Some(Stone.white))

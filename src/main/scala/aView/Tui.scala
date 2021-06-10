@@ -8,7 +8,7 @@ import model.playerComponent.Stone
 
 import scala.io.StdIn.readLine
 
-class tui (controller: Controller) extends Observer {
+class Tui(controller: Controller) extends Observer {
 //  controller.add(this)
 
   def startGame():String = {

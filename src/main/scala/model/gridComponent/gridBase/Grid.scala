@@ -5,7 +5,7 @@ import model.playerComponent.{Player, Stone}
 
 import scala.util.{Failure, Success, Try}
 
-case class grid() {
+case class Grid() {
   var playGround: String = ""
   var gridList: List[Array[Array[Node]]] = List()
 
@@ -222,8 +222,8 @@ case class grid() {
     posArray(4) match {
       case "OS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
-            moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+            MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
           !gridList(0)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
@@ -240,8 +240,8 @@ case class grid() {
         }
       case "MS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
-            moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 1, intNewPos1, intNewPos2)) &&
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+            MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 1, intNewPos1, intNewPos2)) &&
           !gridList(1)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
@@ -258,8 +258,8 @@ case class grid() {
         }
       case "IS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
-            moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 2, intNewPos1, intNewPos2)) &&
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+            MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 2, intNewPos1, intNewPos2)) &&
           !gridList(2)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))

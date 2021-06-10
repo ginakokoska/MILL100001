@@ -1,12 +1,12 @@
 package controller.base
 
 import model._
-import model.gridComponent.gridBase.grid
+import model.gridComponent.gridBase.Grid
 import util._
 
 class SolveCommand(controller:Controller) extends Command {
   //memento Pattern
-  var memento: grid = controller.grid
+  var memento: Grid = controller.grid
 
   override def doStep: Unit = {
     memento = controller.grid

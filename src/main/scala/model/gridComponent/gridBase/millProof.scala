@@ -3,7 +3,7 @@ package model.gridComponent.gridBase
 import model.playerComponent.Stone
 
 case class millProof() {
-  def proofTypeCorner(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: grid): Boolean = {
+  def proofTypeCorner(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: Grid): Boolean = {
     var count = 0
     //    var rVar = false
     val tmp = pos1.toString + pos2.toString
@@ -104,7 +104,7 @@ case class millProof() {
     //    else false
   }
 
-  def proofTypeMid(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: grid): Boolean = {
+  def proofTypeMid(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: Grid): Boolean = {
     var count = 0
     //    var rVar = false
     val tmp = pos1.toString + pos2.toString

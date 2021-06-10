@@ -1,6 +1,6 @@
 package model.gridComponent.gridBase
 
-case class moveCondition() {
+case class MoveCondition() {
 
   def moveConditionCorner(pos1: Int, pos2: Int, pos1New: Int, pos2New: Int): Boolean = {
     var rVar = false

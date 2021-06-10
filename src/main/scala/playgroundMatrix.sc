@@ -1,12 +1,12 @@
 import scala.io.StdIn._
 import model.{playerComponent, _}
-import model.gridComponent.gridBase.{Node, grid}
+import model.gridComponent.gridBase.{Node, Grid}
 import model.playerComponent.{Player, Stone}
 
 
 val player1 = Player("PlayerOne", Stone.white)
 val player2 = playerComponent.Player("PlayerTwo", Stone.black)
-var grid = new grid()
+var grid = new Grid()
 
 println("Player1: " + player1)
 println("Player2: " + player2)
@@ -18,7 +18,7 @@ println("Color Player2: " + player2.color)
 println("Name player2: " + player2.name)
 
 //grid.outSquare(0)(0) = Node(Some(Stone.white))
-def test(): grid = {
+def test(): Grid = {
   var grid1 = grid()
   grid1.gridList(0)(0)(0) = Node(Some(player1.color))
   grid1

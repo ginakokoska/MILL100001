@@ -7,7 +7,7 @@ import model.playerComponent.Stone
 import scala.util.{Failure, Success}
 
 case class BlackTurn() extends State {
-  override def handle(pos: String, grid: grid, controller: Controller): State = {
+  override def handle(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.moveGrid(pos, Stone.black, controller.player1)
     tmp match {
       case Success(v) =>
@@ -25,7 +25,7 @@ case class BlackTurn() extends State {
     }
   }
 
-  override def handle2(pos: String, grid: grid, controller: Controller): State = {
+  override def handle2(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.moveStone(pos, Stone.black, controller.player1)
     tmp match {
       case Success(v) =>
@@ -43,9 +43,9 @@ case class BlackTurn() extends State {
     }
   }
 
-  override def handleTakeStone(pos: String, grid: grid): State = gridBase.GamePlay(new BlackTurn).state
+  override def handleTakeStone(pos: String, grid: Grid): State = gridBase.GamePlay(new BlackTurn).state
 
-  override def jumpStone(pos: String, grid: grid, controller: Controller): State = {
+  override def jumpStone(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.jumpStone(pos, Stone.black, controller.player1)
     tmp match {
       case Success(v) => gridBase.GamePlay(new WhiteTurn).state
