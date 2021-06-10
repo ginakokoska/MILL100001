@@ -2,7 +2,8 @@
 package controller.mock
 
 import controller.ControllerInterface
-import model.{Player, grid}
+import model.gridComponent.gridBase.grid
+import model.playerComponent.Player
 
 class Controller(var player1: Player, var player2: Player, var grid: grid) extends ControllerInterface {
   grid = new grid()

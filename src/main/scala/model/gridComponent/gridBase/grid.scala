@@ -1,6 +1,7 @@
-package model
+package model.gridComponent.gridBase
 
-import controller.base.Controller
+import model._
+import model.playerComponent.{Player, Stone}
 
 import scala.util.{Failure, Success, Try}
 
@@ -112,75 +113,75 @@ case class grid() {
 
   def printGrid: String = playGround
 
-  def moveGrid(pos :String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
+  def moveGrid(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ")
     var square = ""
     var intPos1 = 0
     var intPos2 = 0
-    if(posArray.size == 2) {
+    if (posArray.size == 2) {
       square = posArray(0)
       intPos1 = posArray(1).charAt(0).asDigit
       intPos2 = posArray(1).charAt(1).asDigit
     }
-//    var intPos1 = 0
-//    var intPos2 = 0
-//    Try(posArray(1).charAt(0).asDigit) match {
-//      case Success(v) => intPos1 = v
-//      case Failure(_) => Failure(exception = new Exception)
-//    }
-//    Try(posArray(1).charAt(1).asDigit) match {
-//      case Success(v) => intPos2 = v
-//      case Failure(_) => Failure(exception = new Exception)
-//    }
+    //    var intPos1 = 0
+    //    var intPos2 = 0
+    //    Try(posArray(1).charAt(0).asDigit) match {
+    //      case Success(v) => intPos1 = v
+    //      case Failure(_) => Failure(exception = new Exception)
+    //    }
+    //    Try(posArray(1).charAt(1).asDigit) match {
+    //      case Success(v) => intPos2 = v
+    //      case Failure(_) => Failure(exception = new Exception)
+    //    }
 
     square match {
-        case "OS:" =>
-          if(!gridList(0)(intPos1)(intPos2).isSet) {
-            gridList(0)(intPos1)(intPos2) = Node(Some(color))
-            if(millProof().proofTypeMid(0, intPos1, intPos2, color, this) ||
-              millProof().proofTypeCorner(0, intPos1, intPos2, color, this)){
-              player.takeStone()
-              println(color.toString + "have mill!")
-              Failure(new Exception("message:"))
-            } else {
-              Success(gridList)
-            }
+      case "OS:" =>
+        if (!gridList(0)(intPos1)(intPos2).isSet) {
+          gridList(0)(intPos1)(intPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(0, intPos1, intPos2, color, this) ||
+            millProof().proofTypeCorner(0, intPos1, intPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + "have mill!")
+            Failure(new Exception("message:"))
           } else {
-            Failure(exception = new Exception(""))
+            Success(gridList)
           }
-        case "MS:" =>
-          if(!gridList(1)(intPos1)(intPos2).isSet) {
-            gridList(1)(intPos1)(intPos2) = Node(Some(color))
-            if(millProof().proofTypeMid(1, intPos1, intPos2, color, this) ||
-              millProof().proofTypeCorner(1, intPos1, intPos2, color, this)){
-              player.takeStone()
-              println(color.toString + "have mill!")
-              Failure(new Exception("message:"))
-            } else {
-              Success(gridList)
-            }
+        } else {
+          Failure(exception = new Exception(""))
+        }
+      case "MS:" =>
+        if (!gridList(1)(intPos1)(intPos2).isSet) {
+          gridList(1)(intPos1)(intPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(1, intPos1, intPos2, color, this) ||
+            millProof().proofTypeCorner(1, intPos1, intPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + "have mill!")
+            Failure(new Exception("message:"))
           } else {
-            Failure(exception = new Exception(""))
+            Success(gridList)
           }
-        case "IS:" =>
-          if(!gridList(2)(intPos1)(intPos2).isSet) {
-            gridList(2)(intPos1)(intPos2) = Node(Some(color))
-            if(millProof().proofTypeMid(2, intPos1, intPos2, color, this) ||
-              millProof().proofTypeCorner(2, intPos1, intPos2, color, this)){
-              player.takeStone()
-              println(color.toString + "have mill!")
-              Failure(new Exception("message:"))
-            } else {
-              Success(gridList)
-            }
+        } else {
+          Failure(exception = new Exception(""))
+        }
+      case "IS:" =>
+        if (!gridList(2)(intPos1)(intPos2).isSet) {
+          gridList(2)(intPos1)(intPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(2, intPos1, intPos2, color, this) ||
+            millProof().proofTypeCorner(2, intPos1, intPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + "have mill!")
+            Failure(new Exception("message:"))
           } else {
-            Failure(exception = new Exception(""))
+            Success(gridList)
           }
-        case _ => Failure(exception = new Exception(""))
-      }
+        } else {
+          Failure(exception = new Exception(""))
+        }
+      case _ => Failure(exception = new Exception(""))
+    }
   }
 
-  def takePos(pos :String, color :Stone.Value) :Try[Unit] = {
+  def takePos(pos: String, color: Stone.Value): Try[Unit] = {
     val posArray: Array[String] = pos.split(" ")
     var square = 999
     posArray(0) match {
@@ -191,9 +192,9 @@ case class grid() {
     val intPos1 = posArray(1).charAt(0).asDigit
     val intPos2 = posArray(1).charAt(1).asDigit
 
-    if(gridList(square)(intPos1)(intPos2).isColor.contains(color) &&
+    if (gridList(square)(intPos1)(intPos2).isColor.contains(color) &&
       !(millProof().proofTypeCorner(square, intPos1, intPos2, color, this) ||
-      millProof().proofTypeMid(square, intPos1, intPos2, color, this))) {
+        millProof().proofTypeMid(square, intPos1, intPos2, color, this))) {
       gridList(square)(intPos1)(intPos2) = Node(None)
       Success()
     } else
@@ -203,81 +204,81 @@ case class grid() {
   def moveStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ") //move OS: 00 to OS: 01
 
-      val intOldPos1 = posArray(2).charAt(0).asDigit
-      val intOldPos2 = posArray(2).charAt(1).asDigit
-      val intNewPos1 = posArray(5).charAt(0).asDigit
-      val intNewPos2 = posArray(5).charAt(1).asDigit
-//      posArray(1) match {
-//        case "OS:" => gridList(0)(intOldPos1)(intOldPos2) = Node(None)
-//        case "MS:" => gridList(1)(intOldPos1)(intOldPos2) = Node(None)
-//        case "IS:" => gridList(2)(intOldPos1)(intOldPos2) = Node(None)
-//      }
+    val intOldPos1 = posArray(2).charAt(0).asDigit
+    val intOldPos2 = posArray(2).charAt(1).asDigit
+    val intNewPos1 = posArray(5).charAt(0).asDigit
+    val intNewPos2 = posArray(5).charAt(1).asDigit
+    //      posArray(1) match {
+    //        case "OS:" => gridList(0)(intOldPos1)(intOldPos2) = Node(None)
+    //        case "MS:" => gridList(1)(intOldPos1)(intOldPos2) = Node(None)
+    //        case "IS:" => gridList(2)(intOldPos1)(intOldPos2) = Node(None)
+    //      }
     var sqOld = 999
     posArray(1) match {
       case "OS:" => sqOld = 0
       case "MS:" => sqOld = 1
       case "IS:" => sqOld = 2
     }
-      posArray(4) match {
-        case "OS:" =>
-            if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-              (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
-              moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
-              !gridList(0)(intNewPos1)(intNewPos2).isSet) {
-              gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
-              gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
-              if(millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
-                millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
-                player.takeStone()
-                println(color.toString + " have mill1!")
-                Failure(new Exception("message:"))
-              } else {
-                Success(gridList)
-              }
-            } else {
-              Failure(new Exception(""))
-            }
-        case "MS:" =>
-          if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-            (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+    posArray(4) match {
+      case "OS:" =>
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+            moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
+          !gridList(0)(intNewPos1)(intNewPos2).isSet) {
+          gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
+          gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
+            millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + " have mill1!")
+            Failure(new Exception("message:"))
+          } else {
+            Success(gridList)
+          }
+        } else {
+          Failure(new Exception(""))
+        }
+      case "MS:" =>
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
             moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 1, intNewPos1, intNewPos2)) &&
-            !gridList(1)(intNewPos1)(intNewPos2).isSet) {
-            gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
-            gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
-            if(millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
-              millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
-              player.takeStone()
-              println(color.toString + " have mill1!")
-              Failure(new Exception("message:"))
-            } else {
-              Success(gridList)
-            }
+          !gridList(1)(intNewPos1)(intNewPos2).isSet) {
+          gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
+          gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
+            millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + " have mill1!")
+            Failure(new Exception("message:"))
           } else {
-            Failure(new Exception(""))
+            Success(gridList)
           }
-        case "IS:" =>
-          if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-            (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+        } else {
+          Failure(new Exception(""))
+        }
+      case "IS:" =>
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+          (moveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
             moveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 2, intNewPos1, intNewPos2)) &&
-            !gridList(2)(intNewPos1)(intNewPos2).isSet) {
-            gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
-            gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
-            if(millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
-              millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
-              player.takeStone()
-              println(color.toString + " have mill1!")
-              Failure(new Exception("message:"))
-            } else {
-              Success(gridList)
-            }
+          !gridList(2)(intNewPos1)(intNewPos2).isSet) {
+          gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
+          gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
+          if (millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
+            millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
+            player.takeStone()
+            println(color.toString + " have mill1!")
+            Failure(new Exception("message:"))
           } else {
-            Failure(new Exception(""))
+            Success(gridList)
           }
-      }
-//    gridList
+        } else {
+          Failure(new Exception(""))
+        }
+    }
+    //    gridList
   }
 
-  def jumpStone(pos :String, color :Stone.Value, player: Player):Try[List[Array[Array[Node]]]] = {
+  def jumpStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ") //jump OS: 00 to OS: 01
 
     val intOldPos1 = posArray(2).charAt(0).asDigit
@@ -293,11 +294,11 @@ case class grid() {
 
     posArray(4) match {
       case "OS:" =>
-        if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
           !gridList(0)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if(millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
+          if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " have mill1!")
@@ -309,11 +310,11 @@ case class grid() {
           Failure(new Exception(""))
         }
       case "MS:" =>
-        if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
           !gridList(1)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if(millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
+          if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " have mill1!")
@@ -325,11 +326,11 @@ case class grid() {
           Failure(new Exception(""))
         }
       case "IS:" =>
-        if(gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
+        if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
           !gridList(2)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if(millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
+          if (millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " have mill1!")
@@ -343,4 +344,3 @@ case class grid() {
     }
   }
 }
-

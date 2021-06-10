@@ -1,5 +1,7 @@
 package model
 
+import model.gridComponent.gridBase.Node
+import model.playerComponent.Stone
 import org.scalatest._
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._

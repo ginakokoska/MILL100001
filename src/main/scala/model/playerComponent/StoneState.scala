@@ -1,6 +1,6 @@
-package model
+package model.playerComponent
 
 object StoneState extends Enumeration {
-  type StoneState= Value
+  type StoneState = Value
   val notUsed, inGame, outOfGame = Value
 }

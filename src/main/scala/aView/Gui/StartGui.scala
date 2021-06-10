@@ -1,7 +1,8 @@
 package aView.Gui
 import aView.tui
 import controller.base.Controller
-import model.{BlackTurn, Stone, TakeStone, WhiteTurn}
+import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
+import model.playerComponent.Stone
 import org.w3c.dom.html.HTMLFontElement
 import scalafx.geometry.Orientation.Vertical
 

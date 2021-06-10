@@ -1,4 +1,4 @@
-package model
+package model.gridComponent.gridBase
 
 import controller.base.Controller
 

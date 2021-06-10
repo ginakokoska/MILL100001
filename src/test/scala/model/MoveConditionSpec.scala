@@ -1,5 +1,7 @@
 package model
 
+import model.gridComponent.gridBase.{Node, grid, moveCondition}
+import model.playerComponent.Stone
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 

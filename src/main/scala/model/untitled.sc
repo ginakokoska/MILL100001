@@ -1,5 +1,5 @@
-import model.StoneState
-import model.StoneState.StoneState
+import model.playerComponent.StoneState.StoneState
+import model.playerComponent.StoneState
 
 import scala.collection.immutable.ListMap
 import scala.util.control.Breaks.{break, breakable}

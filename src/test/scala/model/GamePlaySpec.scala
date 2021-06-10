@@ -1,6 +1,9 @@
 package model
 
 import controller.base.Controller
+import model.gridComponent.gridBase
+import model.gridComponent.gridBase.{BlackTurn, GamePlay, TakeStone, WhiteTurn, grid}
+import model.playerComponent.{Player, Stone}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 
@@ -8,7 +11,7 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
   "A GamePlay" when {
     val tmpGrid = grid()
     tmpGrid.gridList = grid().createFullGrid()
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), tmpGrid)
+    val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), tmpGrid)
     "handle" should {
       val stateBlack = GamePlay(WhiteTurn()).handle("OS: 00", tmpGrid, controller)
       val stateWhite = GamePlay(BlackTurn()).handle("OS: 10", tmpGrid, controller)
@@ -44,7 +47,7 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
       WhiteTurn().handle("IS: 02", tmpGrid, controller)
       BlackTurn().handle("IS: 20", tmpGrid, controller)
       val stateBlack = GamePlay(TakeStone(Stone.white)).handleTakeStone("IS: 20", tmpGrid)
-      val stateWhite = GamePlay(TakeStone(Stone.black)).handleTakeStone("IS: 02", tmpGrid)
+      val stateWhite = GamePlay(gridBase.TakeStone(Stone.black)).handleTakeStone("IS: 02", tmpGrid)
       "with WhiteTurn should return BlackTurn" in {
         stateBlack should be(GamePlay(new BlackTurn).state)
       }

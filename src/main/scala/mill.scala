@@ -1,14 +1,16 @@
 import aView.Gui.{Gui, Gui2, StartGui}
 import aView._
 import controller.base.Controller
-import model._
+import model.{playerComponent, _}
+import model.gridComponent.gridBase.grid
+import model.playerComponent.{Player, Stone}
 
 import scala.io.StdIn.readLine
 import scala.swing._
 
 
 object mill  extends Frame{
-  val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
+  val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
   val tui = new tui(controller)
   val gui = new StartGui(controller)
   controller.notifyObservers

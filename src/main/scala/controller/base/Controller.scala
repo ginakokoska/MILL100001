@@ -1,6 +1,8 @@
 package controller.base
 
-import model._
+import model.{playerComponent, _}
+import model.gridComponent.gridBase.{GamePlay, WhiteTurn, grid}
+import model.playerComponent.{Player, Stone}
 import util._
 
 class Controller(var player1: Player, var player2: Player, var grid: grid) extends Observable {
@@ -15,8 +17,8 @@ class Controller(var player1: Player, var player2: Player, var grid: grid) exten
   }
 
   def createPlayer2(name: String):Unit = {
-    if(player1.color == Stone.white) player2 = Player(name,Stone.black)
-    else player2 = Player(name,Stone.white)
+    if(player1.color == Stone.white) player2 = playerComponent.Player(name,Stone.black)
+    else player2 = playerComponent.Player(name,Stone.white)
     player2.fillStone()
     notifyObservers
   }

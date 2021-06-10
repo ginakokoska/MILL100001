@@ -1,30 +1,29 @@
-package model
+package model.playerComponent
 
-import model.StoneState.StoneState
+import StoneState.StoneState
 
 import scala.collection.immutable.ListMap
 import scala.util.control.Breaks.{break, breakable}
 
-
 case class Player(name: String, color: Stone.Value) {
-  var mapState :ListMap[String,StoneState.Value] = ListMap()
+  var mapState: ListMap[String, StoneState.Value] = ListMap()
 
-  def playerToString(player1: Player, player2: Player) :String = {
+  def playerToString(player1: Player, player2: Player): String = {
     val helloPlayer = "welcome " + player1.name + "(" + player1.color + ") and " + player2.name + "(" + player2.color + ")"
     helloPlayer
   }
 
-  def fillStone() :Unit = {
-    for(i <- 1 to 9) {
+  def fillStone(): Unit = {
+    for (i <- 1 to 9) {
       var name = "Stone" + i
       mapState += (name -> StoneState.notUsed)
     }
   }
 
-  def setStone() :Unit = {
+  def setStone(): Unit = {
     breakable {
-      for ((k,v) <- mapState) {
-        if(v.equals(StoneState.notUsed)) {
+      for ((k, v) <- mapState) {
+        if (v.equals(StoneState.notUsed)) {
           mapState += (k -> StoneState.inGame)
           break()
         }
@@ -32,10 +31,10 @@ case class Player(name: String, color: Stone.Value) {
     }
   }
 
-  def takeStone() :Unit = {
+  def takeStone(): Unit = {
     breakable {
-      for ((k,v) <- mapState) {
-        if(v.equals(StoneState.inGame)) {
+      for ((k, v) <- mapState) {
+        if (v.equals(StoneState.inGame)) {
           mapState += (k -> StoneState.outOfGame)
           break()
         }
@@ -43,10 +42,10 @@ case class Player(name: String, color: Stone.Value) {
     }
   }
 
-  def countState(state: StoneState) :Int = {
+  def countState(state: StoneState): Int = {
     var count = 0
-    for(i <- mapState.values.toList) {
-      if(i.equals(state)) {
+    for (i <- mapState.values.toList) {
+      if (i.equals(state)) {
         count = count + 1
       }
     }

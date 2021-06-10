@@ -1,6 +1,7 @@
 package controller.base
 
 import model._
+import model.gridComponent.gridBase.grid
 import util._
 
 class SolveCommand(controller:Controller) extends Command {

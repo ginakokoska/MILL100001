@@ -1,6 +1,9 @@
 package controller.base
 
-import model.{BlackTurn, _}
+import model._
+import model.gridComponent.gridBase
+import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
+import model.playerComponent.{Stone, StoneState}
 import util._
 
 class SetCommand(controller: Controller, pos: String) extends Command {
@@ -25,9 +28,9 @@ class SetCommand(controller: Controller, pos: String) extends Command {
         }
       case _ =>
         if(controller.gamePlayState == TakeStone(controller.player1.color))
-          controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
-        else if(controller.gamePlayState == TakeStone(controller.player2.color))
-          controller.gamePlayState = TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
+          controller.gamePlayState = gridBase.TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
+        else if(controller.gamePlayState == gridBase.TakeStone(controller.player2.color))
+          controller.gamePlayState = gridBase.TakeStone(Stone.black).handleTakeStone(pos, controller.grid)
       //      case TakeStone(controller.player1.color) =>
 //        controller.gamePlayState = TakeStone(Stone.white).handleTakeStone(pos, controller.grid)
 //      case TakeStone(controller.player2.color) =>

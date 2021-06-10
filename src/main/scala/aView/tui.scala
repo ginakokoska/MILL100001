@@ -3,7 +3,8 @@ package aView
 import util._
 import controller._
 import controller.base.Controller
-import model.{BlackTurn, Stone, WhiteTurn}
+import model.gridComponent.gridBase.{BlackTurn, WhiteTurn}
+import model.playerComponent.Stone
 
 import scala.io.StdIn.readLine
 

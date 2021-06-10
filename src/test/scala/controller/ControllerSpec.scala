@@ -1,16 +1,18 @@
 package controller
 
 import controller.base.Controller
+import model.gridComponent.gridBase.grid
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
-import model.{Node, Player, Stone, WhiteTurn, grid}
+import model.playerComponent
+import model.playerComponent.{Player, Stone}
 import util._
 
 
 
 class ControllerSpec extends AnyWordSpec with Matchers {
   "A Controller Player" when {
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
+    val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
     val observer = new Observer {
       var updated: Boolean = false
       def isUpdated: Boolean = updated
@@ -40,7 +42,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
     }
   }
   "A Controller Grid 1" when {
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
+    val controller = new Controller(playerComponent.Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
     val observer = new Observer {
       var updated: Boolean = false
 
@@ -72,7 +74,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
 //    }
   }
   "A Controller Grid 2" when {
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid = grid())
+    val controller = new Controller(playerComponent.Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid = grid())
     val observer = new Observer {
       var updated: Boolean = false
 
@@ -98,7 +100,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
     }
   }
   "A Controller Grid 3" when {
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
+    val controller = new Controller(playerComponent.Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
     val observer = new Observer {
       var updated: Boolean = false
 
@@ -124,7 +126,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
     }
   }
   "A Controller Grid9999" when {
-    val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid())
+    val controller = new Controller(playerComponent.Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), grid())
     val observer = new Observer {
       var updated: Boolean = false
 
