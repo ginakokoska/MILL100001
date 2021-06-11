@@ -32,7 +32,7 @@ object mill  extends Frame{
     tui.update
 
     var i = 0
-    while (controller.win()) {
+    while (!controller.win()) {
       tui.gameState()
       val pos = readLine()
       tui.moveTui(pos)

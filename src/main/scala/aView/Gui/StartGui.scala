@@ -121,37 +121,43 @@ case class StartGui(controller: Controller) extends MainFrame {
     reactions += {
       case MouseClicked(_,p,_,_,_) =>
         for((k,v)<-ValidMove().hitbox(p)) {
-          pCl = v
-          pClStr = k
-          val kArray = k.split(" ")
-          var sq = 999
-          kArray(0) match {
-            case "OS:" => sq = 0
-            case "MS:" => sq = 1
-            case "IS:" => sq = 2
-          }
-          if(pRe.x != v.x || pRe.y != v.y) {
-            controller.gamePlayState match {
-              case WhiteTurn() =>
-                tui.stoneSet(k, "set to ")
-                boardGui2.setCords(v, Color.WHITE)
-                controller.moveController(k)
-              case BlackTurn() =>
-                tui.stoneSet(k, "set to ")
-                boardGui2.setCords(v, Color.BLACK)
-                controller.moveController(k)
-              case TakeStone(Stone.white) =>
-                controller.moveController(k)
-                if(!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
-                  tui.stoneSet(k, "removed from ")
-                  boardGui2.remCoords(v)
-                }
-              case TakeStone(Stone.black) =>
-                controller.moveController(k)
-                if(!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
-                  tui.stoneSet(k, "removed from ")
-                  boardGui2.remCoords(v)
-                }
+          if(!k.equals("")) {
+            pCl = v
+            pClStr = k
+            val kArray = k.split(" ")
+            var sq = 999
+            kArray(0) match {
+              case "OS:" => sq = 0
+              case "MS:" => sq = 1
+              case "IS:" => sq = 2
+            }
+            if (pRe.x != v.x || pRe.y != v.y) {
+              controller.gamePlayState match {
+                case WhiteTurn() =>
+                  tui.stoneSet(k, "set to ")
+                  boardGui2.setCords(v, Color.WHITE)
+                  controller.moveController(k)
+                case BlackTurn() =>
+                  tui.stoneSet(k, "set to ")
+                  boardGui2.setCords(v, Color.BLACK)
+                  controller.moveController(k)
+                case TakeStone(Stone.white) =>
+                  controller.moveController(k)
+                  if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
+                    tui.stoneSet(k, "removed from ")
+                    boardGui2.remCoords(v)
+                  }
+                  if(controller.win())
+                    winMessage
+                case TakeStone(Stone.black) =>
+                  controller.moveController(k)
+                  if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
+                    tui.stoneSet(k, "removed from ")
+                    boardGui2.remCoords(v)
+                  }
+                  if(controller.win())
+                    winMessage
+              }
             }
           }
           tui.gameState()
@@ -162,42 +168,49 @@ case class StartGui(controller: Controller) extends MainFrame {
         if (pArray.nonEmpty) {
           for((k,v)<-ValidMove().hitbox(pArray.head)) {
             for((k1,v1)<-ValidMove().hitbox(pArray(pArray.size-1))) {
-              pRe = v
-              pReStr = k
-              val kArray = k.split(" ")
-              var sq = 999
-              kArray(0) match {
-                case "OS:" => sq = 0
-                case "MS:" => sq = 1
-                case "IS:" => sq = 2
+              if (!k.equals(k1) && !k.equals("") && !k1.equals("")) {
+                pRe = v
+                pReStr = k
+                val kArray = k.split(" ")
+                var sq = 999
+                kArray(0) match {
+                  case "OS:" => sq = 0
+                  case "MS:" => sq = 1
+                  case "IS:" => sq = 2
+                }
+                controller.gamePlayState match {
+                  case WhiteTurn() =>
+                    controller.moveController("move " + k1 + " to " + k)
+                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
+                      tui.stoneSet(k, "moved from " + k1 + " to ")
+                    boardGui2.remOldSetNew(v1, (v, Color.WHITE))
+                  case BlackTurn() =>
+                    controller.moveController("move " + k1 + " to " + k)
+                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
+                      tui.stoneSet(k, "moved from " + k1 + " to ")
+                    boardGui2.remOldSetNew(v1, (v, Color.BLACK))
+                  case TakeStone(Stone.white) =>
+                    tui.stoneSet(k, "removed from ")
+                    boardGui2.remCoords(v)
+                    controller.moveController(k)
+                  case TakeStone(Stone.black) =>
+                    tui.stoneSet(k, "removed from")
+                    boardGui2.remCoords(v)
+                    controller.moveController(k)
+                }
               }
-              controller.gamePlayState match {
-                case WhiteTurn() =>
-                  controller.moveController("move " + k1 + " to " + k)
-                  if(controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
-                    tui.stoneSet(k, "moved from " + k1 + " to ")
-                  boardGui2.remOldSetNew(v1, (v, Color.WHITE))
-                case BlackTurn() =>
-                  controller.moveController("move " + k1 + " to " + k)
-                  if(controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
-                    tui.stoneSet(k, "moved from " + k1 + " to ")
-                  boardGui2.remOldSetNew(v1, (v, Color.BLACK))
-                case TakeStone(Stone.white) =>
-                  tui.stoneSet(k, "removed from ")
-                  boardGui2.remCoords(v)
-                  controller.moveController(k)
-                case TakeStone(Stone.black) =>
-                  tui.stoneSet(k, "removed from")
-                  boardGui2.remCoords(v)
-                  controller.moveController(k)
-              }
-              tui.gameState()
-              pArray = Array()
+                tui.gameState()
+                pArray = Array()
+
             }
           }
         }
     }
 
+  }
+
+  def winMessage() = {
+    Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
   }
 
   listenTo(controller)
@@ -211,8 +224,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       case _: MouseClicked =>
         controller.undo()
         boardGui2.remAll()
-        controller.gridSize("3")
         tui.update
+        controller.gamePlayState = WhiteTurn()
 
     }
   }

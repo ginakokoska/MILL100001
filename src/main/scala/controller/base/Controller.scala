@@ -51,7 +51,7 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   }
 
   override def win(): Boolean = {
-    if (player1.countState(StoneState.outOfGame) == 7 || player2.countState(StoneState.outOfGame) == 7) {
+    if (player1.countState(StoneState.outOfGame) >= 7 || player2.countState(StoneState.outOfGame) >= 7) {
       publish(new RedrawGrid)
       true
     }
