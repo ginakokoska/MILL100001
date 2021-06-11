@@ -301,7 +301,7 @@ case class Grid() {
           if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -317,7 +317,7 @@ case class Grid() {
           if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)

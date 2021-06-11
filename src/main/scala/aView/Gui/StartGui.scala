@@ -5,11 +5,12 @@ import controller.base.Controller
 import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 import model.playerComponent.Stone
 
-
+import java.awt.JobAttributes.DialogType
 import java.awt.{Color, ComponentOrientation, Font, Point}
 import javax.swing.ImageIcon
-import scala.swing.event.{ButtonClicked, Key, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
-import scala.swing.{Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, Orientation, Panel, Point, PopupMenu, RadioMenuItem, Rectangle, RootPanel, Swing, TextField}
+import scala.swing.Action.NoAction.icon
+import scala.swing.event.{ButtonClicked, Key, KeyPressed, KeyReleased, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
+import scala.swing.{AbstractButton, Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, MenuBar, Orientation, Panel, Point, PopupMenu, ProgressBar, RadioMenuItem, Rectangle, RootPanel, Swing, TextField, Window}
 
 
 case class StartGui(controller: Controller) extends MainFrame {
@@ -18,13 +19,22 @@ case class StartGui(controller: Controller) extends MainFrame {
   preferredSize = new Dimension(400, 200)
   centerOnScreen()
 
+//  val menu = new MenuBar() {
+//    val tempmenu = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/millboard.png").getImage
+//    val resizemenu = tempmenu.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+//    icon = new ImageIcon(resizemenu)
+//    background = Color.green
+//
+//  }
+
   val namePlayer1 = new TextField {
     text = "enter Name of Player1"
+    font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
       case event: MouseClicked => text = ""
     }
-    columns = 20
+    columns = 22
     visible = true
   }
 
@@ -33,10 +43,20 @@ case class StartGui(controller: Controller) extends MainFrame {
   }
 
   val choosePLbt = new Button {
-    text = "create Player 1"
+    borderPainted = false
+    background  = Color.getColor("boardcolor", 12499113)
+    val tmpch = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+    val resizech = tmpch.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)
+    icon = new ImageIcon(resizech)
     listenTo(mouse.clicks)
     reactions += {
-      case _ : MouseClicked =>
+      case e : MouseClicked =>
+        createPl2()
+        controller.createPlayer1(namePlayer1.text, cb.toString())
+    }
+    listenTo(keys)
+    reactions += {
+      case e: KeyPressed =>
         createPl2()
         controller.createPlayer1(namePlayer1.text, cb.toString())
     }
@@ -47,6 +67,7 @@ case class StartGui(controller: Controller) extends MainFrame {
     contents = new FlowPanel {
       contents += namePlayer2
       contents += startgame
+      background = Color.getColor("panelcolor", 12499113)
 
     }
   }
@@ -54,12 +75,13 @@ case class StartGui(controller: Controller) extends MainFrame {
 
   val namePlayer2 = new TextField {
     text = "enter Name of Player2"
+    font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
       case event: MouseClicked =>
         text = ""
     }
-    columns = 20
+    columns = 22
     visible = true
   }
 
@@ -68,7 +90,6 @@ case class StartGui(controller: Controller) extends MainFrame {
     val resizew = tmpw.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)
     icon = new ImageIcon(resizew)
     enabled = true
-    background = Color.yellow
   }
 
   val welcome = new Label {
@@ -78,8 +99,12 @@ case class StartGui(controller: Controller) extends MainFrame {
   val tui = new Tui(controller)
 
   val startgame = new Button {
-    text = "start game"
-    listenTo(mouse.clicks)
+    background  = Color.getColor("boardcolor", 12499113)
+    borderPainted = false
+    val tmpst = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+    val resizest = tmpst.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)
+    icon = new ImageIcon(resizest)
+    listenTo(mouse.clicks, keys)
     reactions += {
       case e : MouseClicked =>
         board()
@@ -88,14 +113,31 @@ case class StartGui(controller: Controller) extends MainFrame {
         tui.update
         tui.gameState()
         repaint()
+      case KeyPressed(_, Key.Enter, _, _) =>
+        board()
+        controller.createPlayer2(namePlayer2.text)
+        controller.gridSize("3")
+        tui.update
+        tui.gameState()
+        repaint()
     }
   }
+
   listenTo(startgame)
   reactions += {
     case clicked: ButtonClicked =>
       controller.createPlayer2(namePlayer2.text)
       preferredSize = new Dimension(750, 850)
   }
+  listenTo(startgame)
+  reactions += {
+    case KeyPressed(_, Key.Enter, _, _) =>
+      controller.createPlayer2(namePlayer2.text)
+      preferredSize = new Dimension(750, 850)
+
+  }
+
+
 
   def wel(): Unit = {
     contents = new FlowPanel() {
@@ -103,6 +145,8 @@ case class StartGui(controller: Controller) extends MainFrame {
       contents += namePlayer1
       contents += choosePLbt
       contents += cb
+//      contents += menu
+      background = Color.getColor("panelcolor", 12499113)
     }
   }
 
@@ -168,7 +212,7 @@ case class StartGui(controller: Controller) extends MainFrame {
         if (pArray.nonEmpty) {
           for((k,v)<-ValidMove().hitbox(pArray.head)) {
             for((k1,v1)<-ValidMove().hitbox(pArray(pArray.size-1))) {
-              if (!k.equals(k1) && !k.equals("") && !k1.equals("")) {
+              if (!k.equals(k1) && (!k.equals("") || !k1.equals(""))) {
                 pRe = v
                 pReStr = k
                 val kArray = k.split(" ")
@@ -211,6 +255,10 @@ case class StartGui(controller: Controller) extends MainFrame {
 
   def winMessage() = {
     Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
+    val tmpwin = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/trophy.png").getImage
+    val resizeu = tmpwin.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+    icon = new ImageIcon(resizeu)
+
   }
 
   listenTo(controller)
@@ -218,7 +266,12 @@ case class StartGui(controller: Controller) extends MainFrame {
     case event: RedrawGrid => boardGui2.repaint()
   }
 
-  val undo = new Button("restart") {
+  val undo = new Button() {
+    background  = Color.getColor("boardcolor", 12499113)
+    borderPainted = false
+    val tmpu = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
+    val resizeu = tmpu.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+    icon = new ImageIcon(resizeu)
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked =>
@@ -251,7 +304,9 @@ case class StartGui(controller: Controller) extends MainFrame {
       contents += stoneWhite
       contents += xPanel
       contents += undo
-      background = Color.lightGray
+//      contents += menu
+      background = Color.getColor("panelcolor", 12499113)
+
     }
   }
 

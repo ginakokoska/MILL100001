@@ -1,15 +1,12 @@
 package aView
 
 import util._
-import controller._
 import controller.base.Controller
 import model.gridComponent.gridBase.{BlackTurn, WhiteTurn}
-import model.playerComponent.Stone
 
-import scala.io.StdIn.readLine
 
 class Tui(controller: Controller) extends Observer {
-//  controller.add(this)
+
 
   def startGame():String = {
     val welcome = "Welcome to our Game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):"

@@ -24,12 +24,10 @@ case class Gui() extends Component {
 
   def setCords(p: (Point,Color)): Unit = {
     cordList += (p._1->p._2)
-    val debugg = 0
   }
 
   def remCoords(p: Point): Unit = {
     cordList -= p
-    val debugg = 0
   }
 
   def remOldSetNew(old :Point, nw :(Point,Color)): Unit = {
