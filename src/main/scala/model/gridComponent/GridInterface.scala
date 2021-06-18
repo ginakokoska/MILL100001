@@ -1,7 +1,7 @@
 package model.gridComponent
 
+import model.{Player, Stone}
 import model.gridComponent.gridBase.Node
-import model.playerComponent.{Player, Stone}
 
 import scala.util.Try
 

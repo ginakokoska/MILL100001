@@ -1,6 +1,5 @@
 package model
 
-import model.playerComponent.{Player, Stone, StoneState}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 

@@ -1,9 +1,8 @@
 package aView.Gui
 import aView.Tui
-import controller.RedrawGrid
-import controller.base.Controller
+import controller.{ControllerInterface, RedrawGrid}
+import controller.base._
 import model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
-import model.playerComponent.Stone
 
 import java.awt.JobAttributes.DialogType
 import java.awt.{Color, ComponentOrientation, Font, Point}
@@ -11,9 +10,10 @@ import javax.swing.ImageIcon
 import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, Key, KeyPressed, KeyReleased, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
 import scala.swing.{AbstractButton, Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, MenuBar, Orientation, Panel, Point, PopupMenu, ProgressBar, RadioMenuItem, Rectangle, RootPanel, Swing, TextField, Window}
+import controller.base.Controller
+import model.{Stone, StoneState}
 
-
-case class StartGui(controller: Controller) extends MainFrame {
+case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   title = "Mill"
   preferredSize = new Dimension(400, 200)
@@ -45,7 +45,7 @@ case class StartGui(controller: Controller) extends MainFrame {
   val choosePLbt = new Button {
     borderPainted = false
     background  = Color.getColor("boardcolor", 12499113)
-    val tmpch = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+    val tmpch = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\continue.png").getImage
     val resizech = tmpch.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)
     icon = new ImageIcon(resizech)
     listenTo(mouse.clicks)
@@ -101,7 +101,7 @@ case class StartGui(controller: Controller) extends MainFrame {
   val startgame = new Button {
     background  = Color.getColor("boardcolor", 12499113)
     borderPainted = false
-    val tmpst = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+    val tmpst = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\continue.png").getImage
     val resizest = tmpst.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)
     icon = new ImageIcon(resizest)
     listenTo(mouse.clicks, keys)
@@ -157,6 +157,8 @@ case class StartGui(controller: Controller) extends MainFrame {
   var pRe = new Point()
   var pReStr = ""
 
+
+
   val xPanel = new BoxPanel(Orientation.Vertical) {
 
     contents += boardGui2
@@ -178,13 +180,17 @@ case class StartGui(controller: Controller) extends MainFrame {
             if (pRe.x != v.x || pRe.y != v.y) {
               controller.gamePlayState match {
                 case WhiteTurn() =>
-                  tui.stoneSet(k, "set to ")
-                  boardGui2.setCords(v, Color.WHITE)
-                  controller.moveController(k)
+                  if(controller.player1.countState(StoneState.notUsed) > 0) {
+                    tui.stoneSet(k, "set to ")
+                    boardGui2.setCords(v, Color.WHITE)
+                    controller.moveController(k)
+                  }
                 case BlackTurn() =>
-                  tui.stoneSet(k, "set to ")
-                  boardGui2.setCords(v, Color.BLACK)
-                  controller.moveController(k)
+                  if(controller.player2.countState(StoneState.notUsed) > 0) {
+                    tui.stoneSet(k, "set to ")
+                    boardGui2.setCords(v, Color.BLACK)
+                    controller.moveController(k)
+                  }
                 case TakeStone(Stone.white) =>
                   controller.moveController(k)
                   if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
@@ -212,7 +218,7 @@ case class StartGui(controller: Controller) extends MainFrame {
         if (pArray.nonEmpty) {
           for((k,v)<-ValidMove().hitbox(pArray.head)) {
             for((k1,v1)<-ValidMove().hitbox(pArray(pArray.size-1))) {
-              if (!k.equals(k1) && (!k.equals("") || !k1.equals(""))) {
+              if (!k.equals(k1) && !k.equals("") && !k1.equals("")) {
                 pRe = v
                 pReStr = k
                 val kArray = k.split(" ")
@@ -224,23 +230,29 @@ case class StartGui(controller: Controller) extends MainFrame {
                 }
                 controller.gamePlayState match {
                   case WhiteTurn() =>
+                    controller.getPlayerState(controller.player1)
                     controller.moveController("move " + k1 + " to " + k)
-                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
+                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
                       tui.stoneSet(k, "moved from " + k1 + " to ")
-                    boardGui2.remOldSetNew(v1, (v, Color.WHITE))
+                      boardGui2.remOldSetNew(v1, (v, Color.WHITE))
+                    }
                   case BlackTurn() =>
+                    controller.getPlayerState(controller.player2)
                     controller.moveController("move " + k1 + " to " + k)
-                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet)
+                    if (controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
                       tui.stoneSet(k, "moved from " + k1 + " to ")
-                    boardGui2.remOldSetNew(v1, (v, Color.BLACK))
-                  case TakeStone(Stone.white) =>
-                    tui.stoneSet(k, "removed from ")
-                    boardGui2.remCoords(v)
-                    controller.moveController(k)
-                  case TakeStone(Stone.black) =>
-                    tui.stoneSet(k, "removed from")
-                    boardGui2.remCoords(v)
-                    controller.moveController(k)
+                      boardGui2.remOldSetNew(v1, (v, Color.BLACK))
+                    }
+//                  case TakeStone(Stone.white) =>
+//                    tui.stoneSet(k, "removed from ")
+//                    boardGui2.remCoords(v)
+//                    controller.getPlayerState(controller.player1)
+//                    controller.moveController(k)
+//                  case TakeStone(Stone.black) =>
+//                    tui.stoneSet(k, "removed from")
+//                    boardGui2.remCoords(v)
+//                    controller.getPlayerState(controller.player2)
+//                    controller.moveController(k)
                 }
               }
                 tui.gameState()
@@ -254,8 +266,9 @@ case class StartGui(controller: Controller) extends MainFrame {
   }
 
   def winMessage() = {
-    Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
-    val tmpwin = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/trophy.png").getImage
+//    Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
+    Dialog.showMessage(contents.head, "White wins!", "Winner", Dialog.Message.Info, icon)
+    val tmpwin = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\trophy.png").getImage
     val resizeu = tmpwin.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
     icon = new ImageIcon(resizeu)
 
@@ -269,12 +282,14 @@ case class StartGui(controller: Controller) extends MainFrame {
   val undo = new Button() {
     background  = Color.getColor("boardcolor", 12499113)
     borderPainted = false
-    val tmpu = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
+    val tmpu = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\restart.png").getImage
     val resizeu = tmpu.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
     icon = new ImageIcon(resizeu)
     listenTo(mouse.clicks)
     reactions += {
       case _: MouseClicked =>
+        controller.player1.fillStone()
+        controller.player2.fillStone()
         controller.undo()
         boardGui2.remAll()
         tui.update

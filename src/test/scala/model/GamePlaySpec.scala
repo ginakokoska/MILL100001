@@ -2,8 +2,7 @@ package model
 
 import controller.base.Controller
 import model.gridComponent.gridBase
-import model.gridComponent.gridBase.{BlackTurn, GamePlay, TakeStone, WhiteTurn, Grid}
-import model.playerComponent.{Player, Stone}
+import model.gridComponent.gridBase.{BlackTurn, GamePlay, Grid, TakeStone, WhiteTurn}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 
@@ -11,7 +10,7 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
   "A GamePlay" when {
     val tmpGrid = Grid()
     tmpGrid.gridList = Grid().createFullGrid()
-    val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), tmpGrid)
+    val controller = new Controller(model.Player("player1", Stone.white), model.Player("player2", Stone.black), tmpGrid)
     "handle" should {
       val stateBlack = GamePlay(WhiteTurn()).handle("OS: 00", tmpGrid, controller)
       val stateWhite = GamePlay(BlackTurn()).handle("OS: 10", tmpGrid, controller)

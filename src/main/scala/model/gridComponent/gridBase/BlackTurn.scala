@@ -1,8 +1,8 @@
 package model.gridComponent.gridBase
 
 import controller.base.Controller
-import model.gridComponent.gridBase
-import model.playerComponent.Stone
+import model.Stone
+import model.gridComponent.{State, gridBase}
 
 import scala.util.{Failure, Success}
 

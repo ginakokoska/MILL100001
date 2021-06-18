@@ -1,11 +1,11 @@
 import scala.io.StdIn._
-import model.{playerComponent, _}
-import model.gridComponent.gridBase.{Node, Grid}
-import model.playerComponent.{Player, Stone}
+import model.{Stone, playerComponent, _}
+import model.gridComponent.gridBase.{Grid, Node}
+import model.playerComponent.playerBase
 
 
-val player1 = Player("PlayerOne", Stone.white)
-val player2 = playerComponent.Player("PlayerTwo", Stone.black)
+val player1 = model.Player("PlayerOne", Stone.white)
+val player2 = model.Player("PlayerTwo", Stone.black)
 var grid = new Grid()
 
 println("Player1: " + player1)

@@ -1,8 +1,8 @@
 package model.gridComponent.gridMock
 
+import model.{Player, Stone}
 import model.gridComponent.GridInterface
 import model.gridComponent.gridBase.Node
-import model.playerComponent.{Player, Stone}
 import model.gridComponent.GridInterface
 
 import scala.util.{Failure, Try}

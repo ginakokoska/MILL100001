@@ -1,11 +1,12 @@
-package model.playerComponent
+package model
 
 import StoneState.StoneState
+import com.google.inject.Inject
 
 import scala.collection.immutable.ListMap
 import scala.util.control.Breaks.{break, breakable}
 
-case class Player(name: String, color: Stone.Value) {
+case class Player (name: String, color: Stone.Value) {
   var mapState: ListMap[String, StoneState.Value] = ListMap()
 
   def playerToString(player1: Player, player2: Player): String = {

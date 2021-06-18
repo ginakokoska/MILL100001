@@ -1,6 +1,6 @@
 package model.gridComponent.gridBase
 
-import model.playerComponent.Stone
+import model.Stone
 
 case class Node(stone: Option[Stone.Value]) {
   def isSet: Boolean = stone match {

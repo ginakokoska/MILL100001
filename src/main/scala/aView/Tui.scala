@@ -1,11 +1,12 @@
 package aView
 
+import controller.ControllerInterface
 import util._
 import controller.base.Controller
 import model.gridComponent.gridBase.{BlackTurn, WhiteTurn}
 
 
-class Tui(controller: Controller) extends Observer {
+class Tui(controller: ControllerInterface) extends Observer {
 
 
   def startGame():String = {

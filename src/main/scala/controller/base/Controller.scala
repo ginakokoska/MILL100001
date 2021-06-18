@@ -1,17 +1,21 @@
 package controller.base
 
-import model.{playerComponent, _}
+import com.google.inject.Inject
+import model.{StoneState, _}
 import model.gridComponent.gridBase.{GamePlay, Grid, WhiteTurn}
-import model.playerComponent.{Player, Stone, StoneState}
 import controller.{ControllerInterface, PlayerCreated, RedrawGrid}
+import model.StoneState.StoneState
 import util._
 
 import scala.swing.Publisher
 
 
-class Controller(var player1: Player, var player2: Player, var grid: Grid) extends ControllerInterface with Publisher {
-  private val undoManager = new UndoManager
+class Controller (var player1: Player, var player2: Player, var grid: Grid) extends ControllerInterface with Publisher {
+  val undoManager = new UndoManager
   var gamePlayState = new GamePlay(new WhiteTurn).state
+  var playerState: PlayerState = SetState()
+  grid = grid
+
 
   override def createPlayer1(name: String, tmpColor: String):Unit = {
     if(tmpColor == "b") player1 = new Player(name,Stone.black)
@@ -21,8 +25,8 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
   }
 
   override def createPlayer2(name: String):Unit = {
-    if(player1.color == Stone.white) player2 = playerComponent.Player(name,Stone.black)
-    else player2 = playerComponent.Player(name,Stone.white)
+    if(player1.color == Stone.white) player2 = model.Player(name,Stone.black)
+    else player2 = model.Player(name,Stone.white)
     player2.fillStone()
     publish(new PlayerCreated)
   }
@@ -56,5 +60,11 @@ class Controller(var player1: Player, var player2: Player, var grid: Grid) exten
       true
     }
     else return false
+  }
+
+   override def getPlayerState(player: Player): PlayerState = {
+     playerState = playerState.getState(player)
+     MoveState().getState(player)
+
   }
 }

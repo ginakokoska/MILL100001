@@ -1,8 +1,7 @@
 package model
 
 import controller.base.Controller
-import model.gridComponent.gridBase.{Node, Grid}
-import model.playerComponent.{Player, Stone}
+import model.gridComponent.gridBase.{Grid, Node}
 import org.scalatest._
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
@@ -50,7 +49,7 @@ class GridSpec extends AnyWordSpec with Matchers {
   "A Grid during Game"  when {
     val tmpGrid = Grid()
     tmpGrid.gridList = tmpGrid.createFullGrid()
-    val controller = new Controller(Player("player1", Stone.white), playerComponent.Player("player2", Stone.black), tmpGrid)
+    val controller = new Controller(model.Player("player1", Stone.white), model.Player("player2", Stone.black), tmpGrid)
     "player set a Stone at beginning" should {
       tmpGrid.gridList(0)(0)(1) = Node(Some(Stone.white))
       val whiteNode = tmpGrid.moveGrid("OS: 00", Stone.white, controller.player1)

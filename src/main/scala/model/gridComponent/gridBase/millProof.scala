@@ -1,6 +1,6 @@
 package model.gridComponent.gridBase
 
-import model.playerComponent.Stone
+import model.Stone
 
 case class millProof() {
   def proofTypeCorner(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: Grid): Boolean = {

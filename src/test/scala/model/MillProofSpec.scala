@@ -1,7 +1,6 @@
 package model
 
-import model.gridComponent.gridBase.{Node, Grid, millProof}
-import model.playerComponent.Stone
+import model.gridComponent.gridBase.{Grid, Node, millProof}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 

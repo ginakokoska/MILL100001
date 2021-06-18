@@ -1,4 +1,4 @@
-package model.playerComponent
+package model
 
 object StoneState extends Enumeration {
   type StoneState = Value

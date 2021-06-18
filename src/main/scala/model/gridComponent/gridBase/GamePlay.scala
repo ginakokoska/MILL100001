@@ -1,16 +1,10 @@
 package model.gridComponent.gridBase
 
+import com.google.inject.Inject
 import controller.base.Controller
+import model.gridComponent.State
 
-//State Pattern
-trait State {
-  def handle(pos :String, grid  :Grid, controller :Controller):State
-  def handle2(pos :String, grid :Grid, controller :Controller):State
-  def jumpStone(pos :String, grid :Grid, controller: Controller):State
-  def handleTakeStone(pos :String, grid :Grid):State
-}
-
-case class GamePlay(state: State) {
+case class GamePlay @Inject() (state: State) extends State {
   def handle(pos :String, grid: Grid, controller: Controller):State = {
     val newState = state.handle(pos :String, grid:Grid, controller)
     newState

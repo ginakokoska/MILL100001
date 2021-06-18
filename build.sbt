@@ -22,3 +22,6 @@ libraryDependencies ++= javaFXModules.map( m=>
   "org.openjfx" % s"javafx-$m" % "11" classifier osName
 )
 libraryDependencies += "org.openjfx" % "javafx" % "12.0.2" pomOnly()
+
+libraryDependencies += "com.google.inject" % "guice" % "4.2.3"
+libraryDependencies += "net.codingwell" %% "scala-guice" % "5.0.1"

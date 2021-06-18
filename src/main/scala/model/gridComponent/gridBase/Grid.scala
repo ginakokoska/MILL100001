@@ -1,7 +1,6 @@
 package model.gridComponent.gridBase
 
-import model._
-import model.playerComponent.{Player, Stone}
+import model.{Stone, _}
 
 import scala.util.{Failure, Success, Try}
 
