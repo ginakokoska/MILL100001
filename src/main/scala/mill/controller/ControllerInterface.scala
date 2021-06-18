@@ -1,10 +1,9 @@
 package mill.controller
 
 import mill.model.{Player, PlayerState}
-import mill.model.gridComponent.{GridInterface, State}
-import mill.model.StoneState.StoneState
-import mill.model.gridComponent.gridBase.{GamePlay, Grid, WhiteTurn}
-import mill.util.{Observer, UndoManager}
+import mill.model.gridComponent.State
+import mill.model.gridComponent.gridBase.Grid
+import mill.util.UndoManager
 
 import scala.swing.Publisher
 
@@ -18,7 +17,6 @@ trait ControllerInterface extends Publisher {
   def createPlayer1(name: String, tmpColor: String): Unit
   def createPlayer2(name: String): Unit
   def sayHello(): String
-  def gridSize(gridInterface: GridInterface): Unit
   def printGrid(): String
   def moveController(pos: String): Unit
   def undo(): Unit

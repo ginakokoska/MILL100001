@@ -1,12 +1,11 @@
 package mill.model.gridComponent.gridBase
 
-import com.google.inject.Inject
 import mill.controller.base.Controller
-import mill.model.{JumpState, MoveState, Player, PlayerState, SetState, Stone}
-import mill.model.gridComponent.{State, gridBase}
+import mill.model.{JumpState, MoveState, PlayerState, SetState, Stone}
+import mill.model.gridComponent.State
 
 case class Handler(state: State, playerState: PlayerState) {
-  def handleState(player1: Player, player2: Player, pos: String, controller: Controller): State = {
+  def handleState(pos: String, controller: Controller): State = {
     state match {
       case WhiteTurn() =>
         playerState match {

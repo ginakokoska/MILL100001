@@ -1,9 +1,7 @@
 package mill.controller.base
 
-import mill.model._
 import mill.model.gridComponent.gridBase.Grid
 import mill.util.Command
-import mill.util._
 
 class SolveCommand(controller:Controller) extends Command {
   //memento Pattern

@@ -2,7 +2,7 @@ package mill.model.gridComponent.gridBase
 
 import mill.controller.base.Controller
 import mill.model.Stone
-import mill.model.gridComponent.{GridInterface, GridSizeInterface, State, gridBase}
+import mill.model.gridComponent.{State, gridBase}
 
 import scala.util.{Failure, Success}
 
@@ -48,7 +48,7 @@ case class BlackTurn() extends State {
   override def jumpStone(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.jumpStone(pos, Stone.black, controller.player1)
     tmp match {
-      case Success(v) => gridBase.GamePlay(new WhiteTurn).state
+      case Success(_) => gridBase.GamePlay(new WhiteTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
           println("take a Stone!")

@@ -15,7 +15,7 @@ case class Player(name: String, color: Stone.Value) {
 
   def fillStone(): Unit = {
     for (i <- 1 to 9) {
-      var name = "Stone" + i
+      val name = "Stone" + i
       mapState += (name -> StoneState.notUsed)
     }
   }

@@ -8,9 +8,9 @@ import scala.util.Try
 trait GridInterface {
   var gridList: List[Array[Array[Node]]]
 
-  def gridOutSquare(gridInterface: GridInterface): List[Array[Array[Node]]]
-  def gridOutMidSquare(gridInterface: GridInterface): List[Array[Array[Node]]]
-  def createFullGrid(gridInterface: GridInterface): List[Array[Array[Node]]]
+  def gridOutSquare(): List[Array[Array[Node]]]
+  def gridOutMidSquare(): List[Array[Array[Node]]]
+  def createFullGrid(): List[Array[Array[Node]]]
   def printGrid: String
   def moveGrid(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
   def takePos(pos: String, color: Stone.Value): Try[Unit]

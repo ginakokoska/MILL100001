@@ -2,7 +2,6 @@ package mill.model.gridComponent.gridMock
 
 import mill.model.{Player, Stone}
 import mill.model.gridComponent.GridInterface
-import mill.model.gridComponent.GridInterface
 import mill.model.gridComponent.gridBase.Node
 
 import scala.util.{Failure, Try}
@@ -10,11 +9,11 @@ import scala.util.{Failure, Try}
 class Grid() extends GridInterface{
   var playGround: String = ""
   var gridList: List[Array[Array[Node]]] = List()
-    override def gridOutSquare(gridInterface: GridInterface): List[Array[Array[Node]]] = this.gridList
+    override def gridOutSquare(): List[Array[Array[Node]]] = this.gridList
 
-    override def gridOutMidSquare(gridInterface: GridInterface): List[Array[Array[Node]]] = this.gridList
+    override def gridOutMidSquare(): List[Array[Array[Node]]] = this.gridList
 
-    override def createFullGrid(gridInterface: GridInterface): List[Array[Array[Node]]] = this.gridList
+    override def createFullGrid(): List[Array[Array[Node]]] = this.gridList
 
     override def printGrid: String = this.playGround
 

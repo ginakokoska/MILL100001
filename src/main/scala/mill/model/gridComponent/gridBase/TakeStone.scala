@@ -14,17 +14,17 @@ case class TakeStone(color: Stone.Value) extends State {
   override def handleTakeStone(pos: String, grid: Grid): State = {
     if (color == Stone.white) {
       grid.takePos(pos, Stone.black) match {
-        case Success(v) => GamePlay(new BlackTurn).state
+        case Success(_) => GamePlay(new BlackTurn).state
         case Failure(e) =>
           println(e.getMessage)
-          gridBase.GamePlay(new TakeStone(Stone.white)).state
+          gridBase.GamePlay(TakeStone(Stone.white)).state
       }
     } else {
       grid.takePos(pos, Stone.white) match {
-        case Success(v) => gridBase.GamePlay(new WhiteTurn).state
+        case Success(_) => gridBase.GamePlay(new WhiteTurn).state
         case Failure(e) =>
           println(e.getMessage)
-          gridBase.GamePlay(new TakeStone(Stone.black)).state
+          gridBase.GamePlay(TakeStone(Stone.black)).state
       }
     }
   }

@@ -1,16 +1,15 @@
 package mill.model.gridComponent.gridBase
 
-import com.google.inject.Inject
 import mill.model.gridComponent.GridInterface
 import mill.model._
 
 import scala.util.{Failure, Success, Try}
 
-case class Grid @Inject() () extends GridInterface{
+case class Grid() extends GridInterface{
   var playGround: String = ""
   var gridList: List[Array[Array[Node]]] = List()
 
-    override def gridOutSquare(gridInterface: GridInterface): List[Array[Array[Node]]] = {
+    override def gridOutSquare(): List[Array[Array[Node]]] = {
       val outSquare = Array.ofDim[Node](3, 3)
       for (i <- 0 to 2) {
         for (j <- 0 to 2) {
@@ -42,7 +41,7 @@ case class Grid @Inject() () extends GridInterface{
       arrayList
     }
 
-    override def gridOutMidSquare(gridInterface: GridInterface): List[Array[Array[Node]]] = {
+    override def gridOutMidSquare(): List[Array[Array[Node]]] = {
       val outSquare = Array.ofDim[Node](3, 3)
       val midSquare = Array.ofDim[Node](3, 3)
       for (i <- 0 to 2) {
@@ -76,7 +75,7 @@ case class Grid @Inject() () extends GridInterface{
       arrayList
     }
 
-    override def createFullGrid(gridInterface: GridInterface): List[Array[Array[Node]]] = {
+    override def createFullGrid(): List[Array[Array[Node]]] = {
       val outSquare = Array.ofDim[Node](3, 3)
       val midSquare = Array.ofDim[Node](3, 3)
       val inSquare = Array.ofDim[Node](3, 3)
@@ -119,26 +118,16 @@ case class Grid @Inject() () extends GridInterface{
     var square = ""
     var intPos1 = 0
     var intPos2 = 0
-    if (posArray.size == 2) {
+    if (posArray.length == 2) {
       square = posArray(0)
       intPos1 = posArray(1).charAt(0).asDigit
       intPos2 = posArray(1).charAt(1).asDigit
     }
-    //    var intPos1 = 0
-    //    var intPos2 = 0
-    //    Try(posArray(1).charAt(0).asDigit) match {
-    //      case Success(v) => intPos1 = v
-    //      case Failure(_) => Failure(exception = new Exception)
-    //    }
-    //    Try(posArray(1).charAt(1).asDigit) match {
-    //      case Success(v) => intPos2 = v
-    //      case Failure(_) => Failure(exception = new Exception)
-    //    }
 
     square match {
       case "OS:" =>
-        if (!gridList(0)(intPos1)(intPos2).isSet) {
-          gridList(0)(intPos1)(intPos2) = Node(Some(color))
+        if (!gridList.head(intPos1)(intPos2).isSet) {
+          gridList.head(intPos1)(intPos2) = Node(Some(color))
           if (millProof().proofTypeMid(0, intPos1, intPos2, color, this) ||
             millProof().proofTypeCorner(0, intPos1, intPos2, color, this)) {
             player.takeStone()
@@ -209,11 +198,7 @@ case class Grid @Inject() () extends GridInterface{
     val intOldPos2 = posArray(2).charAt(1).asDigit
     val intNewPos1 = posArray(5).charAt(0).asDigit
     val intNewPos2 = posArray(5).charAt(1).asDigit
-    //      posArray(1) match {
-    //        case "OS:" => gridList(0)(intOldPos1)(intOldPos2) = Node(None)
-    //        case "MS:" => gridList(1)(intOldPos1)(intOldPos2) = Node(None)
-    //        case "IS:" => gridList(2)(intOldPos1)(intOldPos2) = Node(None)
-    //      }
+
     var sqOld = 999
     posArray(1) match {
       case "OS:" => sqOld = 0
@@ -225,9 +210,9 @@ case class Grid @Inject() () extends GridInterface{
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
           (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
             MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
-          !gridList(0)(intNewPos1)(intNewPos2).isSet) {
+          !gridList.head(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
-          gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
+          gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
           if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
@@ -296,9 +281,9 @@ case class Grid @Inject() () extends GridInterface{
     posArray(4) match {
       case "OS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          !gridList(0)(intNewPos1)(intNewPos2).isSet) {
+          !gridList.head(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
-          gridList(0)(intNewPos1)(intNewPos2) = Node(Some(color))
+          gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
           if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()

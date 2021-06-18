@@ -50,7 +50,7 @@ case class WhiteTurn() extends State {
   override def jumpStone(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.jumpStone(pos, Stone.white, controller.player1)
     tmp match {
-      case Success(v) => GamePlay(new BlackTurn).state
+      case Success(_) => GamePlay(new BlackTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
           println("take a Stone!")

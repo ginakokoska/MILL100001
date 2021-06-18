@@ -14,7 +14,6 @@ class Controller @Inject() (var player1: Player, var player2: Player, var grid: 
   override def createPlayer1(name: String, tmpColor: String): Unit = {}
   override def createPlayer2(name: String): Unit = {}
   override def sayHello(): String = { "" }
-  override def gridSize(gridInterface: GridInterface): Unit = {}
   override def printGrid(): String = { "" }
   override def moveController(pos: String): Unit = {}
   override def undo(): Unit = {}

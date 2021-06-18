@@ -28,10 +28,9 @@ class Tui(controller: ControllerInterface) extends Observer {
 
   def createGrid(size :String):Unit = {
     size match {
-      case "1" => controller.grid.gridOutSquare(injector.instance[GridInterface](Names.named("Out")))
-      case "2" => controller.grid.gridOutMidSquare(injector.instance[GridInterface](Names.named("Mid")))
-      case "3" => controller.grid.createFullGrid(injector.instance[GridInterface](Names.named("Full")))
-      case _ =>
+      case "1" => controller.grid.gridList = controller.grid.gridOutSquare()
+      case "2" => controller.grid.gridList = controller.grid.gridOutMidSquare()
+      case _ => controller.grid.gridList = controller.grid.createFullGrid()
     }
 
   }
@@ -53,7 +52,7 @@ class Tui(controller: ControllerInterface) extends Observer {
   override def update :Boolean = {
 //    println(startGame())
     println(controller.sayHello())
-    //println(controller.printGrid())
+    println(controller.printGrid())
     true
   }
 }
