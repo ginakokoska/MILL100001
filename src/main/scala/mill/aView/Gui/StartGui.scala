@@ -106,7 +106,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
         tui.gameState()
         repaint()
     }
-    listenTo(startgame)
     reactions += {
       case clicked: ButtonClicked =>
         controller.createPlayer2(namePlayer2.text)

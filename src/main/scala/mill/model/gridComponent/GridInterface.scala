@@ -17,3 +17,6 @@ trait GridInterface {
   def moveStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
   def jumpStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
 }
+// List [outsquare , midsquare , insquare]
+//       [OS:, 00]      <- integer
+//       (some, none)   <- boolean

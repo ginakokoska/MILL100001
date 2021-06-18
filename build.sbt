@@ -8,20 +8,14 @@ libraryDependencies += "org.scalactic" %% "scalactic" % "3.1.1"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.1" % "test"
 
 libraryDependencies += "org.scala-lang.modules" % "scala-swing_2.13" % "3.0.0"
-libraryDependencies += "org.scalafx" %% "scalafx" % "15.0.1-R21"
-lazy val osName = System.getProperty("os.name") match {
-  case n if n.startsWith("Linux") => "linux"
-  case n if n.startsWith("Mac") => "mac"
-  case n if n.startsWith("Windows") => "win"
-  case _ => throw new Exception("Unknown platform!")
-}
 
-// Add JavaFX dependencies
-lazy val javaFXModules = Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
-libraryDependencies ++= javaFXModules.map( m=>
-  "org.openjfx" % s"javafx-$m" % "11" classifier osName
-)
 libraryDependencies += "org.openjfx" % "javafx" % "12.0.2" pomOnly()
 
 libraryDependencies += "com.google.inject" % "guice" % "4.2.3"
 libraryDependencies += "net.codingwell" %% "scala-guice" % "5.0.1"
+libraryDependencies += "org.scala-lang.modules" % "scala-xml_2.13" % "2.0.0"
+libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC2"
+
+coverageExcludedPackages := "de.htwg.se.malefiz.aview.GUI;" +
+  "de.htwg.se.malefiz.model.gameboardComponent.gameboardBaseImpl.Dice;" +
+  "de.htwg.se.malefiz.model.fileIoComponent.*;"

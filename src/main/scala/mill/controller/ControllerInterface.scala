@@ -16,12 +16,16 @@ trait ControllerInterface extends Publisher {
 
   def createPlayer1(name: String, tmpColor: String): Unit
   def createPlayer2(name: String): Unit
+  def getPlayerState(player: Player): PlayerState
   def sayHello(): String
   def printGrid(): String
   def moveController(pos: String): Unit
   def undo(): Unit
   def win(): Boolean
-  def getPlayerState(player: Player): PlayerState
+  def load(): Unit
+  def save(): Unit
+
+
 
 }
 
@@ -29,3 +33,6 @@ import scala.swing.event.Event
 
 class RedrawGrid extends Event
 class PlayerCreated extends Event
+class GameSaved extends Event
+class GameLoaded extends Event
+class WonGame extends Event

@@ -1,5 +1,5 @@
 
-package mill.controller.mock
+package mill.controller.stub
 
 import com.google.inject.Inject
 import mill.controller.ControllerInterface
@@ -11,15 +11,17 @@ import mill.util.UndoManager
 
 class Controller @Inject() (var player1: Player, var player2: Player, var grid: Grid) extends ControllerInterface {
   grid = new Grid()
+  override val undoManager: UndoManager = new UndoManager
+  override var gamePlayState: State = new WhiteTurn
+
   override def createPlayer1(name: String, tmpColor: String): Unit = {}
   override def createPlayer2(name: String): Unit = {}
+  override def getPlayerState(player: Player): PlayerState = SetState()
   override def sayHello(): String = { "" }
   override def printGrid(): String = { "" }
   override def moveController(pos: String): Unit = {}
   override def undo(): Unit = {}
   override def win(): Boolean = false
-  override def getPlayerState(player: Player): PlayerState = SetState()
-
-  override val undoManager: UndoManager = new UndoManager
-  override var gamePlayState: State = new WhiteTurn
+  override def load(): Unit = {}
+  override def save(): Unit = {}
 }
