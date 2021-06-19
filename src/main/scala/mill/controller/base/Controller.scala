@@ -4,6 +4,7 @@ import com.google.inject.Guice
 import mill.MillModule
 import mill.controller.{ControllerInterface, PlayerCreated, RedrawGrid}
 import mill.mill.injector
+import mill.model.fileIOComponent.FileIoInterface
 import mill.model.gridComponent.gridBase.{GamePlay, Grid, WhiteTurn}
 import mill.model.{MoveState, Player, PlayerState, SetState, Stone, StoneState}
 import mill.util._
@@ -16,7 +17,7 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
   var gamePlayState = GamePlay(new WhiteTurn).state
   var playerState: PlayerState = SetState()
   val injector = Guice.createInjector(new MillModule)
-//  val fileIo = injector.instance[FileIOInterface]
+
 
   override def createPlayer1(name: String, tmpColor: String):Unit = {
     if(tmpColor == "b") player1 = Player(name,Stone.black)
@@ -59,7 +60,15 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
      MoveState().getState(player)
   }
 
-  override def load(): Unit = {}
+  val fileIo = injector.instance[FileIoInterface]
 
-  override def save(): Unit = {}
+  override def load(): Unit = {
+    fileIo.save(this)
+    publish(new RedrawGrid)
+  }
+
+  override def save(): Unit = {
+    this.grid.gridList = fileIo.load(this)
+    publish(new RedrawGrid)
+  }
 }
