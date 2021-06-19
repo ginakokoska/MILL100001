@@ -1,0 +1,69 @@
+{
+  "player" : {
+    "player1" : {
+      "name" : "hu",
+      "color" : "white"
+    },
+    "player2" : {
+      "name" : "pö,",
+      "color" : "black"
+    }
+  },
+  "field" : {
+    "outSquare" : [ [ {
+      "color" : "000HURE"
+    }, {
+      "color" : "001HURE"
+    }, {
+      "color" : "002HURE"
+    }, {
+      "color" : "010HURE"
+    }, {
+      "color" : "011HURE"
+    }, {
+      "color" : "012HURE"
+    }, {
+      "color" : "020HURE"
+    }, {
+      "color" : "0211"
+    }, {
+      "color" : "022HURE"
+    } ], [ {
+      "color" : "100HURE"
+    }, {
+      "color" : "101HURE"
+    }, {
+      "color" : "102HURE"
+    }, {
+      "color" : "110HURE"
+    }, {
+      "color" : "111HURE"
+    }, {
+      "color" : "112HURE"
+    }, {
+      "color" : "1200"
+    }, {
+      "color" : "1210"
+    }, {
+      "color" : "122HURE"
+    } ], [ {
+      "color" : "200HURE"
+    }, {
+      "color" : "201HURE"
+    }, {
+      "color" : "202HURE"
+    }, {
+      "color" : "210HURE"
+    }, {
+      "color" : "211HURE"
+    }, {
+      "color" : "212HURE"
+    }, {
+      "color" : "220HURE"
+    }, {
+      "color" : "221HURE"
+    }, {
+      "color" : "222HURE"
+    } ] ]
+  }
+}

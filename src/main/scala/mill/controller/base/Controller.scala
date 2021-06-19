@@ -63,12 +63,12 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
   val fileIo = injector.instance[FileIoInterface]
 
   override def load(): Unit = {
-    fileIo.save(this)
+    this.grid.gridList = fileIo.load(this)
     publish(new RedrawGrid)
   }
 
   override def save(): Unit = {
-    this.grid.gridList = fileIo.load(this)
+    fileIo.save(this)
     publish(new RedrawGrid)
   }
 }

@@ -20,13 +20,19 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   preferredSize = new Dimension(400, 200)
   centerOnScreen()
 
-  var continueIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\continue.png").getImage
+  var continueIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var restartIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\restart.png").getImage
+  var restartIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
   restartIcon = restartIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var frogIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\frog.png").getImage
+  var saveIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/trophy.png").getImage
+  saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+
+  var reloadIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/wow.png").getImage
+  reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+
+  var frogIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/frog.png").getImage
   frogIcon = frogIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
   val colorPanel = Color.getColor("colorPanel" , 12499113)
@@ -69,7 +75,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     icon = new ImageIcon(continueIcon)
     listenTo(mouse.clicks)
     reactions += {
-      case e: MouseClicked =>
+      case clicked: MouseClicked =>
         createPl2()
         controller.createPlayer1(namePlayer1.text, comboBox.toString())
     }
@@ -106,10 +112,34 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
         tui.gameState()
         repaint()
     }
+
+  }
+  listenTo(startgame)
+  reactions += {
+    case clicked: ButtonClicked =>
+      controller.createPlayer2(namePlayer2.text)
+      preferredSize = new Dimension(750, 850)
+  }
+
+  val saveButton = new Button {
+    borderPainted = false
+    background = colorPanel
+    icon = new ImageIcon(saveIcon)
+    listenTo(mouse.clicks)
     reactions += {
-      case clicked: ButtonClicked =>
-        controller.createPlayer2(namePlayer2.text)
-        preferredSize = new Dimension(750, 850)
+      case clicked: MouseClicked =>
+        controller.save()
+    }
+  }
+
+  val reloadButton = new Button {
+    borderPainted = false
+    background = colorPanel
+    icon = new ImageIcon(reloadIcon)
+    listenTo(mouse.clicks)
+    reactions += {
+      case clicked: MouseClicked =>
+        controller.load()
     }
   }
 
@@ -124,19 +154,20 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     contents = new FlowPanel {
       contents += namePlayer2
       contents += startgame
-      background = Color.getColor("panelcolor", 12499113)
+      background = colorPanel
 
     }
   }
 
   def wel(): Unit = {
     contents = new FlowPanel() {
+      background = colorPanel
       contents += welcome
       contents += namePlayer1
       contents += choosePLbt
       contents += comboBox
-      //      contents += menu
-      background = Color.getColor("panelcolor", 12499113)
+      contents += reloadButton
+
     }
   }
 
@@ -150,9 +181,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
 
   val boardPanel = new BoxPanel(Orientation.Vertical) {
-
     contents += boardGui2
-
     listenTo(this.mouse.clicks, this.mouse.moves)
     reactions += {
       case MouseClicked(_,p,_,_,_) =>
@@ -266,7 +295,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def board(): Unit = {
     contents = new FlowPanel() {
-
       contents += new Label(controller.player1.name, null, Alignment.Leading) {
         font = myFont
       }
@@ -276,14 +304,13 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       contents += new Label(controller.player2.name, null, Alignment.Trailing) {
         font = myFont
       }
-
       xLayoutAlignment = 750
       yLayoutAlignment = 750
+      background = colorPanel
       maximumSize = new Dimension(850,850)
       contents += boardPanel
+      contents += saveButton
       contents += undo
-      background = colorPanel
-
     }
   }
 

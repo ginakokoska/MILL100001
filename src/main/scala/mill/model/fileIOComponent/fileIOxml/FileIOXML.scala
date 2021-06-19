@@ -90,15 +90,6 @@ class FileIOXML extends FileIoInterface{
     grid.gridList
   }
 
-  override def save(controller: ControllerInterface): Unit = {
-    import java.io._
-    val pw = new PrintWriter(new File("mill.xml"))
-    val prettyPrinter = new PrettyPrinter(120, 6)
-
-    val xml = prettyPrinter.format(saveGame(controller))
-    pw.write(xml)
-    pw.close
-  }
 
   def saveGame(controller: ControllerInterface): Elem = {
     <game>
@@ -149,5 +140,15 @@ class FileIOXML extends FileIoInterface{
     <node>
       { controller.grid.gridList(sq)(row)(col) }
     </node>
+  }
+
+  override def save(controller: ControllerInterface): Unit = {
+    import java.io._
+    val pw = new PrintWriter(new File("mill.xml"))
+    val prettyPrinter = new PrettyPrinter(120, 6)
+
+    val xml = prettyPrinter.format(saveGame(controller))
+    pw.write(xml)
+    pw.close()
   }
 }
