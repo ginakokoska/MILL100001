@@ -20,19 +20,19 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   preferredSize = new Dimension(400, 200)
   centerOnScreen()
 
-  var continueIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+  var continueIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var restartIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
+  var restartIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\restart.png").getImage
   restartIcon = restartIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var saveIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/trophy.png").getImage
+  var saveIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\trophy.png").getImage
   saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var reloadIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/wow.png").getImage
+  var reloadIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\wow.png").getImage
   reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var frogIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/frog.png").getImage
+  var frogIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\frog.png").getImage
   frogIcon = frogIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
   val colorPanel = Color.getColor("colorPanel" , 12499113)
@@ -65,8 +65,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   }
 
   val colors = Seq("white", "black")
-  val comboBox = new ComboBox(items = colors) {
-  }
+  val comboBox = new ComboBox(items = colors) { }
 
 
   val choosePLbt = new Button {
@@ -140,7 +139,15 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     reactions += {
       case clicked: MouseClicked =>
         controller.load()
+        boardGui2.restoreCoords()
+        board()
     }
+  }
+  listenTo(reloadButton)
+  reactions += {
+    case clicked: ButtonClicked =>
+//      controller.createPlayer2(namePlayer2.text)
+      preferredSize = new Dimension(750, 850)
   }
 
 

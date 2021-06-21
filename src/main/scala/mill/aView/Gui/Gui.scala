@@ -1,5 +1,8 @@
 package mill.aView.Gui
 
+import mill.mill.controller
+import mill.model.Stone
+
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import javax.swing.ImageIcon
@@ -37,6 +40,24 @@ case class Gui() extends Component {
   def remAll(): Unit = {
     for((k,v)<-cordList){
       cordList -= k
+    }
+  }
+
+  def restoreCoords(): Unit = {
+    for(sq <- 0 to 2) {
+      for(row <- 0 to 2) {
+        for(col <- 0 to 2) {
+          if(controller.grid.gridList(sq)(row)(col).isSet) {
+            if(controller.grid.gridList(sq)(row)(col).isColor.contains(Stone.white)) {
+              val p: Point = ValidMove().posToPoint(sq, row, col)
+              setCords(p, Color.WHITE)
+            } else {
+              val p: Point = ValidMove().posToPoint(sq, row, col)
+              setCords(p, Color.BLACK)
+            }
+          } //else(Node is not Set, do nothing)
+        }
+      }
     }
   }
 

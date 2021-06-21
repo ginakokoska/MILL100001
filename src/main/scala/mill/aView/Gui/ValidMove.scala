@@ -4,6 +4,42 @@ import scala.swing.Point
 
 case class ValidMove() {
 
+  def posToPoint(sq: Int, row: Int, col: Int): Point = {
+    val p: Point = new Point(0,0)
+    row match {
+      case 0 =>
+        sq match {
+          case 0 => p.y = 4
+          case 1 => p.y = 106
+          case 2 => p.y = 211
+        }
+      case 1 => p.y = 319
+      case 2 =>
+        sq match {
+          case 0 => p.y = 640
+          case 1 => p.y = 531
+          case 2 => p.y = 424
+        }
+    }
+
+    col match {
+      case 0 =>
+        sq match {
+          case 0 => p.x = 4
+          case 1 => p.x = 108
+          case 2 => p.x = 214
+        }
+      case 1 => p.x = 320
+      case 2 =>
+        sq match {
+          case 0 => p.x = 638
+          case 1 => p.x = 532
+          case 2 => p.x = 426
+        }
+    }
+    p
+  }
+
   def hitbox(p: Point): Map[String,Point] = {
     val os00 = new Point(30,30)
     val os01 = new Point(350,30)

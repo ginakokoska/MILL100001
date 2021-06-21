@@ -1,69 +1,150 @@
 {
   "player" : {
     "player1" : {
-      "name" : "hu",
+      "name" : "a",
       "color" : "white"
     },
     "player2" : {
-      "name" : "pö,",
+      "name" : "s",
       "color" : "black"
     }
   },
   "field" : {
     "outSquare" : [ [ {
-      "color" : "000HURE"
+      "square" : 0,
+      "row" : 0,
+      "col" : 0,
+      "color" : 1
     }, {
-      "color" : "001HURE"
+      "square" : 0,
+      "row" : 0,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "002HURE"
+      "square" : 0,
+      "row" : 0,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "010HURE"
+      "square" : 0,
+      "row" : 1,
+      "col" : 0,
+      "color" : 2
     }, {
-      "color" : "011HURE"
+      "square" : 0,
+      "row" : 1,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "012HURE"
+      "square" : 0,
+      "row" : 1,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "020HURE"
+      "square" : 0,
+      "row" : 2,
+      "col" : 0,
+      "color" : 1
     }, {
-      "color" : "0211"
+      "square" : 0,
+      "row" : 2,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "022HURE"
+      "square" : 0,
+      "row" : 2,
+      "col" : 2,
+      "color" : 0
     } ], [ {
-      "color" : "100HURE"
+      "square" : 1,
+      "row" : 0,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "101HURE"
+      "square" : 1,
+      "row" : 0,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "102HURE"
+      "square" : 1,
+      "row" : 0,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "110HURE"
+      "square" : 1,
+      "row" : 1,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "111HURE"
+      "square" : 1,
+      "row" : 1,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "112HURE"
+      "square" : 1,
+      "row" : 1,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "1200"
+      "square" : 1,
+      "row" : 2,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "1210"
+      "square" : 1,
+      "row" : 2,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "122HURE"
+      "square" : 1,
+      "row" : 2,
+      "col" : 2,
+      "color" : 0
     } ], [ {
-      "color" : "200HURE"
+      "square" : 2,
+      "row" : 0,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "201HURE"
+      "square" : 2,
+      "row" : 0,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "202HURE"
+      "square" : 2,
+      "row" : 0,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "210HURE"
+      "square" : 2,
+      "row" : 1,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "211HURE"
+      "square" : 2,
+      "row" : 1,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "212HURE"
+      "square" : 2,
+      "row" : 1,
+      "col" : 2,
+      "color" : 0
     }, {
-      "color" : "220HURE"
+      "square" : 2,
+      "row" : 2,
+      "col" : 0,
+      "color" : 0
     }, {
-      "color" : "221HURE"
+      "square" : 2,
+      "row" : 2,
+      "col" : 1,
+      "color" : 0
     }, {
-      "color" : "222HURE"
+      "square" : 2,
+      "row" : 2,
+      "col" : 2,
+      "color" : 0
     } ] ]
   }
 }
