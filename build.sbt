@@ -16,8 +16,11 @@ libraryDependencies += "net.codingwell" %% "scala-guice" % "5.0.1"
 libraryDependencies += "org.scala-lang.modules" % "scala-xml_2.13" % "2.0.0"
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC2"
 
-coverageExcludedPackages := "mill.aView.Gui.*;" +
-  "mill.model.fileIOComponent.*;"
+coverageExcludedPackages := "mill.aView.Gui.Gui;" +
+  "mill.aView.Gui.StartGui" +
+  "mill.aView.Gui.ValidMove" +
+  "mill.model.fileIOComponent.fileIOJson.FileIO;" +
+  "mill.model.fileIOComponent.fileIOxml.FileIOXML;"
 //  "mill.model.gridComponent.gridBase.;" +
 //  "mill.model.gridComponent.GridMock.;" +
 //  "mill.model.gridComponent.GridInterface;" +
