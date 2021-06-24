@@ -12,7 +12,7 @@ class NodeSpec extends AnyWordSpec with Matchers{
       "should not be set" in {
         emptyNode.isSet should be(false)
       }
-      "and Color should be None" in {
+      "and its color should be None" in {
         emptyNode.isColor should be(None)
       }
     }
@@ -21,7 +21,7 @@ class NodeSpec extends AnyWordSpec with Matchers{
       "should be set" in {
         NodeWhite.isSet should be(true)
       }
-      "and should be white" in {
+      "and its color should be white" in {
         NodeWhite.isColor should be(Some(Stone.white))
       }
     }
@@ -30,7 +30,7 @@ class NodeSpec extends AnyWordSpec with Matchers{
       "should be set also" in {
         NodeBlack.isSet should be(true)
       }
-      "and should be black" in {
+      "and its color should be black" in {
         NodeBlack.isColor should be(Some(Stone.black))
       }
     }

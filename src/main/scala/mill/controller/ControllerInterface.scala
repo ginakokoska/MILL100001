@@ -28,7 +28,6 @@ trait ControllerInterface extends Publisher {
 }
 
 import scala.swing.event.Event
-
 class RedrawGrid extends Event
 class PlayerCreated extends Event
 class GameSaved extends Event

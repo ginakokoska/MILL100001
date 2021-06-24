@@ -5,7 +5,7 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 case class JumpStateSpec() extends AnyWordSpec with Matchers {
-  "A Jumpstate" when {
+  "A JumpState" when {
     val player = Player("name", Stone.white)
     player.fillStone()
     "should return" should {
@@ -17,10 +17,10 @@ case class JumpStateSpec() extends AnyWordSpec with Matchers {
         player.takeStone() //take States from Stone to OutOfGame
       }
       val playerState = JumpState().getState(player)
-      "JumpState when Player have 6 Stones in State OutOfGame" in {
+      "JumpState when Player has 6 Stones in State OutOfGame" in {
         playerState should be(JumpState())
       }
-      "MoveState when Player have less then 6 Stones in State OutOfGame" in {
+      "MoveState when Player has less then 6 Stones in State OutOfGame" in {
         playerStateBefore should be(MoveState())
       }
     }
