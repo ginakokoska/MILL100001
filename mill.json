@@ -1,11 +1,11 @@
 {
   "player" : {
     "player1" : {
-      "name" : "asd",
+      "name" : "gina",
       "color" : "white"
     },
     "player2" : {
-      "name" : "dsfwe",
+      "name" : "gina",
       "color" : "black"
     }
   },
@@ -14,17 +14,17 @@
       "square" : 0,
       "row" : 0,
       "col" : 0,
-      "color" : 1
+      "color" : 2
     }, {
       "square" : 0,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 0,
       "row" : 0,
       "col" : 2,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 0,
       "row" : 1,
@@ -39,37 +39,37 @@
       "square" : 0,
       "row" : 1,
       "col" : 2,
-      "color" : 0
-    }, {
-      "square" : 0,
-      "row" : 2,
-      "col" : 0,
       "color" : 1
     }, {
       "square" : 0,
       "row" : 2,
+      "col" : 0,
+      "color" : 0
+    }, {
+      "square" : 0,
+      "row" : 2,
       "col" : 1,
       "color" : 0
     }, {
       "square" : 0,
       "row" : 2,
       "col" : 2,
-      "color" : 0
+      "color" : 1
     } ], [ {
       "square" : 1,
       "row" : 0,
       "col" : 0,
-      "color" : 0
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 2,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 1,
       "row" : 1,
@@ -89,7 +89,7 @@
       "square" : 1,
       "row" : 2,
       "col" : 0,
-      "color" : 0
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 2,
@@ -99,7 +99,7 @@
       "square" : 1,
       "row" : 2,
       "col" : 2,
-      "color" : 0
+      "color" : 1
     } ], [ {
       "square" : 2,
       "row" : 0,
@@ -109,12 +109,12 @@
       "square" : 2,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 2,
       "row" : 0,
       "col" : 2,
-      "color" : 0
+      "color" : 2
     }, {
       "square" : 2,
       "row" : 1,
@@ -129,7 +129,7 @@
       "square" : 2,
       "row" : 1,
       "col" : 2,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 2,
       "row" : 2,

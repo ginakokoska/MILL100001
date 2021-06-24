@@ -2,6 +2,7 @@ package mill.model.gridComponent
 
 import mill.model.{Player, Stone}
 import mill.model.gridComponent.gridBase.Node
+import scala.swing.event.Event
 
 import scala.util.Try
 
@@ -20,3 +21,4 @@ trait GridInterface {
 // List [outsquare , midsquare , insquare]
 //       [OS:, 00]      <- integer
 //       (some, none)   <- boolean
+
