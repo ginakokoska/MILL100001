@@ -12,7 +12,7 @@ import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, Key, KeyPressed, KeyReleased, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
 import scala.swing.{AbstractButton, Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, MenuBar, Orientation, Panel, Point, PopupMenu, ProgressBar, RadioMenuItem, Rectangle, RootPanel, Swing, TextField, Window}
 import mill.controller.base.Controller
-import mill.model.{Stone, StoneState}
+import mill.model.{SetState, Stone, StoneState}
 
 import java.awt
 
@@ -20,6 +20,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   title = "Mill"
   preferredSize = new Dimension(400, 200)
+  resizable = false
   centerOnScreen()
 
   var continueIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
@@ -161,6 +162,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def createPl2(): Unit = {
     contents = new FlowPanel {
+      resizable = false
       contents += namePlayer2
       contents += startgame
       background = colorPanel
@@ -170,6 +172,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def wel(): Unit = {
     contents = new FlowPanel() {
+      resizable = false
       background = colorPanel
       contents += welcome
       contents += namePlayer1
@@ -212,12 +215,14 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.WHITE)
                     controller.moveController(k)
+                   // controller.player1.setStone()
                   }
                 case BlackTurn() =>
                   if(controller.player2.countState(StoneState.notUsed) > 0) {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.BLACK)
                     controller.moveController(k)
+                   // controller.player2.setStone()
                   }
                 case TakeStone(Stone.white) =>
                   controller.moveController(k)
@@ -226,18 +231,16 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     boardGui.remCoords(v)
                   }
                   if(controller.win())
-                    winMessageBlack()
-
+                    winMessage("black")
                 case TakeStone(Stone.black) =>
                   controller.moveController(k)
                   if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
                     tui.stoneSet(k, "removed from ")
                     boardGui.remCoords(v)
                   }
+
                   if(controller.win()) {
-                    winMessageWhite()
-
-
+                    winMessage("white")
                   }
               }
             }
@@ -249,7 +252,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       case MouseReleased(_,p,_,_,_) =>
         if (pArray.nonEmpty) {
           for((k,v)<-ValidMove().hitbox(pArray.head)) {
-            for((k1,v1)<-ValidMove().hitbox(pArray(pArray.size-1))) {
+            for((k1,v1)<-ValidMove().hitbox(pArray(pArray.length-1))) {
               if (!k.equals(k1) && !k.equals("") && !k1.equals("")) {
                 pRe = v
                 pReStr = k
@@ -275,7 +278,12 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                       tui.stoneSet(k, "moved from " + k1 + " to ")
                       boardGui.remOldSetNew(v1, (v, Color.BLACK))
                     }
+                  case _ =>
+                    println("please try to take a stone again")
                 }
+
+
+
               }
               tui.gameState()
               pArray = Array()
@@ -287,56 +295,34 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   }
 
-  def winMessageWhite(): Unit = {
+
+  def winMessage(hi: String): Unit = {
     icon = new ImageIcon(frogIcon)
-    //    Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
-    Dialog.showMessage(contents.head, "White wins!", "Winner", Dialog.Message.Info, icon )
-//    listenTo(controller)
-//    reactions += {
-//      case event: WonGame =>
-//        tui.createGrid("3")
-//        tui.update
-//        tui.gameState()
-//        repaint()
-//        boardGui.repaint()
-//    }
+    if (hi.equals("white")) {
+      Dialog.showMessage(contents.head, "Black wins!", title = "Winner!", Dialog.Message.Info, icon )
+    } else {
+      Dialog.showMessage(contents.head, "White wins!", "Winner", Dialog.Message.Info, icon )
+      boardGui.remAll()
+    }
     preferredSize = new Dimension(400, 200)
-    //wel()
     boardGui.remAll()
-    repaint()
+    // TODO: Hier muss eigentlich playerstate aufgerufen werden
+    controller.setPlayerState(SetState())
+    controller.gamePlayState = WhiteTurn()
     controller.player1.fillStone()
     controller.player2.fillStone()
-  }
-
-  def winMessageBlack(): Unit = {
-    icon = new ImageIcon(frogIcon)
-    Dialog.showMessage(contents.head, "White wins!", title = "Winner!")
-    preferredSize = new Dimension(400, 200)
-    listenTo(controller)
-    reactions += {
-      case event: WonGame =>
-        boardGui.remAll()
-        repaint()
-        controller.player1.fillStone()
-        controller.player2.fillStone()
-    }
-
-  }
-
-  def restart(): Unit = {
-    tui.createGrid("3")
-    tui.update
-    tui.gameState()
     repaint()
   }
+
 
   def restartQuestion() {
     val res = Dialog.showConfirmation(contents.head,
       "Do you really want to quit?",
       optionType=Dialog.Options.YesNo,
       title=title)
-    if (res == Dialog.Result.Ok)
+    if (res == Dialog.Result.Ok) {
       sys.exit(0)
+    }
   }
 
   listenTo(controller)
@@ -347,6 +333,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def board(): Unit = {
     contents = new FlowPanel() {
+      resizable = false
       contents += new Label(controller.player1.name, null, Alignment.Leading) {
         font = myFont
       }

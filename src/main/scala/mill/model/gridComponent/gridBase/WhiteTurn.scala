@@ -8,7 +8,7 @@ import scala.util.{Failure, Success}
 
 case class WhiteTurn() extends State {
   override def handle(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveGrid(pos, Stone.white, controller.player2)
+    val tmp = grid.moveGrid(pos, Stone.white, controller.player1)
     tmp match {
       case Success(v) =>
         grid.gridList = v
@@ -27,7 +27,7 @@ case class WhiteTurn() extends State {
   }
 
   override def handle2(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveStone(pos, Stone.white, controller.player2)
+    val tmp = grid.moveStone(pos, Stone.white, controller.player1)
     tmp match {
       case Success(v) =>
         grid.gridList = v
@@ -54,7 +54,7 @@ case class WhiteTurn() extends State {
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
           println("take a Stone!")
-          controller.player2.setStone()
+          controller.player1.setStone()
           GamePlay(gridBase.TakeStone(Stone.white)).state
         } else {
           println("Wrong Input or already set! Please try again")

@@ -2,7 +2,7 @@ package mill.controller.base
 
 import com.google.inject.Guice
 import mill.MillModule
-import mill.controller.{ControllerInterface, GameLoaded, GameSaved, PlayerCreated, RedrawGrid, WonGame}
+import mill.controller.{ControllerInterface, GameLoaded, GameSaved, PlayerCreated, RedrawGrid}
 import mill.mill.injector
 import mill.model.fileIOComponent.FileIoInterface
 import mill.model.gridComponent.gridBase.{GamePlay, Grid, WhiteTurn}
@@ -49,7 +49,6 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
 
   override def win(): Boolean = {
     if (player1.countState(StoneState.outOfGame) >= 7 || player2.countState(StoneState.outOfGame) >= 7) {
-      publish(new WonGame)
       true
     }
     else false
@@ -58,6 +57,10 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
    override def getPlayerState(player: Player): PlayerState = {
      playerState = playerState.getState(player)
      MoveState().getState(player)
+  }
+
+  override def setPlayerState(player: PlayerState): Unit = {
+    this.playerState = player
   }
 
   val fileIo = injector.instance[FileIoInterface]

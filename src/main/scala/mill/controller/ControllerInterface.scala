@@ -17,6 +17,7 @@ trait ControllerInterface extends Publisher {
   def createPlayer1(name: String, tmpColor: String): Unit
   def createPlayer2(name: String): Unit
   def getPlayerState(player: Player): PlayerState
+  def setPlayerState(player: PlayerState): Unit
   def sayHello(): String
   def printGrid(): String
   def moveController(pos: String): Unit

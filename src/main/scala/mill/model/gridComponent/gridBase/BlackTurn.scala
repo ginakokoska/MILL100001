@@ -8,11 +8,12 @@ import scala.util.{Failure, Success}
 
 case class BlackTurn() extends State {
   override def handle(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveGrid(pos, Stone.black, controller.player1)
+    val tmp = grid.moveGrid(pos, Stone.black, controller.player2)
     tmp match {
       case Success(v) =>
         grid.gridList = v
-        controller.player2.setStone()
+        // TODO: Hier nochmal überlegen
+          controller.player2.setStone()
         GamePlay(new WhiteTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
@@ -26,7 +27,7 @@ case class BlackTurn() extends State {
   }
 
   override def handle2(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveStone(pos, Stone.black, controller.player1)
+    val tmp = grid.moveStone(pos, Stone.black, controller.player2)
     tmp match {
       case Success(v) =>
         grid.gridList = v
@@ -46,7 +47,7 @@ case class BlackTurn() extends State {
   override def handleTakeStone(pos: String, grid: Grid): State = gridBase.GamePlay(new BlackTurn).state
 
   override def jumpStone(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.jumpStone(pos, Stone.black, controller.player1)
+    val tmp = grid.jumpStone(pos, Stone.black, controller.player2)
     tmp match {
       case Success(_) => gridBase.GamePlay(new WhiteTurn).state
       case Failure(f) =>
