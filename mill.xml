@@ -1,0 +1,47 @@
+<game>
+      <players>
+            <p1>
+                  <name>lucie</name>
+                  <color>white</color>
+            </p1>
+            <p2>
+                  <name>gina</name>
+                  <color>black</color>
+            </p2>
+      </players>
+      <grid>
+            <out>
+                  <node> Node(Some(white)) </node>
+                  <node> Node(Some(black)) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+            </out>
+            <mid>
+                  <node> Node(None) </node>
+                  <node> Node(Some(black)) </node>
+                  <node> Node(None) </node>
+                  <node> Node(Some(white)) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+            </mid>
+            <in>
+                  <node> Node(None) </node>
+                  <node> Node(Some(black)) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+                  <node> Node(None) </node>
+            </in>
+      </grid>
+</game>
