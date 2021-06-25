@@ -6,7 +6,7 @@ import mill.controller.base._
 import mill.model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 
 import java.awt.JobAttributes.DialogType
-import java.awt.{Color, ComponentOrientation, Font, Point}
+import java.awt.{Color, ComponentOrientation, Font, Image, Point}
 import javax.swing.ImageIcon
 import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, Key, KeyPressed, KeyReleased, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
@@ -23,22 +23,22 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   resizable = false
   centerOnScreen()
 
-  var continueIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+  var continueIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var restartIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
+  var restartIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/restart.png").getImage
   restartIcon = restartIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var saveIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/save.png").getImage
+  var saveIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/save.png").getImage
   saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var reloadIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/fromfile.png").getImage
+  var reloadIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/fromfile.png").getImage
   reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var frogIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/frog.png").getImage
+  var frogIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/frog.png").getImage
   frogIcon = frogIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  val colorPanel = Color.getColor("colorPanel" , 12499113)
+  val colorPanel: Color = Color.getColor("colorPanel" , 12499113)
 
   val myFont = new Font("monoSpaceD", Font.BOLD, 40)
 
@@ -279,11 +279,8 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                       boardGui.remOldSetNew(v1, (v, Color.BLACK))
                     }
                   case _ =>
-                    println("please try to take a stone again")
+                    println("Please try again to take a stone")
                 }
-
-
-
               }
               tui.gameState()
               pArray = Array()
