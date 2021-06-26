@@ -32,7 +32,6 @@ class Tui(controller: ControllerInterface) extends Observer {
       case "2" => controller.grid.gridList = controller.grid.gridOutMidSquare()
       case _ => controller.grid.gridList = controller.grid.createFullGrid()
     }
-
   }
 
   def moveTui (pos :String) :Unit = {
