@@ -32,13 +32,14 @@ At the beginning of the game, it is more important to place pieces in versatile 
 # Store and Load
 The computer version of mill allows the players to save the game and resume it later.
 
-![mühlemitstein_save](https://user-images.githubusercontent.com/81410821/123513984-86322500-d690-11eb-9d3f-a74a3b31ff20.png)
+![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
 
  > to save the current game click on the *floppy disc*, then exit the game\
 
 ![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
 
  > to resume the saved game click on the *resume from file* image
+
 
 # Reset
 The computerversion of mill can be restarted.
