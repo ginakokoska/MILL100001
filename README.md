@@ -33,7 +33,7 @@ The third phase starts when a player has only 3 stones left. That player is allo
 # Strategy
 At the beginning of the game, it is more important to place pieces in versatile locations rather than to try to form mills immediately and make the mistake of concentrating one's pieces in one area of the board.[11] An ideal position, which typically results in a win, allows a player to shuttle one piece back and forth between two mills, removing a piece every turn. 
 
-## Store and Load
+# Store and Load
 The computer version of mill allows the players to save the game and resume it later.
 > to save the current game click on the *floppy disc*, then exit the game
  ![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
@@ -44,12 +44,12 @@ The computer version of mill allows the players to save the game and resume it l
 ![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
 
 
-
-
-
-## Reset
+# Reset
 The computerversion of mill can be restarted.
  > to restart the game and start with a fresh board click the *restart arrow*
+ \
+ ![klein4](https://user-images.githubusercontent.com/81410821/123514773-d7dcae80-d694-11eb-9941-093049726d12.png)
+
 
 
 
