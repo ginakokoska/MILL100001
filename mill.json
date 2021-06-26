@@ -1,17 +1,17 @@
 {
   "player" : {
     "player1" : {
-      "name" : "namePlayerOne",
+      "name" : "dsaf",
       "color" : "white",
-      "notUsed" : 0,
-      "inGame" : 3,
-      "OutOfGame" : 6
+      "notUsed" : 7,
+      "inGame" : 2,
+      "OutOfGame" : 0
     },
     "player2" : {
-      "name" : "namePlayerTwo",
+      "name" : "dsaf",
       "color" : "black",
-      "notUsed" : 9,
-      "inGame" : 0,
+      "notUsed" : 7,
+      "inGame" : 2,
       "OutOfGame" : 0
     }
   },
@@ -30,12 +30,12 @@
       "square" : 0,
       "row" : 0,
       "col" : 2,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 1,
       "col" : 0,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 1,
@@ -65,12 +65,12 @@
       "square" : 1,
       "row" : 0,
       "col" : 0,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 0,
