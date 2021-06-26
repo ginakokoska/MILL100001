@@ -16,9 +16,7 @@ case class TakeStone(color: Stone.Value) extends State {
     if (color == Stone.white) {
       grid.takePos(pos, Stone.black) match {
         case Success(_) =>
-//          val c1 = controller
           controller.player2.takeStone() //von Black wird ein Stein in State OutOfGame gesetzt
-//          val c = c1
           GamePlay(new BlackTurn).state
         case Failure(e) =>
           println(e.getMessage)
