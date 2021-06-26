@@ -12,5 +12,4 @@ class SetCommand(controller: Controller, pos: String) extends Command {
   override def undoStep: Unit = controller.grid.createFullGrid()
 
   override def redoStep: Unit = doStep
-
 }

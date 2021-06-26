@@ -53,16 +53,16 @@ class HandlerSpec extends AnyWordSpec with Matchers {
         val state = Handler(gameState, playerState).handleState("jump MS: 01 to MS: 22", controller)
         state should be(WhiteTurn())
       }
-//      "in TakeStone(Stone.white) should take a Stone" in {
-//        gameState = TakeStone(Stone.white)
-//        val state = Handler(gameState, playerState).handleState("MS: 22", controller)
-//        state should be(BlackTurn())
-//      }
-//      "in TakeStone(Stone.black) should take a Stone" in {
-//        gameState = TakeStone(Stone.black)
-//        val state = Handler(gameState, playerState).handleState("OS: 22", controller)
-//        state should be(WhiteTurn())
-//      }
+      "in TakeStone(Stone.white) should take a Stone" in {
+        gameState = TakeStone(Stone.white)
+        val state = Handler(gameState, playerState).handleState("MS: 22", controller)
+        state should be(BlackTurn())
+      }
+      "in TakeStone(Stone.black) should take a Stone" in {
+        gameState = TakeStone(Stone.black)
+        val state = Handler(gameState, playerState).handleState("OS: 22", controller)
+        state should be(WhiteTurn())
+      }
     }
   }
 }
