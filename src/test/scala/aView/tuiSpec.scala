@@ -1,5 +1,0 @@
-package aView
-
-class tuiSpec {
-
-}

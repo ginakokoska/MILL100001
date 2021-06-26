@@ -4,6 +4,11 @@ scala:
 
 script:
   - sbt clean coverage test coverageReport
+services:
+  - xvfb
 
 after_success:
   - sbt coverageReport coveralls
+
+cache-control:
+  - no-Cache
