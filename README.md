@@ -9,9 +9,10 @@ You win the board game if your opponent has only two stones left, or if he canno
 ## Phase 0: Set name and choose color
 In Phase 0 the players must configure their name and color before starting to play the game.
  > to enter the name of player 1, click in the box and type in a name \
- > to choose a color click the combox, then cklick on the *arrow* to continue
+ > to choose a color click the combox, then cklick on the *arrow* to continue \
+ > ![s1](https://user-images.githubusercontent.com/81410821/123514302-9945f480-d692-11eb-8ff4-29d45b7af1f0.png)
 
-![s1](https://user-images.githubusercontent.com/81410821/123514302-9945f480-d692-11eb-8ff4-29d45b7af1f0.png)
+
 
  > to enter the name of player 2, then click on the *arrow* to start the game
  > ![s2](https://user-images.githubusercontent.com/81410821/123514315-aebb1e80-d692-11eb-938b-8367a251592b.png)
@@ -35,14 +36,16 @@ At the beginning of the game, it is more important to place pieces in versatile 
 
 ## Store and Load
 The computer version of mill allows the players to save the game and resume it later.
+> to save the current game click on the *floppy disc*, then exit the game
+> ![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
 
-![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
 
- > to save the current game click on the *floppy disc*, then exit the game\
-
-![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
-
+ 
  > to resume the saved game click on the *resume from file* image
+ > ![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
+
+
+
 
 
 ## Reset
