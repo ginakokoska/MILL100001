@@ -10,7 +10,7 @@ You win the board game if your opponent has only two stones left, or if he canno
 In Phase 0 the players must configure their name and color before starting to play the game.
  > to enter the name of player 1, click in the box and type in a name 
  > to choose a color click the combox, then cklick on the *arrow* to continue 
- ![s1](https://user-images.githubusercontent.com/81410821/123514302-9945f480-d692-11eb-8ff4-29d45b7af1f0.png)
+ ![s1](https://user-images.githubusercontent.com/81410821/123514302-9945f480-d692-11eb-8ff4-29d45b7af1f0.png) \
 
  
 
@@ -41,7 +41,7 @@ The computer version of mill allows the players to save the game and resume it l
 
 
  
-> to resume the saved game click on the *resume from file* image
+> to resume the saved game click on the *resume from file* image \
 ![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
 
 
