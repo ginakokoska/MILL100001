@@ -66,9 +66,17 @@ At the beginning of the game, it is more important to place pieces in versatile 
 11. Docker
 12. Logging Documentation
 
-
+# Coverage & Build Status [Masterbranch]
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Pattern)](https://www.travis-ci.com/ginakokoska/MILL100001)
 
 [![Coverage Status](https://coveralls.io/repos/github/ginakokoska/MILL100001/badge.svg?branch=Pattern)](https://coveralls.io/github/ginakokoska/MILL100001?branch=Pattern)
+
+# Dockerhub
+
+## TUI version
+
+## GUI version
+ > docker pull ginakokoska/mill:masterGUI
+ 
 
 
