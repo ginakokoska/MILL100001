@@ -23,19 +23,19 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   resizable = false
   centerOnScreen()
 
-  var continueIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
+  var continueIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var restartIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/restart.png").getImage
+  var restartIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\restart.png").getImage
   restartIcon = restartIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var saveIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/save.png").getImage
+  var saveIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\save.png").getImage
   saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var reloadIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/fromfile.png").getImage
+  var reloadIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\fromfile.png").getImage
   reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var frogIcon = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/frog.png").getImage
+  var frogIcon = new ImageIcon("C:\\Users\\User\\IdeaProjects\\MILL100001\\src\\main\\resources\\aView\\Gui\\frog.png").getImage
   frogIcon = frogIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
   val colorPanel = Color.getColor("colorPanel" , 12499113)
@@ -211,14 +211,16 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
             if (pRe.x != v.x || pRe.y != v.y) {
               controller.gamePlayState match {
                 case WhiteTurn() =>
-                  if(controller.player1.countState(StoneState.notUsed) > 0) {
+                  if(controller.player1.countState(StoneState.notUsed) > 0 &&
+                    !controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.WHITE)
                     controller.moveController(k)
                    // controller.player1.setStone()
                   }
                 case BlackTurn() =>
-                  if(controller.player2.countState(StoneState.notUsed) > 0) {
+                  if(controller.player2.countState(StoneState.notUsed) > 0 &&
+                    !controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.BLACK)
                     controller.moveController(k)

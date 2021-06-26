@@ -11,8 +11,8 @@ class MoveConditionSpec extends AnyWordSpec with Matchers {
     "player moves Stone from a corner" should {
       tmpGrid.gridList = tmpGrid.createFullGrid()
       tmpGrid.gridList.head(0)(0) = Node(Some(Stone.white))
-      val legalMove = MoveCondition().moveConditionCorner(0, 0, 0, 1)
-      val illegalMove = MoveCondition().moveConditionCorner(0, 0, 0, 2)
+      val legalMove = MoveCondition().moveConditionCorner(0, 0, 0, 1,0,0)
+      val illegalMove = MoveCondition().moveConditionCorner(0, 0, 0, 2,0,0)
       "should return true when move is legal" in {
         legalMove should be(true)
       }

@@ -15,7 +15,7 @@ case class Handler(state: State, playerState: PlayerState) {
             GamePlay(state).handle2(pos, controller.grid, controller)
           case JumpState() =>
             GamePlay(state).jumpStone(pos, controller.grid, controller)
-          case _ => GamePlay(state)
+//          case _ => GamePlay(state)
         }
       case BlackTurn() =>
         playerState match {
@@ -25,13 +25,13 @@ case class Handler(state: State, playerState: PlayerState) {
             GamePlay(state).handle2(pos, controller.grid, controller)
           case JumpState() =>
             GamePlay(state).jumpStone(pos, controller.grid, controller)
-          case _ => GamePlay(state)
+//          case _ => GamePlay(state)
         }
       case TakeStone(Stone.white) =>
         GamePlay(state).handleTakeStone(pos, controller.grid)
       case TakeStone(Stone.black) =>
         GamePlay(state).handleTakeStone(pos, controller.grid)
-      case _ => GamePlay(state)
+//      case _ => GamePlay(state)
     }
   }
 }

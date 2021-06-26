@@ -130,7 +130,7 @@ case class Grid() extends GridInterface{
           gridList.head(intPos1)(intPos2) = Node(Some(color))
           if (millProof().proofTypeMid(0, intPos1, intPos2, color, this) ||
             millProof().proofTypeCorner(0, intPos1, intPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
           } else {
@@ -144,7 +144,7 @@ case class Grid() extends GridInterface{
           gridList(1)(intPos1)(intPos2) = Node(Some(color))
           if (millProof().proofTypeMid(1, intPos1, intPos2, color, this) ||
             millProof().proofTypeCorner(1, intPos1, intPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
           } else {
@@ -158,7 +158,7 @@ case class Grid() extends GridInterface{
           gridList(2)(intPos1)(intPos2) = Node(Some(color))
           if (millProof().proofTypeMid(2, intPos1, intPos2, color, this) ||
             millProof().proofTypeCorner(2, intPos1, intPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
           } else {
@@ -205,17 +205,23 @@ case class Grid() extends GridInterface{
       case "MS:" => sqOld = 1
       case "IS:" => sqOld = 2
     }
+    var sqNew = 999
+    posArray(4) match {
+      case "OS:" => sqNew = 0
+      case "MS:" => sqNew = 1
+      case "IS:" => sqNew = 2
+    }
     posArray(4) match {
       case "OS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2,sqOld,sqNew) ||
             MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 0, intNewPos1, intNewPos2)) &&
           !gridList.head(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
           if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {
@@ -226,14 +232,14 @@ case class Grid() extends GridInterface{
         }
       case "MS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2, sqOld, sqNew) ||
             MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 1, intNewPos1, intNewPos2)) &&
           !gridList(1)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
           if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {
@@ -244,14 +250,14 @@ case class Grid() extends GridInterface{
         }
       case "IS:" =>
         if (gridList(sqOld)(intOldPos1)(intOldPos2).isColor.contains(color) &&
-          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2) ||
+          (MoveCondition().moveConditionCorner(intOldPos1, intOldPos2, intNewPos1, intNewPos2, sqOld, sqNew) ||
             MoveCondition().moveConditionMid(posArray(1), intOldPos1, intOldPos2, 2, intNewPos1, intNewPos2)) &&
           !gridList(2)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
           if (millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
             millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
-            player.takeStone()
+//            player.takeStone()
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {

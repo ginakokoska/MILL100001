@@ -2,11 +2,11 @@ package mill.model.gridComponent.gridBase
 
 case class MoveCondition() {
 
-  def moveConditionCorner(pos1: Int, pos2: Int, pos1New: Int, pos2New: Int): Boolean = {
+  def moveConditionCorner(pos1: Int, pos2: Int, pos1New: Int, pos2New: Int, sqOld: Int, sqNew: Int): Boolean = {
     var rVar = false
     var tmp = 0
 
-    if (pos1 != 1 && pos2 != 1) {
+    if (pos1 != 1 && pos2 != 1 && sqOld == sqNew) {
       if (pos1 < pos1New) tmp = pos1New - pos1
       else if (pos1 > pos1New) tmp = pos1 - pos1New
       else {
