@@ -5,7 +5,7 @@ Rules
 You win the board game if your opponent has only two stones left, or if he cannot move. There are three phases in the game. In every phase, you can capture if you make three in a row (horizontal or vertical), this is called a 'mill'. If you form a mill, you must capture an opposing stone of your choice (except when this stone is part of a mill and your opponent has other stones which are not part of a mill).
 
 
-Phase 1: Placing stones
+Phase 1: Placing stones /n
 In the first part of the game, the players each place a stone in turns on an intersection of a horizontal and a vertical line (denoted by a dot). This phase ends when every player has placed his 9 stones.
   -> to set a stone click on a free dot on the board
 
