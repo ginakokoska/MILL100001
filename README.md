@@ -21,7 +21,7 @@ When both players placed all their stones on the bord, the second phase starts. 
   > to move a stone click on your stone and release on desired position\
   > to take a stone from your opponent after building a mill, click on the desired stone
 
-## Phase 3: Jumping stones (when one player has only 3 stones left)\
+## Phase 3: Jumping stones (when one player has only 3 stones left)
 The third phase starts when a player has only 3 stones left. That player is allowed to move his stones to *any free* place on the board instead of just an adjacent place. When both players have 3 stones left, both of them may do so. 
   > to jump with a stone click on your stone and release on desired position
 
@@ -31,8 +31,20 @@ At the beginning of the game, it is more important to place pieces in versatile 
 
 # Store and Load
 The computer version of mill allows the players to save the game and resume it later.
+
+![mühlemitstein_save](https://user-images.githubusercontent.com/81410821/123513984-86322500-d690-11eb-9d3f-a74a3b31ff20.png)
+
  > to save the current game click on the *floppy disc*, then exit the game\
+
+![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
+
  > to resume the saved game click on the *resume from file* image
+
+# Reset
+The computerversion of mill can be restarted.
+ > to restart the game and start with a fresh board click the *restart arrow*
+
+
 
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Pattern)](https://www.travis-ci.com/ginakokoska/MILL100001)
 
