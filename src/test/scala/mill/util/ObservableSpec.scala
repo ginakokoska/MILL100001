@@ -1,4 +1,4 @@
-package util
+package mill.util
 
 import mill.util.{Observable, Observer}
 import org.scalatest.matchers.should._

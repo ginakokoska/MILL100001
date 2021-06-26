@@ -1,4 +1,4 @@
-package controller
+package mill.controller
 
 import mill.controller.base.{Controller, SetCommand}
 import mill.model.gridComponent.gridBase.{Grid, Node}

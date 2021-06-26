@@ -24,4 +24,5 @@ coverageExcludedPackages := "mill.aView.Gui.*;" +
   "mill.model.gridComponent.State;" +
   "mill.model.fileIOComponent.*;" +
   "mill.model.PlayerState;" +
-  "mill.util.Command;"
+  "mill.util.Command;" +
+  "mill.mill;"

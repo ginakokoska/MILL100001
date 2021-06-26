@@ -1,4 +1,4 @@
-package model
+package mill.model
 
 import mill.model.{Player, Stone, StoneState}
 import mill.model.StoneState

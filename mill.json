@@ -1,18 +1,18 @@
 {
   "player" : {
     "player1" : {
-      "name" : "df",
+      "name" : "namePlayerOne",
       "color" : "white",
-      "notUsed" : "5",
-      "inGame" : "4",
-      "OutOfGame" : "0"
+      "notUsed" : 0,
+      "inGame" : 3,
+      "OutOfGame" : 6
     },
     "player2" : {
-      "name" : "fdg",
+      "name" : "namePlayerTwo",
       "color" : "black",
-      "notUsed" : "5",
-      "inGame" : "4",
-      "OutOfGame" : "0"
+      "notUsed" : 9,
+      "inGame" : 0,
+      "OutOfGame" : 0
     }
   },
   "field" : {
@@ -45,22 +45,22 @@
       "square" : 0,
       "row" : 1,
       "col" : 2,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 2,
       "col" : 0,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 2,
       "col" : 1,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 2,
       "col" : 2,
-      "color" : 1
+      "color" : 0
     } ], [ {
       "square" : 1,
       "row" : 0,

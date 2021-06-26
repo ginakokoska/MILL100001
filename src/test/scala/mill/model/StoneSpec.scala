@@ -1,4 +1,4 @@
-package model
+package mill.model
 
 import mill.model.Stone
 import org.scalatest.matchers.must.Matchers

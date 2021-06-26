@@ -1,7 +1,7 @@
-package controller
+package mill.controller
 
 import mill.controller.base.Controller
-import mill.model.gridComponent.gridBase.Grid
+import mill.model.gridComponent.gridBase.{Grid, Node}
 import mill.model._
 import mill.model.{Player, Stone}
 import mill.util._
@@ -167,6 +167,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       }
       controller.createPlayer1("namePlayerOne", "w")
       controller.createPlayer2("namePlayerTwo")
+
       "creates player one " in {
         controller.player1.name should be ("namePlayerOne")
         controller.player1.color should be (Stone.white)
@@ -237,6 +238,21 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.setPlayerState(JumpState())
         controller.playerState should be(JumpState())
       }
+      "saves the game" in {
+        controller.grid.gridList.head(0)(0) = Node(Some(Stone.white))
+        controller.grid.gridList.head(0)(1) = Node(Some(Stone.black))
+        controller.grid.gridList.head(0)(2) = Node(Some(Stone.white))
+        controller.grid.gridList.head(1)(0) = Node(Some(Stone.black))
+        controller.save()
+      }
+
+//      "load game" in {
+//        controller.load()
+//        controller.grid.gridList.head(0)(0).isColor should be(Some(Stone.white))
+//        controller.grid.gridList.head(0)(1).isColor should be(Some(Stone.black))
+//        controller.grid.gridList.head(0)(2).isColor should be(Some(Stone.white))
+//        controller.grid.gridList.head(1)(0).isColor should be(Some(Stone.black))
+//      }
     }
   }
 }

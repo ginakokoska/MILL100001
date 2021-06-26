@@ -1,4 +1,4 @@
-package model.gridComponent.gridBase
+package mill.model.gridComponent.gridBase
 
 import mill.model.Stone
 import mill.model.gridComponent.gridBase.Node

@@ -1,4 +1,4 @@
-package model
+package mill.model
 
 import mill.model.{JumpState, MoveState, Player, SetState, Stone}
 import org.scalatest.matchers.should.Matchers

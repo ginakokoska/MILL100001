@@ -1,4 +1,4 @@
-package aView
+package mill.aView
 
 import mill.aView.Tui
 import mill.controller.base.Controller

@@ -1,4 +1,4 @@
-package util
+package mill.util
 
 import mill.util.{Command, UndoManager}
 import org.scalatest.matchers.should.Matchers
