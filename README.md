@@ -8,8 +8,8 @@ You win the board game if your opponent has only two stones left, or if he canno
 
 ## Phase 0: Set name and choose color
 In Phase 0 the players must configure their name and color before starting to play the game.
- > to enter the name of player 1, click in the box and type in a name
- > to choose a color click the combox, then cklick on the *arrow* to continue
+ > to enter the name of player 1, click in the box and type in a name\
+ > to choose a color click the combox, then cklick on the *arrow* to continue\
  > to enter the name of player 2, then click on the *arrow* to start the game
 
 ## Phase 1: Placing stones 
@@ -18,7 +18,7 @@ In the first part of the game, the players each place a stone in turns on an int
 
 ## Phase 2: Moving stones 
 When both players placed all their stones on the bord, the second phase starts. When it is your turn, you must move one of your stones to an *adjacent free place* (along a line). If you form a mill, you must remove an opposing stone from the board.
-  > to move a stone click on your stone and release on desired position
+  > to move a stone click on your stone and release on desired position\
   > to take a stone from your opponent after building a mill, click on the desired stone
 
 ## Phase 3: Jumping stones (when one player has only 3 stones left)\
@@ -31,7 +31,7 @@ At the beginning of the game, it is more important to place pieces in versatile 
 
 # Store and Load
 The computer version of mill allows the players to save the game and resume it later.
- > to save the current game click on the *floppy disc*, then exit the game
+ > to save the current game click on the *floppy disc*, then exit the game\
  > to resume the saved game click on the *resume from file* image
 
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Pattern)](https://www.travis-ci.com/ginakokoska/MILL100001)
