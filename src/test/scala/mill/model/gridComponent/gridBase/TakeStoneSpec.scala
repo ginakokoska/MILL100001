@@ -1,8 +1,7 @@
 package mill.model.gridComponent.gridBase
 
 import mill.controller.base.Controller
-import mill.model.gridComponent.gridBase
-import mill.model.gridComponent.gridBase._
+import mill.model.gridComponent._
 import mill.model.{Player, Stone}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._

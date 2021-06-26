@@ -1,20 +1,15 @@
 package mill.aView.Gui
 
 import mill.aView.Tui
-import mill.controller.{ControllerInterface, RedrawGrid, WonGame}
-import mill.controller.base._
+import mill.controller.{ControllerInterface, RedrawGrid}
 import mill.model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
-
-import java.awt.JobAttributes.DialogType
-import java.awt.{Color, ComponentOrientation, Font, Image, Point}
+import java.awt.{Color,Font, Image}
 import javax.swing.ImageIcon
 import scala.swing.Action.NoAction.icon
-import scala.swing.event.{ButtonClicked, Key, KeyPressed, KeyReleased, MouseClicked, MouseDragged, MousePressed, MouseReleased, UIEvent}
-import scala.swing.{AbstractButton, Alignment, BorderPanel, BoxPanel, Button, CheckBox, ComboBox, Component, Dialog, Dimension, FlowPanel, Frame, GridBagPanel, GridPanel, Label, MainFrame, Menu, MenuBar, Orientation, Panel, Point, PopupMenu, ProgressBar, RadioMenuItem, Rectangle, RootPanel, Swing, TextField, Window}
-import mill.controller.base.Controller
+import scala.swing.event.{ButtonClicked, MouseClicked, MouseDragged, MouseReleased}
+import scala.swing.{ Alignment,  BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
 import mill.model.{SetState, Stone, StoneState}
 
-import java.awt
 
 case class StartGui(controller: ControllerInterface) extends MainFrame {
 
@@ -23,6 +18,10 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   resizable = false
   centerOnScreen()
 
+
+  /*
+  TODO:Please click on the Folder *Resources* and copy the ABSOLUTE Path of each Icon
+   */
   var continueIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 

@@ -18,7 +18,6 @@ case class Gui() extends Component {
   minimumSize = panelDimension
   preferredSize = panelDimension
   maximumSize = panelDimension
-  var currentImage: BufferedImage = _
   var backgroundImage:  BufferedImage = ImageIO.read(new File("src/main/resources/aView/Gui/millboard.png"))
   var scaledImage: Image = backgroundImage.getScaledInstance(500,500, BufferedImage.TYPE_INT_ARGB)
   var cordList: ListMap[Point,Color] = ListMap()

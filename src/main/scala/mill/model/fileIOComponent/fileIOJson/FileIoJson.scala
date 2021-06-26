@@ -1,7 +1,7 @@
 package mill.model.fileIOComponent.fileIOJson
 
 import mill.controller._
-import mill.model.gridComponent.gridBase.{Grid, Node}
+import mill.model.gridComponent.gridBase.{BlackTurn, Grid, Node, WhiteTurn}
 import mill.model.{Stone, StoneState}
 import mill.model.fileIOComponent.FileIoInterface
 import play.api.libs.json.OFormat.oFormatFromReadsAndOWrites
@@ -41,6 +41,12 @@ class FileIO extends FileIoInterface {
       }
     }
 
+    val gameState = (json \ "gameState")
+    gameState.head.toString().tail.init match {
+      case "white" => controller.gamePlayState = WhiteTurn()
+      case "black" => controller.gamePlayState = BlackTurn()
+    }
+
     val grid = Grid().createFullGrid()
     val tuple = (json \\ "outSquare")
     val test1 = tuple(0)
@@ -61,7 +67,7 @@ class FileIO extends FileIoInterface {
 
 
 
-  def createJsonHUREN(controller: ControllerInterface): JsValue = {
+  def createJson(controller: ControllerInterface): JsValue = {
     val p1 = controller.player1
     val p2 = controller.player2
     Json.obj (
@@ -101,6 +107,15 @@ class FileIO extends FileIoInterface {
               )
             }
           }
+        ),
+        "gamePlayState" -> Json.toJson(
+          Json.obj(
+            if(controller.gamePlayState.equals(WhiteTurn())) {
+              "gameState" -> "white"
+            } else {
+              "gameState" -> "black"
+            }
+          )
         )
       )
     )
@@ -108,7 +123,7 @@ class FileIO extends FileIoInterface {
 
   override def save(controller: ControllerInterface): Unit = {
     val pw = new PrintWriter(new File("mill.json"))
-    pw.write(Json.prettyPrint(createJsonHUREN(controller)))
+    pw.write(Json.prettyPrint(createJson(controller)))
     pw.close()
   }
 }
