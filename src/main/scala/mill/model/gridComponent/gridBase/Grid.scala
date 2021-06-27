@@ -5,7 +5,7 @@ import mill.model._
 import scala.util.{Failure, Success, Try}
 
 /*
-  This class creates and changes the grid for the TUI.
+  This class creates and changes the grid in different sizes for the TUI.
  */
 
 case class Grid() extends GridInterface{

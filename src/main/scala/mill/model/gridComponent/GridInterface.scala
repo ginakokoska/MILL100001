@@ -2,9 +2,11 @@ package mill.model.gridComponent
 
 import mill.model.{Player, Stone}
 import mill.model.gridComponent.gridBase.Node
-import scala.swing.event.Event
-
 import scala.util.Try
+
+/*
+  This trait initialises the functions for the grid class.
+ */
 
 trait GridInterface {
   var gridList: List[Array[Array[Node]]]
@@ -18,7 +20,5 @@ trait GridInterface {
   def moveStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
   def jumpStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
 }
-// List [outsquare , midsquare , insquare]
-//       [OS:, 00]      <- integer
-//       (some, none)   <- boolean
+
 

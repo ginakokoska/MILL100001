@@ -1,5 +1,9 @@
 package mill.util
 
+/*
+  This class implements the Undo Manager that stores all commands in a stack.
+ */
+
 class UndoManager {
   private var undoStack: List[Command] = Nil
   private var redoStack: List[Command] = Nil

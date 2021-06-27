@@ -1,5 +1,11 @@
 package mill.model.gridComponent.gridBase
 
+/*
+  This class ensures valid moves to only adjacent positions.
+  If a stone is set on a corner node, it can only be moved in two directions.
+  If a stone is set in a middle node, it can be moved in four different directions.
+ */
+
 case class MoveCondition() {
 
   def moveConditionCorner(pos1: Int, pos2: Int, pos1New: Int, pos2New: Int, sqOld: Int, sqNew: Int): Boolean = {

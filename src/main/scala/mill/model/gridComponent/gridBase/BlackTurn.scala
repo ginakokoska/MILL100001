@@ -6,15 +6,17 @@ import mill.model.gridComponent.{State, gridBase}
 import scala.util.{Failure, Success}
 
 /*
-  This class implements the functions of the state pattern BlackTurn()
+  This class implements the functions of the state pattern.
+  In case of a valid play move each function will result in success, changing the state to WhiteTurn().
+  In case of failure it will remain in the same state.
  */
+
 case class BlackTurn() extends State {
   override def setStoneState(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.moveGrid(pos, Stone.black, controller.player2)
     tmp match {
       case Success(v) =>
         grid.gridList = v
-        // TODO: Hier nochmal überlegen
           controller.player2.setStone()
         GamePlay(new WhiteTurn).state
       case Failure(f) =>

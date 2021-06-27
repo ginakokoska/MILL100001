@@ -10,7 +10,7 @@ import scala.io.Source
 import java.io._
 
 /*
-  This class saves and restores the gameplay state as a JSON (JavaScript Object Notation) format.
+  This class saves and restores the gameplay state as a JSON (JavaScript Object Notation) format, to resume the game later on.
  */
 
 class FileIoJSON extends FileIoInterface {

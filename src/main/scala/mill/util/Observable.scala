@@ -1,5 +1,9 @@
 package mill.util
 
+/*
+  This trait was used to update the TUI when notify observer was called. (Observer Pattern)
+ */
+
 trait Observer {
   def update: Boolean
 }

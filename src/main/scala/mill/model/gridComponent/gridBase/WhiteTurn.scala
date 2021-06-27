@@ -6,7 +6,9 @@ import mill.model.gridComponent.{State, gridBase}
 import scala.util.{Failure, Success}
 
 /*
-  This class implements the functions of the state pattern WhiteTurn()
+  This class implements the functions of the state pattern.
+  In case of a valid play move each function will result in success, changing the state to BlackTurn().
+  In case of failure it will remain in the same state.
  */
 
 case class WhiteTurn() extends State {

@@ -1,7 +1,7 @@
 package mill.util
 
 /*
-  This Trait inicializes the methods for the Command Pattern.
+  This Trait initializes the methods for the Command Pattern.
  */
 
 trait Command {

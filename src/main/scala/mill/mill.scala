@@ -8,9 +8,12 @@ import model.gridComponent.gridBase.Grid
 import model._
 import aView._
 import aView.Gui._
-
 import scala.io.StdIn.readLine
 import scala.swing.Frame
+
+/*
+  This class runs the game, enjoy! :)
+ */
 
 object mill  extends Frame{
   val injector: Injector = Guice.createInjector(new MillModule)

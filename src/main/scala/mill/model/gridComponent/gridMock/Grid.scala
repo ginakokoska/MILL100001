@@ -3,8 +3,11 @@ package mill.model.gridComponent.gridMock
 import mill.model.{Player, Stone}
 import mill.model.gridComponent.GridInterface
 import mill.model.gridComponent.gridBase.Node
-
 import scala.util.{Failure, Try}
+
+/*
+  This class initialises the grid class with default values.
+ */
 
 class Grid() extends GridInterface{
   var playGround: String = ""

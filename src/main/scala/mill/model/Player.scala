@@ -1,9 +1,12 @@
 package mill.model
 
 import mill.model.StoneState.StoneState
-
 import scala.collection.immutable.ListMap
 import scala.util.control.Breaks.{break, breakable}
+
+/*
+  This class saves the different stone state of each player.
+ */
 
 case class Player(name: String, color: Stone.Value) {
   var mapState: ListMap[String, StoneState.Value] = ListMap()
