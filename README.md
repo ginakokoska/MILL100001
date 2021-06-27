@@ -1,3 +1,4 @@
+
 # Welcome to our game **mill** ! :)
 
 Mill is one of the oldest board games and known in Europe by different names: Nine Men Morris, Mühle, Molenspel and Merrelles. It is is a strategy board game for two players dating at least to the Roman Empire.
@@ -49,7 +50,10 @@ The computer version of mill allows the players to save the game and resume it l
 
 ## Reset
 The computerversion of mill can be restarted.
- > to restart the game and start with a fresh board click the *restart arrow*
+\
+![reset](https://user-images.githubusercontent.com/81410821/123560895-72c4ae00-d7a5-11eb-96fe-ff005b356cbd.gif)
+\
+> to restart the game and start with a fresh board click the *restart arrow*
  \
  ![klein4](https://user-images.githubusercontent.com/81410821/123514773-d7dcae80-d694-11eb-9941-093049726d12.png)
 
