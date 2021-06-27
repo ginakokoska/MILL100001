@@ -36,6 +36,11 @@ When both players placed all their stones on the bord, the second phase starts. 
 The third phase starts when a player has only 3 stones left. That player is allowed to move his stones to *any free* place on the board instead of just an adjacent place. When both players have 3 stones left, both of them may do so. 
   > to jump with a stone click on your stone and release on desired position
 
+\
+
+![jump](https://user-images.githubusercontent.com/81410821/123561459-b240c980-d7a8-11eb-874d-32ed79a8a306.gif)
+\
+
 
 ## Store and Load
 The computer version of mill allows the players to save the game and resume it later.
