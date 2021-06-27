@@ -5,11 +5,13 @@ import mill.controller.{ControllerInterface, RedrawGrid}
 import mill.model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 
 import java.awt.{Color, Font, Image}
-import javax.swing.ImageIcon
+import javax.swing.{ImageIcon, JFrame}
 import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, MouseClicked, MouseDragged, MouseReleased}
-import scala.swing.{Alignment, BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
+import scala.swing.{Action, Alignment, BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
 import mill.model.{Player, SetState, Stone, StoneState}
+
+import scala.sys.exit
 
 /*/
   This class creates the GUI.
@@ -296,16 +298,28 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     repaint()
   }
 
-  // TODO: eventuell lösche
-  //  def restartQuestion() {
-  //    val res = Dialog.showConfirmation(contents.head,
-  //      "Do you really want to quit?",
-  //      optionType=Dialog.Options.YesNo,
-  //      title=title)
-  //    if (res == Dialog.Result.Ok) {
-  //      sys.exit(0)
-  //    }
-  //  }
+  import javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE
+  peer.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE)
+
+  override def closeOperation() { showCloseDialog() }
+
+
+
+  def showCloseDialog() {
+    icon = new ImageIcon(frogIcon)
+    Dialog.showConfirmation(parent = null,
+      title = "Exit",
+      message = "Are you sure you want to quit?"
+    , icon = icon) match {
+      case Dialog.Result.Ok => exit(0)
+      case _ =>
+    }
+  }
+
+
+
+
+
 
   listenTo(controller)
   reactions += {

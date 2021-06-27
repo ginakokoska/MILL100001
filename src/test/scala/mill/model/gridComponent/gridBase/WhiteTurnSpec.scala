@@ -65,7 +65,7 @@ case class WhiteTurnSpec() extends AnyWordSpec with Matchers {
       "WhiteTurn(), if jumped to invalid node" in {
         state1 should be(GamePlay(new WhiteTurn).state)
       }
-      "TakeTurn(), when player has formed a mill" in {
+      "TakeStone(), when player has formed a mill" in {
         stateMill should be(GamePlay(gridBase.TakeStone(Stone.white)).state)
       }
     }

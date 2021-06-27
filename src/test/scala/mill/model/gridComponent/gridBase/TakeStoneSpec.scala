@@ -28,7 +28,7 @@ class TakeStoneSpec extends AnyWordSpec with Matchers{
         stateHandle2 should be(GamePlay(WhiteTurn()).state)
         stateJumpStone should be(GamePlay(WhiteTurn()).state)
       }
-      "if White took a stone correctly" in {
+      "if White took a stone correctly the returned state is BlackTurn()" in {
         stateTakeStoneCorrectly should be(GamePlay(BlackTurn()).state)
       }
       "if White took a stone incorrectly, the state remains in TakeStone(blackstone)" in {
@@ -37,7 +37,7 @@ class TakeStoneSpec extends AnyWordSpec with Matchers{
       tmpGrid.gridList(2)(0)(0) = Node(Some(Stone.white))
       val stateTakeStoneCorrectlyBlack = gridBase.TakeStone(Stone.black).takeStoneState("IS: 00", tmpGrid)
       val stateTakeStoneInCorrectlyBlack = gridBase.TakeStone(Stone.black).takeStoneState("IS: 01", tmpGrid)
-      "if Black player took a stone correctly" in {
+      "if Black player took a stone correctly the state changes to WhiteTurn()" in {
         stateTakeStoneCorrectlyBlack should be(GamePlay(WhiteTurn()).state)
       }
       "if Black player took a stone incorrectly, the state remains in TakeStone(whitestone)" in {

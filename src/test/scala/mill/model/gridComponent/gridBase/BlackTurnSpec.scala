@@ -65,7 +65,7 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
       "BlackTurn() if jumped to a free node" in {
         state1 should be(GamePlay(new BlackTurn).state)
       }
-      "TakeTurn() when player has formed a mill" in {
+      "TakeStone() when player has formed a mill" in {
         stateMill should be(GamePlay(gridBase.TakeStone(Stone.black)).state)
       }
     }
