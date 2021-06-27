@@ -28,7 +28,6 @@ When both players placed all their stones on the bord, the second phase starts. 
   > to take a stone from your opponent after building a mill, click on the desired stone
 
  \
- ![take](https://user-images.githubusercontent.com/81410821/123561030-64c35d00-d7a6-11eb-9e84-2382550fff2c.gif)
   \
 
 ## Phase 3: Jumping stones (when one player has only 3 stones left)
