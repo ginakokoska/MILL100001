@@ -1,5 +1,5 @@
 package mill.model.gridComponent.gridBase
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.{JumpState, MoveState, PlayerState, SetState, Stone}
 import mill.model.gridComponent.State
 

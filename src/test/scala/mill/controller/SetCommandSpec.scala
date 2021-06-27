@@ -1,6 +1,6 @@
 package mill.controller
 
-import mill.controller.base.{Controller, SetCommand}
+import mill.controller.controllerBase.{Controller, SetCommand}
 import mill.model.gridComponent.gridBase.{Grid, Node}
 import mill.model.{Player, Stone}
 import org.scalatest.matchers.should.Matchers

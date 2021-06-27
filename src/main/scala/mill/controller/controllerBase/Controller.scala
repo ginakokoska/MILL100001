@@ -1,4 +1,4 @@
-package mill.controller.base
+package mill.controller.controllerBase
 
 import com.google.inject.Guice
 import mill.MillModule
@@ -60,8 +60,8 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
     publish(new RedrawGrid)
   }
 
-  override def win(): Boolean = {
-    if (player1.countState(StoneState.outOfGame) >= 7 || player2.countState(StoneState.outOfGame) >= 7) {
+  override def win(player: Player): Boolean = {
+    if (player.countState(StoneState.outOfGame) >= 7 ) {
       true
     }
     else false

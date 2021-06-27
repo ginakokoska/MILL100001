@@ -1,7 +1,7 @@
 package mill.model.gridComponent.gridBase
 
 import com.google.inject.Inject
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.gridComponent.State
 
 /*

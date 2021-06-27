@@ -1,6 +1,6 @@
 package mill.model.gridComponent
 
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.gridComponent.gridBase.Grid
 
 /*

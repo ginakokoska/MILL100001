@@ -1,6 +1,6 @@
 package mill.model.gridComponent.gridBase
 
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.Stone
 import mill.model.gridComponent.{State, gridBase}
 import scala.util.{Failure, Success}
@@ -59,7 +59,6 @@ case class WhiteTurn() extends State {
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
           println("take a Stone!")
-          controller.player1.setStone()
           GamePlay(gridBase.TakeStone(Stone.white)).state
         } else {
           println("Wrong input or already set! Please try again")

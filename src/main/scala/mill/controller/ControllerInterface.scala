@@ -26,7 +26,7 @@ trait ControllerInterface extends Publisher {
   def printGrid(): String
   def moveController(pos: String): Unit
   def undo(): Unit
-  def win(): Boolean
+  def win(player: Player): Boolean
   def load(): Unit
   def save(): Unit
 

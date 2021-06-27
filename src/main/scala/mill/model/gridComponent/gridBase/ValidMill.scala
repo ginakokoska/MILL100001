@@ -8,7 +8,7 @@ import mill.model.Stone
   A mid mill is formed when moved to mid nodes only f.e (OS: 01 - MS: 01 - IS: 02)
  */
 
-case class validMill() {
+case class ValidMill() {
   def proofTypeCorner(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: Grid): Boolean = {
     var count = 0
     val tmp = pos1.toString + pos2.toString

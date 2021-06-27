@@ -1,6 +1,6 @@
 package mill.model.gridComponent.gridBase
 
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.gridComponent.gridBase.{BlackTurn, GamePlay, Grid, Handler, Node, TakeStone, WhiteTurn}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._

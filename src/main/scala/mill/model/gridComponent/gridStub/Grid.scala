@@ -1,4 +1,4 @@
-package mill.model.gridComponent.gridMock
+package mill.model.gridComponent.gridStub
 
 import mill.model.{Player, Stone}
 import mill.model.gridComponent.GridInterface

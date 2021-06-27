@@ -226,7 +226,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "removed from ")
                     boardGui.remCoords(v)
                   }
-                  if(controller.win())
+                  if(controller.win(controller.player2))
                     winMessage(controller.player1)
                 case TakeStone(Stone.black) =>
                   controller.moveController(k)
@@ -234,7 +234,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "removed from ")
                     boardGui.remCoords(v)
                   }
-                  if(controller.win()) {
+                  if(controller.win(controller.player1)) {
                     winMessage(controller.player2)
                   }
               }
@@ -285,7 +285,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     }
   }
 
-
   def winMessage(player: Player): Unit = {
     icon = new ImageIcon(frogIcon)
     Dialog.showMessage(contents.head, player.name + " wins!", title = "Winner!", Dialog.Message.Info, icon )
@@ -303,8 +302,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   override def closeOperation() { showCloseDialog() }
 
-
-
   def showCloseDialog() {
     icon = new ImageIcon(frogIcon)
     Dialog.showConfirmation(parent = null,
@@ -316,16 +313,10 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     }
   }
 
-
-
-
-
-
   listenTo(controller)
   reactions += {
     case event: RedrawGrid => boardGui.repaint()
   }
-
 
   def board(): Unit = {
     contents = new FlowPanel() {

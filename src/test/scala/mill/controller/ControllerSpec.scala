@@ -1,6 +1,6 @@
 package mill.controller
 
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.model.gridComponent.gridBase.{Grid, Node}
 import mill.model._
 import mill.model.{Player, Stone}

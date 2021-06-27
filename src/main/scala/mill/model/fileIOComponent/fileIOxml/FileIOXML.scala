@@ -1,7 +1,7 @@
 package mill.model.fileIOComponent.fileIOxml
 
 import mill.controller.ControllerInterface
-import mill.controller.base.Controller
+import mill.controller.controllerBase.Controller
 import mill.mill.controller
 import mill.model.Stone
 import mill.model.fileIOComponent.FileIoInterface

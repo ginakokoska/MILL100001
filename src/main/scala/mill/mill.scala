@@ -2,7 +2,7 @@ package mill
 
 import com.google.inject.{Guice, Injector}
 import controller.RedrawGrid
-import controller.base.Controller
+import controller.controllerBase.Controller
 import model.gridComponent.State
 import model.gridComponent.gridBase.Grid
 import model._
