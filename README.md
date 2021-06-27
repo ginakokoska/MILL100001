@@ -49,11 +49,10 @@ The computer version of mill allows the players to save the game and resume it l
 ## Reset
 The computerversion of mill can be restarted.
 \
-![reset](https://user-images.githubusercontent.com/81410821/123560895-72c4ae00-d7a5-11eb-96fe-ff005b356cbd.gif)
-\
 > to restart the game and start with a fresh board click the *restart arrow*
- \
- ![klein4](https://user-images.githubusercontent.com/81410821/123514773-d7dcae80-d694-11eb-9941-093049726d12.png)
+> \
+![reset](https://user-images.githubusercontent.com/81410821/123560895-72c4ae00-d7a5-11eb-96fe-ff005b356cbd.gif)
+
 
 # Strategy
 At the beginning of the game, it is more important to place pieces in versatile locations rather than to try to form mills immediately and make the mistake of concentrating one's pieces in one area of the board.[11] An ideal position, which typically results in a win, allows a player to shuttle one piece back and forth between two mills, removing a piece every turn. 
