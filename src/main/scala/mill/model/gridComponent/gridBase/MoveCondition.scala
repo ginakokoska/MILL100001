@@ -37,7 +37,7 @@ case class MoveCondition() {
     }
 
     if (sq != sqNew) {
-      if (pos1 == pos1New && pos2 == pos2New) {
+      if (pos1 == pos1New && pos2 == pos2New && ((pos1 == 1 && pos1New == 1) || (pos2 == 1 && pos2New == 1))) {
         if (sq < sqNew) tmp = sqNew - sq
         else if (sqNew < sq) tmp = sq - sqNew
       }

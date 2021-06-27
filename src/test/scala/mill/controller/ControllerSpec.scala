@@ -56,11 +56,11 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       for (i <- 1 to 9) {
         controller.player1.setStone() //make Stones States from notUsed to inGame
       }
-      val winBefore = controller.win()
+      val winBefore = controller.win(controller.player1)
       for(i <- 1 to 7) {
         controller.player1.takeStone()  //take Stone States from inGame to OutOfGame
       }
-      val winAfter = controller.win()
+      val winAfter = controller.win(controller.player1)
       "wins a Game" in {
         winBefore should be(false)
         winAfter should be(true)

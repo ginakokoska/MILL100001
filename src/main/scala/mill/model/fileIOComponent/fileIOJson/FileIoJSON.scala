@@ -51,13 +51,13 @@ class FileIoJSON extends FileIoInterface {
     }
 
     val grid = Grid().createFullGrid()
-    val tuple = (json \\ "outSquare")
-    val test1 = tuple(0)
+    val sqTuple = (json \\ "outSquare")
+    val headVal = sqTuple(0)
     for(sq <- 0 to 2) {
       for(node <- 0 to 8) {
-        val row = (test1(sq)(node) \\ "row").head.as[Int]
-        val col = (test1(sq)(node) \\ "col").head.as[Int]
-        val color = (test1(sq)(node) \\ "color").head.as[Int]
+        val row = (headVal(sq)(node) \\ "row").head.as[Int]
+        val col = (headVal(sq)(node) \\ "col").head.as[Int]
+        val color = (headVal(sq)(node) \\ "color").head.as[Int]
         color match {
           case 1 => grid(sq)(row)(col) = Node(Some(Stone.white))
           case 2 => grid(sq)(row)(col) = Node(Some(Stone.black))

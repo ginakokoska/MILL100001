@@ -38,7 +38,7 @@ object mill  extends Frame{
     tui.createGrid(gridSize)
     tui.update
 
-    while (!controller.win()) {
+    while (!controller.win(controller.player1) || !controller.win(controller.player2)) {
       tui.gameState()
       val pos = readLine()
       tui.moveTui(pos)
