@@ -43,7 +43,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
 
 
-  val namePlayer1 = new TextField {
+  val namePlayer1= new TextField {
     text = "enter Name of Player1"
     font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
@@ -70,7 +70,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   val comboBox = new ComboBox(items = colors) { }
 
 
-  val choosePLbt = new Button {
+  val choosePlayerButton = new Button {
     borderPainted = false
     background = colorPanel
     icon = new ImageIcon(continueIcon)
@@ -82,7 +82,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     }
   }
 
-  val undo = new Button() {
+  val undoButton = new Button() {
     background  = colorPanel
     borderPainted = false
     icon = new ImageIcon(restartIcon)
@@ -99,23 +99,24 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     }
   }
 
-  val startgame = new Button {
+  val startgameButton = new Button {
     background  = colorPanel
     borderPainted = false
     icon = new ImageIcon(continueIcon)
     listenTo(mouse.clicks)
     reactions += {
       case buttonClicked : MouseClicked =>
-          board()
-          controller.createPlayer2(namePlayer2.text)
-          tui.createGrid("3")
-          tui.update
-          tui.gameState()
-          repaint()
+        board()
+        controller.createPlayer2(namePlayer2.text)
+        tui.createGrid("3")
+        tui.update
+        tui.gameState()
+        repaint()
     }
 
+
   }
-  listenTo(startgame)
+  listenTo(startgameButton)
   reactions += {
     case clicked: ButtonClicked =>
       controller.createPlayer2(namePlayer2.text)
@@ -148,7 +149,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   listenTo(reloadButton)
   reactions += {
     case clicked: ButtonClicked =>
-//      controller.createPlayer2(namePlayer2.text)
+      //      controller.createPlayer2(namePlayer2.text)
       preferredSize = new Dimension(750, 850)
   }
 
@@ -163,7 +164,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     contents = new FlowPanel {
       resizable = false
       contents += namePlayer2
-      contents += startgame
+      contents += startgameButton
       background = colorPanel
 
     }
@@ -175,7 +176,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       background = colorPanel
       contents += welcome
       contents += namePlayer1
-      contents += choosePLbt
+      contents += choosePlayerButton
       contents += comboBox
       contents += reloadButton
 
@@ -215,7 +216,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.WHITE)
                     controller.moveController(k)
-                   // controller.player1.setStone()
+                    // controller.player1.setStone()
                   }
                 case BlackTurn() =>
                   if(controller.player2.countState(StoneState.notUsed) > 0 &&
@@ -223,7 +224,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.BLACK)
                     controller.moveController(k)
-                   // controller.player2.setStone()
+                    // controller.player2.setStone()
                   }
                 case TakeStone(Stone.white) =>
                   controller.moveController(k)
@@ -297,17 +298,16 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   }
 
 
-  def winMessage(hi: String): Unit = {
+  def winMessage(color: String): Unit = {
     icon = new ImageIcon(frogIcon)
-    if (hi.equals("white")) {
-      Dialog.showMessage(contents.head, "Black wins!", title = "Winner!", Dialog.Message.Info, icon )
+    if (color.equals("white")) {
+      Dialog.showMessage(contents.head, namePlayer2.toString() + "Black wins!", title = "Winner!", Dialog.Message.Info, icon )
     } else {
-      Dialog.showMessage(contents.head, "White wins!", "Winner", Dialog.Message.Info, icon )
+      Dialog.showMessage(contents.head, namePlayer1.toString() + "White wins!", "Winner", Dialog.Message.Info, icon )
       boardGui.remAll()
     }
     preferredSize = new Dimension(400, 200)
     boardGui.remAll()
-    // TODO: Hier muss eigentlich playerstate aufgerufen werden
     controller.setPlayerState(SetState())
     controller.gamePlayState = WhiteTurn()
     controller.player1.fillStone()
@@ -315,16 +315,16 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     repaint()
   }
 
-
-  def restartQuestion() {
-    val res = Dialog.showConfirmation(contents.head,
-      "Do you really want to quit?",
-      optionType=Dialog.Options.YesNo,
-      title=title)
-    if (res == Dialog.Result.Ok) {
-      sys.exit(0)
-    }
-  }
+  // TODO: eventuell lösche
+  //  def restartQuestion() {
+  //    val res = Dialog.showConfirmation(contents.head,
+  //      "Do you really want to quit?",
+  //      optionType=Dialog.Options.YesNo,
+  //      title=title)
+  //    if (res == Dialog.Result.Ok) {
+  //      sys.exit(0)
+  //    }
+  //  }
 
   listenTo(controller)
   reactions += {
@@ -350,14 +350,10 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       maximumSize = new Dimension(850,850)
       contents += boardPanel
       contents += saveButton
-      contents += undo
+      contents += undoButton
     }
   }
 
-
-
   visible = true
-
-
 
 }
