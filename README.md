@@ -15,6 +15,9 @@ In Phase 0 the players must configure their name and color before starting to pl
  \
  ![wel4](https://user-images.githubusercontent.com/81410821/123560860-2bd6b880-d7a5-11eb-8a38-bc9e988745f7.gif)
 \
+
+![wel3](https://user-images.githubusercontent.com/81410821/123560878-50cb2b80-d7a5-11eb-9ff0-9da32722555b.gif)
+\
  > to enter the name of player 2, then click on the *arrow* to start the game
  \
  ![s2](https://user-images.githubusercontent.com/81410821/123514315-aebb1e80-d692-11eb-938b-8367a251592b.png)
