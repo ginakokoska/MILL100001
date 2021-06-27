@@ -67,6 +67,7 @@ At the beginning of the game, it is more important to place pieces in versatile 
 11. Docker
 12. Logging Documentation
 
+
 # Coverage & Build Status [Masterbranch]
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Pattern)](https://www.travis-ci.com/ginakokoska/MILL100001)
 
