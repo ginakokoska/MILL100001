@@ -44,7 +44,6 @@ The third phase starts when a player has only 3 stones left. That player is allo
 ## Store and Load
 The computer version of mill allows the players to save the game and resume it later.
 > to save the current game click on the *floppy disc*, then exit the game
- ![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
 \
 ![save](https://user-images.githubusercontent.com/81410821/123561661-13b56800-d7aa-11eb-8431-249047d26293.gif)
 
