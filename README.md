@@ -79,6 +79,10 @@ At the beginning of the game, it is more important to place pieces in versatile 
 
 ## GUI version
  > docker pull ginakokoska/mill:masterGUI
+
+
+![giphy](https://user-images.githubusercontent.com/81410821/123548021-661f6600-d763-11eb-8683-1a11b35ff9cb.gif)
+
  
 
 
