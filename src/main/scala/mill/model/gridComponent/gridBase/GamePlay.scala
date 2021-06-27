@@ -4,6 +4,10 @@ import com.google.inject.Inject
 import mill.controller.base.Controller
 import mill.model.gridComponent.State
 
+/*
+  This class is needed for the state pattern. Creating different game play states.
+ */
+
 case class GamePlay @Inject() (state: State) extends State {
   def setStoneState(pos :String, grid: Grid, controller: Controller):State = {
     val newState = state.setStoneState(pos :String, grid:Grid, controller)

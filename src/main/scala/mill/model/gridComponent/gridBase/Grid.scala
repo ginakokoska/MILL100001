@@ -2,8 +2,11 @@ package mill.model.gridComponent.gridBase
 
 import mill.model.gridComponent.GridInterface
 import mill.model._
-
 import scala.util.{Failure, Success, Try}
+
+/*
+  This class creates and changes the grid for the TUI.
+ */
 
 case class Grid() extends GridInterface{
   var playGround: String = ""
@@ -128,9 +131,8 @@ case class Grid() extends GridInterface{
       case "OS:" =>
         if (!gridList.head(intPos1)(intPos2).isSet) {
           gridList.head(intPos1)(intPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(0, intPos1, intPos2, color, this) ||
-            millProof().proofTypeCorner(0, intPos1, intPos2, color, this)) {
-//            player.takeStone()
+          if (validMill().proofTypeMid(0, intPos1, intPos2, color, this) ||
+            validMill().proofTypeCorner(0, intPos1, intPos2, color, this)) {
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
           } else {
@@ -142,8 +144,8 @@ case class Grid() extends GridInterface{
       case "MS:" =>
         if (!gridList(1)(intPos1)(intPos2).isSet) {
           gridList(1)(intPos1)(intPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(1, intPos1, intPos2, color, this) ||
-            millProof().proofTypeCorner(1, intPos1, intPos2, color, this)) {
+          if (validMill().proofTypeMid(1, intPos1, intPos2, color, this) ||
+            validMill().proofTypeCorner(1, intPos1, intPos2, color, this)) {
 //            player.takeStone()
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
@@ -156,9 +158,8 @@ case class Grid() extends GridInterface{
       case "IS:" =>
         if (!gridList(2)(intPos1)(intPos2).isSet) {
           gridList(2)(intPos1)(intPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(2, intPos1, intPos2, color, this) ||
-            millProof().proofTypeCorner(2, intPos1, intPos2, color, this)) {
-//            player.takeStone()
+          if (validMill().proofTypeMid(2, intPos1, intPos2, color, this) ||
+            validMill().proofTypeCorner(2, intPos1, intPos2, color, this)) {
             println(color.toString + "have mill!")
             Failure(new Exception("message:"))
           } else {
@@ -183,8 +184,8 @@ case class Grid() extends GridInterface{
     val intPos2 = posArray(1).charAt(1).asDigit
 
     if (gridList(square)(intPos1)(intPos2).isColor.contains(color) &&
-      !(millProof().proofTypeCorner(square, intPos1, intPos2, color, this) ||
-        millProof().proofTypeMid(square, intPos1, intPos2, color, this))) {
+      !(validMill().proofTypeCorner(square, intPos1, intPos2, color, this) ||
+        validMill().proofTypeMid(square, intPos1, intPos2, color, this))) {
       gridList(square)(intPos1)(intPos2) = Node(None)
       Success()
     } else
@@ -219,9 +220,8 @@ case class Grid() extends GridInterface{
           !gridList.head(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
-//            player.takeStone()
+          if (validMill().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {
@@ -237,9 +237,8 @@ case class Grid() extends GridInterface{
           !gridList(1)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
-//            player.takeStone()
+          if (validMill().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {
@@ -255,9 +254,8 @@ case class Grid() extends GridInterface{
           !gridList(2)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
-//            player.takeStone()
+          if (validMill().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))
           } else {
@@ -267,7 +265,6 @@ case class Grid() extends GridInterface{
           Failure(new Exception(""))
         }
     }
-    //    gridList
   }
 
   override def jumpStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
@@ -290,8 +287,8 @@ case class Grid() extends GridInterface{
           !gridList.head(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
+          if (validMill().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
@@ -306,8 +303,8 @@ case class Grid() extends GridInterface{
           !gridList(1)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
+          if (validMill().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
@@ -322,8 +319,8 @@ case class Grid() extends GridInterface{
           !gridList(2)(intNewPos1)(intNewPos2).isSet) {
           gridList(sqOld)(intOldPos1)(intOldPos2) = Node(None)
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
-          if (millProof().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
-            millProof().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
+          if (validMill().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
+            validMill().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
             println(color.toString + " have mill1!")
             Failure(new Exception("message:"))

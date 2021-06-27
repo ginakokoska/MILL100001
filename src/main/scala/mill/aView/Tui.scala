@@ -21,9 +21,15 @@ class Tui(controller: ControllerInterface) extends Observer {
   }
 
   def createPlayers(player1 :String, player2 :String):Unit = {
-    val playerOne :Array[String] = player1.split(" ")
-    controller.createPlayer1(playerOne(0), playerOne(1))
-    controller.createPlayer2(player2)
+    if (player1.contains(" ")) {
+      val playerOne :Array[String] = player1.split(" ")
+      controller.createPlayer1(playerOne(0), playerOne(1))
+      controller.createPlayer2(player2)
+    }
+    else {
+      controller.createPlayer1(player1, "w")
+      controller.createPlayer2(player2)
+    }
   }
 
   def createGrid(size :String):Unit = {

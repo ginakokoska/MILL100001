@@ -1,14 +1,14 @@
 package mill.model.gridComponent.gridBase
 
 import mill.model.Stone
-import mill.model.gridComponent.gridBase.{Grid, Node, millProof}
+import mill.model.gridComponent.gridBase.{Grid, Node, validMill}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec._
 
 class MillProofSpec extends AnyWordSpec with Matchers {
   "A MillProofSpec" when {
     val tmpGrid = Grid()
-    val tmpMill = millProof()
+    val tmpMill = validMill()
     "player moves to a corner" should {
       tmpGrid.gridList = Grid().createFullGrid()
       tmpGrid.gridList.head(0)(2) = Node(Some(Stone.white))

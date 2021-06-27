@@ -3,12 +3,13 @@ package mill.aView.Gui
 import mill.aView.Tui
 import mill.controller.{ControllerInterface, RedrawGrid}
 import mill.model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
-import java.awt.{Color,Font, Image}
+
+import java.awt.{Color, Font, Image}
 import javax.swing.ImageIcon
 import scala.swing.Action.NoAction.icon
 import scala.swing.event.{ButtonClicked, MouseClicked, MouseDragged, MouseReleased}
-import scala.swing.{ Alignment,  BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
-import mill.model.{SetState, Stone, StoneState}
+import scala.swing.{Alignment, BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
+import mill.model.{Player, SetState, Stone, StoneState}
 
 /*/
   This class creates the GUI.
@@ -146,7 +147,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   listenTo(reloadButton)
   reactions += {
     case clicked: ButtonClicked =>
-      //      controller.createPlayer2(namePlayer2.text)
       preferredSize = new Dimension(750, 850)
   }
 
@@ -225,7 +225,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     boardGui.remCoords(v)
                   }
                   if(controller.win())
-                    winMessage("black")
+                    winMessage(controller.player1)
                 case TakeStone(Stone.black) =>
                   controller.moveController(k)
                   if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
@@ -233,7 +233,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     boardGui.remCoords(v)
                   }
                   if(controller.win()) {
-                    winMessage("white")
+                    winMessage(controller.player2)
                   }
               }
             }
@@ -281,18 +281,12 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
           }
         }
     }
-
   }
 
 
-  def winMessage(color: String): Unit = {
+  def winMessage(player: Player): Unit = {
     icon = new ImageIcon(frogIcon)
-    if (color.equals("white")) {
-      Dialog.showMessage(contents.head, namePlayer2.toString() + "Black wins!", title = "Winner!", Dialog.Message.Info, icon )
-    } else {
-      Dialog.showMessage(contents.head, namePlayer1.toString() + "White wins!", "Winner", Dialog.Message.Info, icon )
-      boardGui.remAll()
-    }
+    Dialog.showMessage(contents.head, player.name + " wins!", title = "Winner!", Dialog.Message.Info, icon )
     preferredSize = new Dimension(400, 200)
     boardGui.remAll()
     controller.setPlayerState(SetState())

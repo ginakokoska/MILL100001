@@ -2,7 +2,13 @@ package mill.model.gridComponent.gridBase
 
 import mill.model.Stone
 
-case class millProof() {
+/*
+  This class defines valid mills.
+  A corner mill is formed when moved to corner points f.e. (OS: 00 - OS: 01 - OS: 02)
+  A mid mill is formed when moved to mid nodes only f.e (OS: 01 - MS: 01 - IS: 02)
+ */
+
+case class validMill() {
   def proofTypeCorner(sq: Int, pos1: Int, pos2: Int, color: Stone.Value, grid: Grid): Boolean = {
     var count = 0
     val tmp = pos1.toString + pos2.toString
@@ -110,6 +116,4 @@ case class millProof() {
     if (count == 3) true
     else false
   }
-
-
 }

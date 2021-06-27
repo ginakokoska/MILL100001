@@ -1,8 +1,11 @@
 package mill.model.gridComponent.gridBase
-
 import mill.controller.base.Controller
 import mill.model.{JumpState, MoveState, PlayerState, SetState, Stone}
 import mill.model.gridComponent.State
+
+/*
+  This class contains the main logic. Ensuring the players take alternating turns and move according to their stone number.
+ */
 
 case class Handler(state: State, playerState: PlayerState) {
   def handleState(pos: String, controller: Controller): State = {
@@ -15,7 +18,6 @@ case class Handler(state: State, playerState: PlayerState) {
             GamePlay(state).moveStoneState(pos, controller.grid, controller)
           case JumpState() =>
             GamePlay(state).jumpStoneState(pos, controller.grid, controller)
-//          case _ => GamePlay(state)
         }
       case BlackTurn() =>
         playerState match {
@@ -25,13 +27,11 @@ case class Handler(state: State, playerState: PlayerState) {
             GamePlay(state).moveStoneState(pos, controller.grid, controller)
           case JumpState() =>
             GamePlay(state).jumpStoneState(pos, controller.grid, controller)
-//          case _ => GamePlay(state)
         }
       case TakeStone(Stone.white) =>
         GamePlay(state).takeStoneState(pos, controller.grid)
       case TakeStone(Stone.black) =>
         GamePlay(state).takeStoneState(pos, controller.grid)
-//      case _ => GamePlay(state)
     }
   }
 }
