@@ -4,8 +4,12 @@ import mill.model.{Player, PlayerState}
 import mill.model.gridComponent.State
 import mill.model.gridComponent.gridBase.Grid
 import mill.util.UndoManager
-
+import scala.swing.event.Event
 import scala.swing.Publisher
+
+/*
+  This trait initializes all functions and events implemented in the controller class.
+ */
 
 trait ControllerInterface extends Publisher {
   val undoManager: UndoManager
@@ -27,8 +31,6 @@ trait ControllerInterface extends Publisher {
   def save(): Unit
 
 }
-
-import scala.swing.event.Event
 
 class RedrawGrid extends Event
 class PlayerCreated extends Event

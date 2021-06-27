@@ -16,11 +16,11 @@ class TakeStoneSpec extends AnyWordSpec with Matchers{
       "-> build mill whilst moving a stone" +
       "-> build mill whilst jumping with a stone " should {
       tmpGrid.gridList(1)(0)(0) = Node(Some(Stone.black))
-      val stateHandle = TakeStone(Stone.white).handle("OS: 00", tmpGrid, controller)
-      val stateHandle2 = gridBase.TakeStone(Stone.white).handle("move OS: 00 to OS: 01", tmpGrid, controller)
-      val stateJumpStone = gridBase.TakeStone(Stone.white).handle("jump OS: 01 to OS: 10", tmpGrid, controller)
-      val stateTakeStoneCorrectly = gridBase.TakeStone(Stone.white).handleTakeStone("MS: 00", tmpGrid)
-      val stateTakeStoneInCorrectly = gridBase.TakeStone(Stone.white).handleTakeStone("MS: 01", tmpGrid)
+      val stateHandle = TakeStone(Stone.white).setStoneState("OS: 00", tmpGrid, controller)
+      val stateHandle2 = gridBase.TakeStone(Stone.white).setStoneState("move OS: 00 to OS: 01", tmpGrid, controller)
+      val stateJumpStone = gridBase.TakeStone(Stone.white).setStoneState("jump OS: 01 to OS: 10", tmpGrid, controller)
+      val stateTakeStoneCorrectly = gridBase.TakeStone(Stone.white).takeStoneState("MS: 00", tmpGrid)
+      val stateTakeStoneInCorrectly = gridBase.TakeStone(Stone.white).takeStoneState("MS: 01", tmpGrid)
       "should result in either: " +
         "->  WhiteTurn() " +
         "->  BlackTurn() " in {
@@ -35,8 +35,8 @@ class TakeStoneSpec extends AnyWordSpec with Matchers{
         stateTakeStoneInCorrectly should be(GamePlay(gridBase.TakeStone(Stone.white)).state)
       }
       tmpGrid.gridList(2)(0)(0) = Node(Some(Stone.white))
-      val stateTakeStoneCorrectlyBlack = gridBase.TakeStone(Stone.black).handleTakeStone("IS: 00", tmpGrid)
-      val stateTakeStoneInCorrectlyBlack = gridBase.TakeStone(Stone.black).handleTakeStone("IS: 01", tmpGrid)
+      val stateTakeStoneCorrectlyBlack = gridBase.TakeStone(Stone.black).takeStoneState("IS: 00", tmpGrid)
+      val stateTakeStoneInCorrectlyBlack = gridBase.TakeStone(Stone.black).takeStoneState("IS: 01", tmpGrid)
       "if Black player took a stone correctly" in {
         stateTakeStoneCorrectlyBlack should be(GamePlay(WhiteTurn()).state)
       }

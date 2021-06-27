@@ -1,17 +1,17 @@
 {
   "player" : {
     "player1" : {
-      "name" : "dsaf",
+      "name" : "enter Name of Player1",
       "color" : "white",
-      "notUsed" : 7,
-      "inGame" : 2,
+      "notUsed" : 8,
+      "inGame" : 1,
       "OutOfGame" : 0
     },
     "player2" : {
-      "name" : "dsaf",
+      "name" : "er",
       "color" : "black",
-      "notUsed" : 7,
-      "inGame" : 2,
+      "notUsed" : 8,
+      "inGame" : 1,
       "OutOfGame" : 0
     }
   },
@@ -25,7 +25,7 @@
       "square" : 0,
       "row" : 0,
       "col" : 1,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 0,
@@ -65,12 +65,12 @@
       "square" : 1,
       "row" : 0,
       "col" : 0,
-      "color" : 1
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 1,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 1,
       "row" : 0,
@@ -151,6 +151,9 @@
       "row" : 2,
       "col" : 2,
       "color" : 0
-    } ] ]
+    } ] ],
+    "gamePlayState" : {
+      "gameState" : "white"
+    }
   }
 }

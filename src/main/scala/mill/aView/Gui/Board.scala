@@ -2,18 +2,18 @@ package mill.aView.Gui
 
 import mill.mill.controller
 import mill.model.Stone
-
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
-import javax.swing.ImageIcon
-import scala.swing.Action.NoAction.icon
-import scala.swing.{Button, Component, Dimension, FlowPanel, Frame, Graphics2D, MainFrame, Panel}
+import scala.swing.{Component, Dimension, Graphics2D}
 import java.io.File
 import java.awt.{Color, Image, Point}
 import scala.collection.immutable.ListMap
-import scala.swing.event.MouseClicked
 
-case class Gui() extends Component {
+/*
+  This class draws the game board for the GUI.
+ */
+
+case class Board() extends Component {
   val panelDimension = new Dimension(700,700)
   minimumSize = panelDimension
   preferredSize = panelDimension
@@ -54,7 +54,7 @@ case class Gui() extends Component {
               val p: Point = ValidMove().posToPoint(sq, row, col)
               setCords(p, Color.BLACK)
             }
-          } //else(Node is not Set, do nothing)
+          }
         }
       }
     }
@@ -69,6 +69,5 @@ case class Gui() extends Component {
         g.fillOval(k.x, k.y, 55, 55)
       }
     }
-
   }
 }

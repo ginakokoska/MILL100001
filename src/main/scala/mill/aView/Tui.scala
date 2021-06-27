@@ -1,22 +1,22 @@
 package mill.aView
 
-import com.google.inject.name.Names
+
 import com.google.inject.{Guice, Injector}
 import mill.MillModule
 import mill.controller.ControllerInterface
 import mill.util._
-import mill.controller.base.Controller
-import mill.model.gridComponent.GridInterface
 import mill.model.gridComponent.gridBase.{BlackTurn, WhiteTurn}
-import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
 
+/*
+  This class creates the TUI.
+ */
 
 class Tui(controller: ControllerInterface) extends Observer {
 
   val injector: Injector = Guice.createInjector(new MillModule)
 
   def startGame():String = {
-    val welcome = "Welcome to our Game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):"
+    val welcome = "Welcome to our game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):"
     welcome
   }
 
@@ -39,8 +39,8 @@ class Tui(controller: ControllerInterface) extends Observer {
   }
 
   def gameState(): Unit = {
-    if(controller.gamePlayState == WhiteTurn()) println("White please set your Stone:")
-    else if(controller.gamePlayState == BlackTurn()) println("Black please set your Stone:")
+    if(controller.gamePlayState == WhiteTurn()) println("White please set your stone:")
+    else if(controller.gamePlayState == BlackTurn()) println("Black please set your stone:")
     else println("")
   }
 
@@ -49,7 +49,6 @@ class Tui(controller: ControllerInterface) extends Observer {
   }
 
   override def update :Boolean = {
-//    println(startGame())
     println(controller.sayHello())
     println(controller.printGrid())
     true

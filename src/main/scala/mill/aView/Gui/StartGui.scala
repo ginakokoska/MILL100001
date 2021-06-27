@@ -10,18 +10,15 @@ import scala.swing.event.{ButtonClicked, MouseClicked, MouseDragged, MouseReleas
 import scala.swing.{ Alignment,  BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
 import mill.model.{SetState, Stone, StoneState}
 
+/*/
+  This class creates the GUI.
+ */
 
 case class StartGui(controller: ControllerInterface) extends MainFrame {
 
-  title = "Mill"
-  preferredSize = new Dimension(400, 200)
-  resizable = false
-  centerOnScreen()
-
-
   /*
-  TODO:Please click on the Folder *Resources* and copy the ABSOLUTE Path of each Icon
-   */
+  TODO:Please click on the Folder *Resources* and copy the ABSOLUTE Path of each Icon :)
+ */
   var continueIcon: Image = new ImageIcon("/home/gina/IdeaProjects/MILL100001/src/main/resources/aView/Gui/continue.png").getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
@@ -41,10 +38,13 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   val myFont = new Font("monoSpaceD", Font.BOLD, 40)
 
+  title = "Mill"
+  preferredSize = new Dimension(400, 200)
+  resizable = false
+  centerOnScreen()
 
-
-  val namePlayer1= new TextField {
-    text = "enter Name of Player1"
+  val namePlayer1 = new TextField {
+    text = "player1"
     font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
@@ -55,7 +55,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   }
 
   val namePlayer2 = new TextField {
-    text = "enter Name of Player2"
+    text = "player2"
     font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
@@ -68,7 +68,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   val colors = Seq("white", "black")
   val comboBox = new ComboBox(items = colors) { }
-
 
   val choosePlayerButton = new Button {
     borderPainted = false
@@ -113,8 +112,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
         tui.gameState()
         repaint()
     }
-
-
   }
   listenTo(startgameButton)
   reactions += {
@@ -153,7 +150,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       preferredSize = new Dimension(750, 850)
   }
 
-
   val welcome = new Label {
     text = "Welcome to Mill"
   }
@@ -183,14 +179,12 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     }
   }
 
-  var boardGui = new Gui()
-  var pArray :Array[Point] = Array()
-  var pCl = new Point()
-  var pClStr = ""
-  var pRe = new Point()
-  var pReStr = ""
-
-
+  var boardGui = new Board()
+  var coord :Array[Point] = Array()
+  var startPoint = new Point()
+  var startStr = ""
+  var destinationPoint = new Point()
+  var destStr = ""
 
   val boardPanel = new BoxPanel(Orientation.Vertical) {
     contents += boardGui
@@ -199,8 +193,8 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
       case MouseClicked(_,p,_,_,_) =>
         for((k,v)<-ValidMove().hitbox(p)) {
           if(!k.equals("")) {
-            pCl = v
-            pClStr = k
+            startPoint = v
+            startStr = k
             val kArray = k.split(" ")
             var sq = 999
             kArray(0) match {
@@ -208,7 +202,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
               case "MS:" => sq = 1
               case "IS:" => sq = 2
             }
-            if (pRe.x != v.x || pRe.y != v.y) {
+            if (destinationPoint.x != v.x || destinationPoint.y != v.y) {
               controller.gamePlayState match {
                 case WhiteTurn() =>
                   if(controller.player1.countState(StoneState.notUsed) > 0 &&
@@ -216,7 +210,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.WHITE)
                     controller.moveController(k)
-                    // controller.player1.setStone()
                   }
                 case BlackTurn() =>
                   if(controller.player2.countState(StoneState.notUsed) > 0 &&
@@ -224,7 +217,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "set to ")
                     boardGui.setCords(v, Color.BLACK)
                     controller.moveController(k)
-                    // controller.player2.setStone()
                   }
                 case TakeStone(Stone.white) =>
                   controller.moveController(k)
@@ -240,7 +232,6 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                     tui.stoneSet(k, "removed from ")
                     boardGui.remCoords(v)
                   }
-
                   if(controller.win()) {
                     winMessage("white")
                   }
@@ -250,14 +241,14 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
           tui.gameState()
         }
       case MouseDragged(_,p,m) =>
-        pArray +:= p
+        coord +:= p
       case MouseReleased(_,p,_,_,_) =>
-        if (pArray.nonEmpty) {
-          for((k,v)<-ValidMove().hitbox(pArray.head)) {
-            for((k1,v1)<-ValidMove().hitbox(pArray(pArray.length-1))) {
+        if (coord.nonEmpty) {
+          for((k,v)<-ValidMove().hitbox(coord.head)) {
+            for((k1,v1)<-ValidMove().hitbox(coord(coord.length-1))) {
               if (!k.equals(k1) && !k.equals("") && !k1.equals("")) {
-                pRe = v
-                pReStr = k
+                destinationPoint = v
+                destStr = k
                 val kArray = k.split(" ")
                 var sq = 999
                 kArray(0) match {
@@ -281,15 +272,11 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                       boardGui.remOldSetNew(v1, (v, Color.BLACK))
                     }
                   case _ =>
-                    println("please try to take a stone again")
+                    println("Please try to take a stone again")
                 }
-
-
-
               }
               tui.gameState()
-              pArray = Array()
-
+              coord = Array()
             }
           }
         }

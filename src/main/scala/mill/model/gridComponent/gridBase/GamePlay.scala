@@ -5,20 +5,20 @@ import mill.controller.base.Controller
 import mill.model.gridComponent.State
 
 case class GamePlay @Inject() (state: State) extends State {
-  def handle(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.handle(pos :String, grid:Grid, controller)
+  def setStoneState(pos :String, grid: Grid, controller: Controller):State = {
+    val newState = state.setStoneState(pos :String, grid:Grid, controller)
     newState
   }
-  def handle2(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.handle2(pos :String, grid:Grid, controller)
+  def moveStoneState(pos :String, grid: Grid, controller: Controller):State = {
+    val newState = state.moveStoneState(pos :String, grid:Grid, controller)
     newState
   }
-  def jumpStone(pos :String, grid :Grid, controller: Controller):State = {
-    val newState = state.jumpStone(pos, grid, controller)
+  def jumpStoneState(pos :String, grid :Grid, controller: Controller):State = {
+    val newState = state.jumpStoneState(pos, grid, controller)
     newState
   }
-  def handleTakeStone(pos :String, grid :Grid) :State = {
-    val newState = state.handleTakeStone(pos, grid)
+  def takeStoneState(pos :String, grid :Grid) :State = {
+    val newState = state.takeStoneState(pos, grid)
     newState
   }
 }

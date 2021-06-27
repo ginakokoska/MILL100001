@@ -10,6 +10,6 @@ class MillModule extends AbstractModule with ScalaModule {
 
   override def configure() = {
     bind[State].to[GamePlay]
-    bind[FileIoInterface].to[fileIOJson.FileIO]
+    bind[FileIoInterface].to[fileIOJson.FileIoJSON]
   }
 }

@@ -10,27 +10,27 @@ case class Handler(state: State, playerState: PlayerState) {
       case WhiteTurn() =>
         playerState match {
           case SetState() =>
-            GamePlay(state).handle(pos, controller.grid, controller)
+            GamePlay(state).setStoneState(pos, controller.grid, controller)
           case MoveState() =>
-            GamePlay(state).handle2(pos, controller.grid, controller)
+            GamePlay(state).moveStoneState(pos, controller.grid, controller)
           case JumpState() =>
-            GamePlay(state).jumpStone(pos, controller.grid, controller)
+            GamePlay(state).jumpStoneState(pos, controller.grid, controller)
 //          case _ => GamePlay(state)
         }
       case BlackTurn() =>
         playerState match {
           case SetState() =>
-            GamePlay(state).handle(pos, controller.grid, controller)
+            GamePlay(state).setStoneState(pos, controller.grid, controller)
           case MoveState() =>
-            GamePlay(state).handle2(pos, controller.grid, controller)
+            GamePlay(state).moveStoneState(pos, controller.grid, controller)
           case JumpState() =>
-            GamePlay(state).jumpStone(pos, controller.grid, controller)
+            GamePlay(state).jumpStoneState(pos, controller.grid, controller)
 //          case _ => GamePlay(state)
         }
       case TakeStone(Stone.white) =>
-        GamePlay(state).handleTakeStone(pos, controller.grid)
+        GamePlay(state).takeStoneState(pos, controller.grid)
       case TakeStone(Stone.black) =>
-        GamePlay(state).handleTakeStone(pos, controller.grid)
+        GamePlay(state).takeStoneState(pos, controller.grid)
 //      case _ => GamePlay(state)
     }
   }

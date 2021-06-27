@@ -6,11 +6,14 @@ import mill.model.{Stone, StoneState}
 import mill.model.fileIOComponent.FileIoInterface
 import play.api.libs.json.OFormat.oFormatFromReadsAndOWrites
 import play.api.libs.json._
-
 import scala.io.Source
 import java.io._
 
-class FileIO extends FileIoInterface {
+/*
+  This class saves and restores the gameplay state as a JSON (JavaScript Object Notation) format.
+ */
+
+class FileIoJSON extends FileIoInterface {
 
   override def load(controller: ControllerInterface): List[Array[Array[Node]]] = {
     val source: String = Source.fromFile("mill.json").getLines.mkString
@@ -64,8 +67,6 @@ class FileIO extends FileIoInterface {
     }
     grid
   }
-
-
 
   def createJson(controller: ControllerInterface): JsValue = {
     val p1 = controller.player1

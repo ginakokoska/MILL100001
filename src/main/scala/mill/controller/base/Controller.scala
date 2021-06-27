@@ -3,20 +3,24 @@ package mill.controller.base
 import com.google.inject.Guice
 import mill.MillModule
 import mill.controller.{ControllerInterface, GameLoaded, GameSaved, PlayerCreated, RedrawGrid}
-import mill.mill.injector
 import mill.model.fileIOComponent.FileIoInterface
 import mill.model.gridComponent.gridBase.{GamePlay, Grid, WhiteTurn}
 import mill.model.{MoveState, Player, PlayerState, SetState, Stone, StoneState}
 import mill.util._
 import net.codingwell.scalaguice.InjectorExtensions.ScalaInjector
-
 import scala.swing.Publisher
+
+/*
+  This class controls the implemented logic in the model classes,
+  thereby controlling the game flow.
+ */
 
 class Controller (var player1: Player, var player2: Player, var grid: Grid) extends ControllerInterface with Publisher {
   val undoManager: UndoManager = new UndoManager
   var gamePlayState = GamePlay(new WhiteTurn).state
   var playerState: PlayerState = SetState()
   val injector = Guice.createInjector(new MillModule)
+  val fileIo = injector.instance[FileIoInterface]
 
 
   override def createPlayer1(name: String, tmpColor: String):Unit = {
@@ -31,6 +35,15 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
     else player2 = Player(name,Stone.white)
     player2.fillStone()
     publish(new PlayerCreated)
+  }
+
+  override def getPlayerState(player: Player): PlayerState = {
+    playerState = playerState.getState(player)
+    MoveState().getState(player)
+  }
+
+  override def setPlayerState(player: PlayerState): Unit = {
+    this.playerState = player
   }
 
   override def sayHello(): String = player1.playerToString(player1, player2)
@@ -53,17 +66,6 @@ class Controller (var player1: Player, var player2: Player, var grid: Grid) exte
     }
     else false
   }
-
-   override def getPlayerState(player: Player): PlayerState = {
-     playerState = playerState.getState(player)
-     MoveState().getState(player)
-  }
-
-  override def setPlayerState(player: PlayerState): Unit = {
-    this.playerState = player
-  }
-
-  val fileIo = injector.instance[FileIoInterface]
 
   override def load(): Unit = {
     this.grid.gridList = fileIo.load(this)

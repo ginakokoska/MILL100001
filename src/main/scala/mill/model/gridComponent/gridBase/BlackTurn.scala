@@ -3,11 +3,13 @@ package mill.model.gridComponent.gridBase
 import mill.controller.base.Controller
 import mill.model.Stone
 import mill.model.gridComponent.{State, gridBase}
-
 import scala.util.{Failure, Success}
 
+/*
+  This class implements the functions of the state pattern BlackTurn()
+ */
 case class BlackTurn() extends State {
-  override def handle(pos: String, grid: Grid, controller: Controller): State = {
+  override def setStoneState(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.moveGrid(pos, Stone.black, controller.player2)
     tmp match {
       case Success(v) =>
@@ -17,16 +19,16 @@ case class BlackTurn() extends State {
         GamePlay(new WhiteTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
-          println("take a Stone!")
+          println("take a stone!")
           gridBase.GamePlay(gridBase.TakeStone(Stone.black)).state
         } else {
-          println("Wrong Input or already set! Please try again")
+          println("Wrong input or already set! Please try again")
           gridBase.GamePlay(new BlackTurn).state
         }
     }
   }
 
-  override def handle2(pos: String, grid: Grid, controller: Controller): State = {
+  override def moveStoneState(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.moveStone(pos, Stone.black, controller.player2)
     tmp match {
       case Success(v) =>
@@ -34,29 +36,29 @@ case class BlackTurn() extends State {
         gridBase.GamePlay(new WhiteTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
-          println("take a Stone!")
+          println("take a stone!")
           controller.player2.setStone()
           gridBase.GamePlay(gridBase.TakeStone(Stone.black)).state
         } else {
-          println("Wrong Input or already set! Please try again")
+          println("Wrong input or already set! Please try again")
           gridBase.GamePlay(new BlackTurn).state
         }
     }
   }
 
-  override def handleTakeStone(pos: String, grid: Grid): State = gridBase.GamePlay(new BlackTurn).state
+  override def takeStoneState(pos: String, grid: Grid): State = gridBase.GamePlay(new BlackTurn).state
 
-  override def jumpStone(pos: String, grid: Grid, controller: Controller): State = {
+  override def jumpStoneState(pos: String, grid: Grid, controller: Controller): State = {
     val tmp = grid.jumpStone(pos, Stone.black, controller.player2)
     tmp match {
       case Success(_) => gridBase.GamePlay(new WhiteTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
-          println("take a Stone!")
+          println("take a stone!")
           controller.player2.setStone()
           gridBase.GamePlay(gridBase.TakeStone(Stone.black)).state
         } else {
-          println("Wrong Input or already set! Please try again")
+          println("Wrong input or already set! Please try again")
           gridBase.GamePlay(new BlackTurn).state
         }
     }

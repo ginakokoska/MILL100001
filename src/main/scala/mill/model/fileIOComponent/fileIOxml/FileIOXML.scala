@@ -7,9 +7,11 @@ import mill.model.Stone
 import mill.model.fileIOComponent.FileIoInterface
 import mill.model.gridComponent.GridInterface
 import mill.model.gridComponent.gridBase.{Grid, Node}
+import scala.xml.{Elem, PrettyPrinter }
 
-import scala.xml.{Elem, NodeSeq, PrettyPrinter, XML}
-
+/*
+  This class saves and restores the game stat in XML (Extensible Markup Language) format.
+ */
 
 class FileIOXML extends FileIoInterface{
 
@@ -33,23 +35,9 @@ class FileIOXML extends FileIoInterface{
     for (st <- outSquare) {
       val color = (st \\ "node")
       println(color)
-//      g.head(0)(0) = color(0).asInstanceOf[Node]
       for(i<-0 to 8) {
         println(color(i).text)
       }
-//      val row = (st \ "@row").text
-//      println(row)
-//      val col: Int = (st \ "@col").text.toInt
-
-
-//      if(color.contains(Stone.white)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
-//      else if (color.contains(Stone.black)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
-//      else controller.grid.gridList.head(row)(col) = Node(None)
-//      color(row)(col) match {
-//        case Node(Some(Stone.white)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
-//        case Node(Some(Stone.black)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
-//        case _ => controller.grid.gridList.head(row)(col) = Node(None)
-//      }
     }
 
     for (st <- midSquare) {
@@ -60,11 +48,6 @@ class FileIOXML extends FileIoInterface{
       if(color.contains(Stone.white)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
       else if (color.contains(Stone.black)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
       else controller.grid.gridList.head(row)(col) = Node(None)
-      //      color(row)(col) match {
-      //        case Node(Some(Stone.white)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
-      //        case Node(Some(Stone.black)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
-      //        case _ => controller.grid.gridList.head(row)(col) = Node(None)
-      //      }
     }
 
     for (st <- inSquare) {
@@ -75,27 +58,7 @@ class FileIOXML extends FileIoInterface{
       if(color.contains(Stone.white)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
       else if (color.contains(Stone.black)) controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
       else controller.grid.gridList.head(row)(col) = Node(None)
-
-      //      color(row)(col) match {
-      //        case Node(Some(Stone.white)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.white))
-      //        case Node(Some(Stone.black)) => controller.grid.gridList.head(row)(col) = Node(Some(Stone.black))
-      //        case _ => controller.grid.gridList.head(row)(col) = Node(None)
-      //      }
     }
-
-//    for (sqElem <- allSquares) {
-//      val sq = (sqElem \ "@square").text.toInt
-//      val col = (sqElem \ "@col").text.toInt
-//      val row = (sqElem \ "@row").text.toInt
-//      val color = (sqElem \ "color").text.toInt
-//      controller.grid.gridList(sq)(col)(row) = Node(None)
-//
-//      color match {
-//        case 1 => controller.grid.gridList(sq)(col)(row) = Node(Some(Stone.white))
-//        case 2 => controller.grid.gridList(sq)(col)(row) = Node(Some(Stone.black))
-//        case _ => controller.grid.gridList(sq)(col)(row) = Node(None)
-//      }
-//    }
     grid.gridList
   }
 
