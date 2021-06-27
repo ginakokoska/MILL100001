@@ -39,7 +39,7 @@ The computer version of mill allows the players to save the game and resume it l
 
 > to resume the saved game click on the *resume from file* image
 \
-![startwindow](https://user-images.githubusercontent.com/81410821/123513993-8e8a6000-d690-11eb-8d39-96c206514928.png)
+![reset](https://user-images.githubusercontent.com/81410821/123560735-5ecc7c80-d7a4-11eb-90d0-8fc46793510c.gif)
 
 
 ## Reset
