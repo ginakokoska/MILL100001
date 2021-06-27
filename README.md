@@ -1,4 +1,3 @@
-
 # Welcome to our game **mill** ! :)
 
 Mill is one of the oldest board games and known in Europe by different names: Nine Men Morris, Mühle, Molenspel and Merrelles. It is is a strategy board game for two players dating at least to the Roman Empire.
@@ -46,7 +45,8 @@ The third phase starts when a player has only 3 stones left. That player is allo
 The computer version of mill allows the players to save the game and resume it later.
 > to save the current game click on the *floppy disc*, then exit the game
  ![klein3](https://user-images.githubusercontent.com/81410821/123514093-3acc4680-d691-11eb-8172-e25864e8dc10.png)
-
+\
+![save](https://user-images.githubusercontent.com/81410821/123561661-13b56800-d7aa-11eb-8431-249047d26293.gif)
 
 > to resume the saved game click on the *resume from file* image
 \
