@@ -2,7 +2,6 @@ package mill.model.gridComponent.gridBase
 
 import mill.controller.base.Controller
 import mill.model.gridComponent.gridBase
-import mill.model.gridComponent.gridBase._
 import mill.model.{Player, Stone}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -12,48 +11,47 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
     val tmpGrid = Grid()
     tmpGrid.gridList = Grid().createFullGrid()
     val controller = new Controller(Player("player1", Stone.white), mill.model.Player("player2", Stone.black), tmpGrid)
-    "handle() should be return " should {
+    "called with setStoneState() should return " should {
       val state = BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
       val state1 = BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
       BlackTurn().setStoneState("MS: 00", tmpGrid, controller)
       BlackTurn().setStoneState("MS: 01", tmpGrid, controller)
       val stateMill = BlackTurn().setStoneState("MS: 02", tmpGrid, controller)
-      "WhiteTurn, by OS: 00" in {
+      "WhiteTurn() if set to a valid node" in {
         state should be(GamePlay(new WhiteTurn).state)
       }
-      "BlackTurn again, by OS: 00 again cause already set" in {
+      "BlackTurn() if set to an occupied node" in {
         state1 should be(GamePlay(new BlackTurn).state)
       }
-      "TakeStone, when player have mill" in {
+      "TakeStone() if player formed a mill" in {
         stateMill should be(GamePlay(new TakeStone(Stone.black)).state)
       }
     }
-    "handle2() should be return" should {
+    "moveStoneState() should return" should {
       tmpGrid.createFullGrid()
       BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
       BlackTurn().setStoneState("MS: 01", tmpGrid, controller)
-      //      BlackTurn().handle("OS: 01", tmpGrid, controller)
       BlackTurn().setStoneState("OS: 12", tmpGrid, controller)
       val state = BlackTurn().moveStoneState("move MS: 01 to OS: 01", tmpGrid, controller)
       val state1 = BlackTurn().moveStoneState("move OS: 00 to OS: 02", tmpGrid, controller)
       val stateMill = BlackTurn().moveStoneState("move OS: 12 to OS: 02", tmpGrid, controller)
-      "WhiteTurn, by moving OS: 00 to OS: 01" in {
+      "WhiteTurn(), when moving to an free, adjacent node " in {
         state should be(GamePlay(new WhiteTurn).state)
       }
-      "BlackTurn again, by moving OS: 00 to OS:02" in {
+      "BlackTurn() again if moved to a non adjacent node or occupied node" in {
         state1 should be(GamePlay(new BlackTurn).state)
       }
-      "TakeStone, when player have mill" in {
+      "TakeStone(), when player has formed a mill" in {
         stateMill should be(GamePlay(gridBase.TakeStone(Stone.black)).state)
       }
     }
-    "handleTakeStone, should be return" should {
+    "takeStoneState(), should always return " should {
       val state = BlackTurn().takeStoneState("MS: 22", tmpGrid)
-      "always BlackTurn" in {
+      "BlackTurn()" in {
         state should be(GamePlay(new BlackTurn).state)
       }
     }
-    "jumpStone, should be return" should {
+    "jumpStone(), should return" should {
       tmpGrid.createFullGrid()
       BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
       BlackTurn().setStoneState("OS: 01", tmpGrid, controller)
@@ -61,13 +59,13 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
       val state = BlackTurn().jumpStoneState("jump OS: 00 to OS: 02", tmpGrid, controller)
       val state1 = BlackTurn().jumpStoneState("jump MS: 00 to MS: 02", tmpGrid, controller)
       val stateMill = BlackTurn().jumpStoneState("jump IS: 00 to OS: 00", tmpGrid, controller)
-      //      "WhiteTurn, by 'jump OS: 00 to OS: 02'" in {
-      //        state should be(GamePlay(new WhiteTurn).state)
-      //      }
-      "BlackTurn, by 'jump OS: 01 to OS: 10'" in {
+      "WhiteTurn(), if jumped to invalid node" in {
+        state should be(GamePlay(new WhiteTurn).state)
+      }
+      "BlackTurn() if jumped to a free node" in {
         state1 should be(GamePlay(new BlackTurn).state)
       }
-      "TakeTurn, when player have mill" in {
+      "TakeTurn() when player has formed a mill" in {
         stateMill should be(GamePlay(gridBase.TakeStone(Stone.black)).state)
       }
     }

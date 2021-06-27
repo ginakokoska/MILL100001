@@ -7,16 +7,16 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 case class SetCommandSpec() extends AnyWordSpec with Matchers {
-  "A SetCommand" when {
-    "command" should {
+  "SetCommand" when {
+    "called" should {
       val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid = Grid())
       val setCommand = new SetCommand(controller, "OS: 00")
       controller.grid.createFullGrid()
-      "doStep is taken should execute this command" in {
+      "doStep should execute this command" in {
         setCommand.doStep
         controller.grid.gridList.head(0)(0).isSet should be(true)
       }
-      "undoStep is taken should be clear this grid" in {
+      "undoStep  should clear current grid" in {
         setCommand.undoStep
         for (i <- 0 to 2) {
           for (j <- 0 to 2) {
@@ -26,7 +26,7 @@ case class SetCommandSpec() extends AnyWordSpec with Matchers {
           }
         }
       }
-      "redoStep is taken should be execute command again like reload" in {
+      "redoStep should reload executed command" in {
         setCommand.redoStep
         controller.grid.gridList.head(0)(0).isSet should be(true)
       }

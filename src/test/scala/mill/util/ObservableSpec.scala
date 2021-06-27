@@ -1,6 +1,5 @@
 package mill.util
 
-import mill.util.{Observable, Observer}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -13,7 +12,7 @@ class ObservableSpec extends AnyWordSpec with Matchers {
         def isUpdated: Boolean = updated
         override def update: Boolean = {updated = true; updated}
       }
-      "Add an Observer" in {
+      "add an Observer" in {
         observable.add(observer)
         observable.subscribers should contain (observer)
       }

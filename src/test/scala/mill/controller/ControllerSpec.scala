@@ -7,14 +7,13 @@ import mill.model.{Player, Stone}
 import mill.util._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-//import org.scalatest.matchers.should._
-//import org.scalatest.wordspec._
+
 
 
 
 class ControllerSpec extends AnyWordSpec with Matchers {
-  "A Controller" when {
-    "user" should {
+  "Controller" when {
+    "called" should {
       val grid = new Grid()
       grid.gridList = Grid().createFullGrid()
       val controller = new Controller(Player("player1", Stone.white), Player("player2", Stone.black), grid)
@@ -91,7 +90,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         playerInJumpstate should be(JumpState())
       }
 
-      "set a playerState" in {
+      "sets a playerState" in {
         controller.setPlayerState(SetState())
         controller.playerState should be(SetState())
         controller.setPlayerState(MoveState())
@@ -107,13 +106,13 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         controller.save()
       }
 
-      "load game" in {
-        controller.load()
-        controller.grid.gridList.head(0)(0).isColor should be(Some(Stone.white))
-        controller.grid.gridList.head(0)(1).isColor should be(Some(Stone.black))
-        controller.grid.gridList.head(0)(2).isColor should be(Some(Stone.white))
-        controller.grid.gridList.head(1)(0).isColor should be(Some(Stone.black))
-      }
+//      "load game" in {
+//        controller.load()
+//        controller.grid.gridList.head(0)(0).isColor should be(Some(Stone.white))
+//        controller.grid.gridList.head(0)(1).isColor should be(Some(Stone.black))
+//        controller.grid.gridList.head(0)(2).isColor should be(Some(Stone.white))
+//        controller.grid.gridList.head(1)(0).isColor should be(Some(Stone.black))
+//      }
     }
   }
 }

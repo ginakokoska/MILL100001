@@ -1,6 +1,5 @@
 package mill.util
 
-import mill.util.{Command, UndoManager}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -19,7 +18,7 @@ class UndoManagerSpec  extends AnyWordSpec with Matchers {
   "An UndoManager" should {
     val undoManager = new UndoManager
 
-    "have a do, undo and redo" in {
+    "has a do, undo and redo" in {
       val command = new incrCommand
       command.state should be(0)
       undoManager.doStep(command)
@@ -30,7 +29,7 @@ class UndoManagerSpec  extends AnyWordSpec with Matchers {
       command.state should be(1)
     }
 
-    "handle multiple undo steps correctly" in {
+    "handles multiple undo steps correctly" in {
       val command = new incrCommand
       command.state should be(0)
       undoManager.doStep(command)
