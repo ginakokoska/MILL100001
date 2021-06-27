@@ -13,6 +13,7 @@ import java.io._
   This class saves and restores the gameplay state as a JSON (JavaScript Object Notation) format, to resume the game later on.
  */
 
+
 class FileIoJSON extends FileIoInterface {
 
   override def load(controller: ControllerInterface): List[Array[Array[Node]]] = {
@@ -44,20 +45,22 @@ class FileIoJSON extends FileIoInterface {
       }
     }
 
-    val gameState = (json \ "gameState")
+
+    val gameState = (json \\ "gameState")
     gameState.head.toString().tail.init match {
       case "white" => controller.gamePlayState = WhiteTurn()
       case "black" => controller.gamePlayState = BlackTurn()
     }
 
+
     val grid = Grid().createFullGrid()
-    val sqTuple = (json \\ "outSquare")
-    val headVal = sqTuple(0)
+    val tuple = (json \\ "outSquare")
+    val sqHead = tuple(0)
     for(sq <- 0 to 2) {
       for(node <- 0 to 8) {
-        val row = (headVal(sq)(node) \\ "row").head.as[Int]
-        val col = (headVal(sq)(node) \\ "col").head.as[Int]
-        val color = (headVal(sq)(node) \\ "color").head.as[Int]
+        val row = (sqHead(sq)(node) \\ "row").head.as[Int]
+        val col = (sqHead(sq)(node) \\ "col").head.as[Int]
+        val color = (sqHead(sq)(node) \\ "color").head.as[Int]
         color match {
           case 1 => grid(sq)(row)(col) = Node(Some(Stone.white))
           case 2 => grid(sq)(row)(col) = Node(Some(Stone.black))
