@@ -22,19 +22,19 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   /*
   TODO:Please click on the Folder *Resources* and copy the ABSOLUTE Path of each Icon :)
  */
-  var continueIcon = new ImageIcon(this.getClass().getResource("/continue.png")).getImage
+  var continueIcon = new ImageIcon(this.getClass.getResource("/continue.png")).getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var restartIcon = new ImageIcon(this.getClass().getResource("/restart.png")).getImage
+  var restartIcon = new ImageIcon(this.getClass.getResource("/restart.png")).getImage
   restartIcon = restartIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var saveIcon = new ImageIcon(this.getClass().getResource("/save.png")).getImage
+  var saveIcon = new ImageIcon(this.getClass.getResource("/save.png")).getImage
   saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var reloadIcon = new ImageIcon(this.getClass().getResource("/resume.png")).getImage
+  var reloadIcon = new ImageIcon(this.getClass.getResource("/resume.png")).getImage
   reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var frogIcon = new ImageIcon(this.getClass().getResource("/frog.png")).getImage
+  var frogIcon = new ImageIcon(this.getClass.getResource("/frog.png")).getImage
   frogIcon = frogIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
   val colorPanel: Color = Color.getColor("colorPanel" , 12499113)

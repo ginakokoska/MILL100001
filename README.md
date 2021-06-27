@@ -71,14 +71,16 @@ At the beginning of the game, it is more important to place pieces in versatile 
 # Coverage & Build Status [Masterbranch]
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Pattern)](https://www.travis-ci.com/ginakokoska/MILL100001)
 
-[![Coverage Status](https://coveralls.io/repos/github/ginakokoska/MILL100001/badge.svg?branch=Pattern)](https://coveralls.io/github/ginakokoska/MILL100001?branch=Pattern)
+[![Coverage Status](https://coveralls.io/repos/github/ginakokoska/MILL100001/badge.svg?branch=Pattern)](https://coveralls.io/github/ginakokoska/MILL100001?branch=Master)
 
 # Dockerhub
 
 ## TUI version
+ > docker pull ginakokoska/mill:tui
 
 ## GUI version
- > docker pull ginakokoska/mill:masterGUI
+To start a gui mill in a container you might need to "xhost +"
+ > docker pull ginakokoska/mill:gui
 
 
 ![giphy](https://user-images.githubusercontent.com/81410821/123548021-661f6600-d763-11eb-8683-1a11b35ff9cb.gif)
