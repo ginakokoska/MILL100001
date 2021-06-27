@@ -9,15 +9,11 @@ You win the board game if your opponent has only two stones left, or if he canno
 
 ## Phase 0: Set name and choose color
 In Phase 0 the players must configure their name and color before starting to play the game.
- > to enter the name of player 1, click in the box and type in a name 
- > to choose a color click the combox, then cklick on the *arrow* to continue
- \
- ![wel4](https://user-images.githubusercontent.com/81410821/123560860-2bd6b880-d7a5-11eb-8a38-bc9e988745f7.gif)
-\
-
+ > to enter the name of player 1, click in the box and type in a name \
+ > to choose a color click the combox, then cklick on the *arrow* to continue\
+ > to enter the name of player 2, then click on the *arrow* to start the game\
+ > 
 ![wel3](https://user-images.githubusercontent.com/81410821/123560878-50cb2b80-d7a5-11eb-9ff0-9da32722555b.gif)
-\
- > to enter the name of player 2, then click on the *arrow* to start the game
 
 
 ## Phase 1: Placing stones 
