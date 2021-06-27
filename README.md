@@ -88,6 +88,7 @@ To start a gui mill in a container you might need to "xhost +"
 
 ![welcome](https://user-images.githubusercontent.com/81410821/123560048-4d817100-d7a0-11eb-9938-d0dd0c252c2b.gif)
 
- 
+ ![wel1](https://user-images.githubusercontent.com/81410821/123560277-8f5ee700-d7a1-11eb-937c-c60ac1c2a62d.gif)
+
 
 
