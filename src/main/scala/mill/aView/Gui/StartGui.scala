@@ -247,6 +247,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
                   }
                   if(controller.win(controller.player2))
                     winMessage(controller.player1)
+                  repaint()
                 case TakeStone(Stone.black) =>
                   controller.moveController(k)
                   if (!controller.grid.gridList(sq)(kArray(1).charAt(0).asDigit)(kArray(1).charAt(1).asDigit).isSet) {
@@ -314,6 +315,9 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     controller.player1.fillStone()
     controller.player2.fillStone()
     repaint()
+    tui.createGrid("3")
+    tui.update
+    tui.gameState()
   }
 
   import javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE

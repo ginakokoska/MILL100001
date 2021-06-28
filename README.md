@@ -90,5 +90,6 @@ At the beginning of the game, it is more important to place pieces in versatile 
 ## GUI version
 To start a GUI with a container you might need to disable your access control
  > xhost +
+ /
  > docker pull ginakokoska/mill:gui
 
