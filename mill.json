@@ -1,18 +1,18 @@
 {
   "player" : {
     "player1" : {
-      "name" : "sx",
+      "name" : "Gina",
       "color" : "white",
-      "notUsed" : 0,
-      "inGame" : 9,
+      "notUsed" : 9,
+      "inGame" : 0,
       "OutOfGame" : 0
     },
     "player2" : {
-      "name" : "sx",
+      "name" : "Luca",
       "color" : "black",
-      "notUsed" : 1,
-      "inGame" : 5,
-      "OutOfGame" : 3
+      "notUsed" : 9,
+      "inGame" : 0,
+      "OutOfGame" : 0
     }
   },
   "field" : {
@@ -20,12 +20,12 @@
       "square" : 0,
       "row" : 0,
       "col" : 0,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 0,
       "row" : 0,
@@ -35,7 +35,7 @@
       "square" : 0,
       "row" : 1,
       "col" : 0,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 0,
       "row" : 1,
@@ -50,7 +50,7 @@
       "square" : 0,
       "row" : 2,
       "col" : 0,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 0,
       "row" : 2,
@@ -65,22 +65,22 @@
       "square" : 1,
       "row" : 0,
       "col" : 0,
-      "color" : 1
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 1,
-      "color" : 0
+      "color" : 1
     }, {
       "square" : 1,
       "row" : 0,
       "col" : 2,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 1,
       "row" : 1,
       "col" : 0,
-      "color" : 1
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 1,
@@ -90,27 +90,27 @@
       "square" : 1,
       "row" : 1,
       "col" : 2,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 1,
       "row" : 2,
       "col" : 0,
-      "color" : 1
+      "color" : 2
     }, {
       "square" : 1,
       "row" : 2,
       "col" : 1,
-      "color" : 1
+      "color" : 0
     }, {
       "square" : 1,
       "row" : 2,
       "col" : 2,
-      "color" : 1
+      "color" : 0
     } ], [ {
       "square" : 2,
       "row" : 0,
       "col" : 0,
-      "color" : 0
+      "color" : 2
     }, {
       "square" : 2,
       "row" : 0,
@@ -120,12 +120,12 @@
       "square" : 2,
       "row" : 0,
       "col" : 2,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 2,
       "row" : 1,
       "col" : 0,
-      "color" : 2
+      "color" : 1
     }, {
       "square" : 2,
       "row" : 1,
@@ -135,17 +135,17 @@
       "square" : 2,
       "row" : 1,
       "col" : 2,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 2,
       "row" : 2,
       "col" : 0,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 2,
       "row" : 2,
       "col" : 1,
-      "color" : 2
+      "color" : 0
     }, {
       "square" : 2,
       "row" : 2,
@@ -153,7 +153,7 @@
       "color" : 0
     } ] ],
     "gamePlayState" : {
-      "gameState" : "black"
+      "gameState" : "white"
     }
   }
 }

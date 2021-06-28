@@ -4,11 +4,11 @@ import mill.aView.Tui
 import mill.controller.{ControllerInterface, RedrawGrid}
 import mill.model.gridComponent.gridBase.{BlackTurn, TakeStone, WhiteTurn}
 
-import java.awt.{Color, Font, Image}
-import javax.swing.{ImageIcon, JFrame}
-import scala.swing.Action.NoAction.icon
+import java.awt.{Color, Font}
+import javax.swing.{ImageIcon}
+import scala.swing.Action.NoAction.{icon, text}
 import scala.swing.event.{ButtonClicked, MouseClicked, MouseDragged, MouseReleased}
-import scala.swing.{Action, Alignment, BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Label, MainFrame, Orientation, Point, TextField}
+import scala.swing.{Action, Alignment, BoxPanel, Button, ComboBox, Dialog, Dimension, FlowPanel, Frame, Label, MainFrame, Orientation, Point, TextField, event}
 import mill.model.{Player, SetState, Stone, StoneState}
 
 import scala.sys.exit
@@ -19,9 +19,11 @@ import scala.sys.exit
 
 case class StartGui(controller: ControllerInterface) extends MainFrame {
 
-  /*
-  TODO:Please click on the Folder *Resources* and copy the ABSOLUTE Path of each Icon :)
- */
+
+
+  var backIcon = new ImageIcon(this.getClass.getResource("/back.png")).getImage
+  backIcon = backIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
+
   var continueIcon = new ImageIcon(this.getClass.getResource("/continue.png")).getImage
   continueIcon = continueIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
@@ -31,7 +33,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   var saveIcon = new ImageIcon(this.getClass.getResource("/save.png")).getImage
   saveIcon = saveIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
-  var reloadIcon = new ImageIcon(this.getClass.getResource("/resume.png")).getImage
+  var reloadIcon = new ImageIcon(this.getClass.getResource("/fromfile.png")).getImage
   reloadIcon = reloadIcon.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)
 
   var frogIcon = new ImageIcon(this.getClass.getResource("/frog.png")).getImage
@@ -39,7 +41,9 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   val colorPanel: Color = Color.getColor("colorPanel" , 12499113)
 
-  val myFont = new Font("monoSpaceD", Font.BOLD, 40)
+  val colorCB: Color = Color.getColor("cbColor", 8946544)
+
+  val myFont = new Font("monoSpaceD", Font.TYPE1_FONT, 40)
 
   title = "Mill"
   preferredSize = new Dimension(400, 200)
@@ -47,7 +51,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   centerOnScreen()
 
   val namePlayer1 = new TextField {
-    text = "player1"
+    text = "Player1"
     font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
@@ -58,7 +62,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   }
 
   val namePlayer2 = new TextField {
-    text = "player2"
+    text = "Player2"
     font =  new Font("monoSpaceD", Font.ITALIC, 12)
     listenTo(mouse.clicks)
     reactions += {
@@ -70,11 +74,14 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   }
 
   val colors = Seq("white", "black")
-  val comboBox = new ComboBox(items = colors) { }
+  val comboBox = new ComboBox(items = colors) {
+    font =  new Font("monoSpaceD", Font.BOLD, 12)
+    background = colorCB
+  }
 
   val choosePlayerButton = new Button {
-    borderPainted = false
     background = colorPanel
+    borderPainted = false
     icon = new ImageIcon(continueIcon)
     listenTo(mouse.clicks)
     reactions += {
@@ -98,6 +105,17 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
         tui.update
         controller.gamePlayState = WhiteTurn()
 
+    }
+  }
+
+  val backButton = new Button() {
+    background = colorPanel
+    borderPainted = false
+    icon = new ImageIcon(backIcon)
+    listenTo(mouse.clicks)
+    reactions += {
+      case _: MouseClicked =>
+      wel()
     }
   }
 
@@ -160,10 +178,11 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def createPl2(): Unit = {
     contents = new FlowPanel {
+      background = colorPanel
       resizable = false
+      contents += backButton
       contents += namePlayer2
       contents += startgameButton
-      background = colorPanel
 
     }
   }
@@ -304,7 +323,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   def showCloseDialog() {
     icon = new ImageIcon(frogIcon)
-    Dialog.showConfirmation(parent = null,
+    Dialog.showConfirmation(parent = welcome,
       title = "Exit",
       message = "Are you sure you want to quit?"
     , icon = icon) match {
