@@ -81,8 +81,7 @@ At the beginning of the game, it is more important to place pieces in versatile 
 # Coverage & Build Status [Masterbranch]
 [![Build Status](https://www.travis-ci.com/ginakokoska/MILL100001.svg?branch=Master)](https://www.travis-ci.com/ginakokoska/MILL100001)
 
-[![Coverage Status](https://coveralls.io/repos/github/ginakokoska/MILL100001/badge.svg?branch=Pattern)](https://coveralls.io/github/ginakokoska/MILL100001?branch=Master)
-
+[![Coverage Status](https://coveralls.io/repos/github/ginakokoska/MILL100001/badge.svg?branch=Master)](https://coveralls.io/github/ginakokoska/MILL100001?branch=Master)
 # Dockerhub
 
 ## TUI version
