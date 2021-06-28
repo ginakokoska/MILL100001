@@ -20,8 +20,9 @@ In Phase 0 the players must configure their name and color before starting to pl
 
 
 ## Phase 1: Placing stones 
-In the first part of the game, the players each place a stone in turns on an intersection of a horizontal and a vertical line (denoted by a dot). This phase ends when every player has placed his 9 stones.
-  > to set a stone click on a free dot on the board
+In the first part of the game, the players each place a stone in turns on an intersection of a horizontal and a vertical line (denoted by a dot).
+This phase ends when every player has placed his 9 stones.
+  > to set a stone click on a free dot on the board \
   ![set1](https://user-images.githubusercontent.com/81410821/123563827-2aae8700-d7b7-11eb-83b1-18174e807db0.gif)
  
 
