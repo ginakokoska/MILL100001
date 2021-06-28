@@ -21,8 +21,11 @@ In Phase 0 the players must configure their name and color before starting to pl
 
 ## Phase 1: Placing stones 
 In the first part of the game, the players each place a stone in turns on an intersection of a horizontal and a vertical line (denoted by a dot). This phase ends when every player has placed his 9 stones.
+\
   > to set a stone click on a free dot on the board
- ![set](https://user-images.githubusercontent.com/81410821/123563716-83315480-d7b6-11eb-8de3-27a5e8d91e54.gif)
+![set1](https://user-images.githubusercontent.com/81410821/123563827-2aae8700-d7b7-11eb-83b1-18174e807db0.gif)
+ \
+
 
 ## Phase 2: Moving stones 
 When both players placed all their stones on the bord, the second phase starts. When it is your turn, you must move one of your stones to an *adjacent free place* (along a line). If you form a mill, you must remove an opposing stone from the board.
