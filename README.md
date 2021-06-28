@@ -22,11 +22,14 @@ In Phase 0 the players must configure their name and color before starting to pl
 ## Phase 1: Placing stones 
 In the first part of the game, the players each place a stone in turns on an intersection of a horizontal and a vertical line (denoted by a dot). This phase ends when every player has placed his 9 stones.
   > to set a stone click on a free dot on the board
+ ![set](https://user-images.githubusercontent.com/81410821/123563716-83315480-d7b6-11eb-8de3-27a5e8d91e54.gif)
 
 ## Phase 2: Moving stones 
 When both players placed all their stones on the bord, the second phase starts. When it is your turn, you must move one of your stones to an *adjacent free place* (along a line). If you form a mill, you must remove an opposing stone from the board.
   > to move a stone click on your stone and release on desired position\
   > to take a stone from your opponent after building a mill, click on the desired stone
+  ![move](https://user-images.githubusercontent.com/81410821/123563730-9512f780-d7b6-11eb-93d4-f252c2c02413.gif)
+
 
 ## Phase 3: Jumping stones (when one player has only 3 stones left)
 The third phase starts when a player has only 3 stones left. That player is allowed to move his stones to *any free* place on the board instead of just an adjacent place. When both players have 3 stones left, both of them may do so. 
