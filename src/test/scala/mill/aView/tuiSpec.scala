@@ -15,7 +15,7 @@ class tuiSpec extends AnyWordSpec with Matchers {
     "game has started" should {
       "should start with Welcome" in {
         val welString = tui.startGame()
-        welString should be("Welcome to our Game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):")
+        welString should be("Welcome to our game, Mill!\n" + "Players, please enter your name and select color w(hite) or b(lack):")
       }
       "then tui should create Players" in {
         tui.createPlayers("Luca w", "Gina")
