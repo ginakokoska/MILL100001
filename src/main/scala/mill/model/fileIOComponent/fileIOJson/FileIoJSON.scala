@@ -23,27 +23,44 @@ class FileIoJSON extends FileIoInterface {
     val p2 = (json \ "player" \ "player2")
     val p1List: List[String] = List(p1.get("name").toString(), p1.get("color").toString(), p1.get("notUsed").toString(), p1.get("inGame").toString(), p1.get("OutOfGame").toString())
     val p2List: List[String] = List(p2.get("name").toString(), p2.get("color").toString(), p1.get("notUsed").toString(), p1.get("inGame").toString(), p1.get("OutOfGame").toString())
+
     controller.createPlayer1(p1List.head.tail.init, p1List(1))
     controller.player1.fillStone()
-    for(i <- 1 to p1List(3).toInt) {
-      controller.player1.setStone()
-    }
-    if(p1List(4).toInt > 0) {
-      for (i <- 1 to p1List(4).toInt) {
-        controller.player1.takeStone()
+    if(p1List(2).toInt == 0) {
+      for(i<-0 to 9) {
+        controller.player1.setStone()
+      }
+    } else {
+      for(i <- 1 to p1List(3).toInt) {
+        controller.player1.setStone()
+      }
+      val tmp = p1List(4).toInt
+      if(tmp > 0) {
+        for (i <- 1 to p1List(4).toInt) {
+          controller.player1.takeStone()
+        }
       }
     }
 
     controller.createPlayer2(p2List.head.tail.init)
     controller.player2.fillStone()
-    for(i <- 1 to p2List(3).toInt) {
-      controller.player2.setStone()
-    }
-    if(p2List(4).toInt > 0) {
-      for (i <- 1 to p2List(4).toInt) {
-        controller.player2.takeStone()
+    if(p2List(2).toInt == 0) {
+      for(i<-0 to 9) {
+        controller.player2.setStone()
+      }
+    } else {
+      for(i <- 1 to p2List(3).toInt) {
+        controller.player2.setStone()
+      }
+      if(p2List(4).toInt > 0) {
+        for (i <- 1 to p2List(4).toInt) {
+          controller.player2.takeStone()
+        }
       }
     }
+
+
+
 
 
     val gameState = (json \\ "gameState")

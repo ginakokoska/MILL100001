@@ -15,7 +15,7 @@ trait GridInterface {
   def gridOutMidSquare(): List[Array[Array[Node]]]
   def createFullGrid(): List[Array[Array[Node]]]
   def printGrid: String
-  def moveGrid(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
+  def setStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
   def takePos(pos: String, color: Stone.Value): Try[Unit]
   def moveStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]
   def jumpStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]]

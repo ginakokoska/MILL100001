@@ -116,7 +116,7 @@ case class Grid() extends GridInterface{
 
     override def printGrid: String = playGround
 
-  override def moveGrid(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
+  override def setStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = {
     val posArray: Array[String] = pos.split(" ")
     var square = ""
     var intPos1 = 0

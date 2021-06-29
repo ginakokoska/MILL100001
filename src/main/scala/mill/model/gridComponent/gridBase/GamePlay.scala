@@ -10,11 +10,11 @@ import mill.model.gridComponent.State
 
 case class GamePlay @Inject() (state: State) extends State {
   def setStoneState(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.setStoneState(pos :String, grid:Grid, controller)
+    val newState = state.setStoneState(pos, grid, controller)
     newState
   }
   def moveStoneState(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.moveStoneState(pos :String, grid:Grid, controller)
+    val newState = state.moveStoneState(pos, grid, controller)
     newState
   }
   def jumpStoneState(pos :String, grid :Grid, controller: Controller):State = {

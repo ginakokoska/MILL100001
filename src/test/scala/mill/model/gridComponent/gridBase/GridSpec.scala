@@ -51,10 +51,10 @@ class GridSpec extends AnyWordSpec with Matchers {
     val controller = new Controller(Player("player1", Stone.white), mill.model.Player("player2", Stone.black), tmpGrid)
     "player sets a stone" should {
       tmpGrid.gridList(0)(0)(1) = Node(Some(Stone.white))
-      val whiteNode = tmpGrid.moveGrid("OS: 00", Stone.white, controller.player1)
-      val alreadySet = tmpGrid.moveGrid("OS: 00", Stone.black, controller.player1)
-      val whiteMill = tmpGrid.moveGrid("OS: 02", Stone.white, controller.player1)
-      val wrongInput = tmpGrid.moveGrid("F: 00", Stone.white, controller.player1)
+      val whiteNode = tmpGrid.setStone("OS: 00", Stone.white, controller.player1)
+      val alreadySet = tmpGrid.setStone("OS: 00", Stone.black, controller.player1)
+      val whiteMill = tmpGrid.setStone("OS: 02", Stone.white, controller.player1)
+      val wrongInput = tmpGrid.setStone("F: 00", Stone.white, controller.player1)
       "should set the Node to the players color an return a success " in {
         whiteNode should be(Success(tmpGrid.gridList))
       }

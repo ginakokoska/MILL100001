@@ -20,7 +20,7 @@ class Grid() extends GridInterface{
 
     override def printGrid: String = this.playGround
 
-  override def moveGrid(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = Failure(new Exception)
+  override def setStone(pos: String, color: Stone.Value, player: Player): Try[List[Array[Array[Node]]]] = Failure(new Exception)
 
   override def takePos(pos: String, color: Stone.Value): Try[Unit] = Failure(new Exception)
 
