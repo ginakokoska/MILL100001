@@ -1,8 +1,8 @@
 package mill.model.gridComponent.gridBase
 
-import mill.controller.controllerBase.Controller
-import mill.model.Stone
+import mill.model.{Player, Stone}
 import mill.model.gridComponent.{State, gridBase}
+
 import scala.util.{Failure, Success}
 
 /*
@@ -12,17 +12,17 @@ import scala.util.{Failure, Success}
  */
 
 case class WhiteTurn() extends State {
-  override def setStoneState(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.setStone(pos, Stone.white, controller.player1)
+  override def setStoneState(pos: String, grid: Grid, player: Player): State = {
+    val tmp = grid.setStone(pos, Stone.white, player)
     tmp match {
       case Success(v) =>
         grid.gridList = v
-        controller.player1.setStone()
+        player.setStone()
         GamePlay(new BlackTurn).state
       case Failure(f) =>
         if (f.getMessage.equals("message:")) {
           println("take a stone!")
-          controller.player1.setStone()
+          player.setStone()
           GamePlay(gridBase.TakeStone(Stone.white)).state
         } else {
           println("Wrong input or already set! Please try again")
@@ -31,8 +31,8 @@ case class WhiteTurn() extends State {
     }
   }
 
-  override def moveStoneState(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveStone(pos, Stone.white, controller.player1)
+  override def moveStoneState(pos: String, grid: Grid, player: Player): State = {
+    val tmp = grid.moveStone(pos, Stone.white, player)
     tmp match {
       case Success(v) =>
         grid.gridList = v
@@ -52,8 +52,8 @@ case class WhiteTurn() extends State {
     gridBase.GamePlay(new WhiteTurn).state
   }
 
-  override def jumpStoneState(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.jumpStone(pos, Stone.white, controller.player1)
+  override def jumpStoneState(pos: String, grid: Grid, player: Player): State = {
+    val tmp = grid.jumpStone(pos, Stone.white, player: Player)
     tmp match {
       case Success(_) => GamePlay(new BlackTurn).state
       case Failure(f) =>

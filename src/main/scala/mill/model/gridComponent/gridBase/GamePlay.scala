@@ -1,7 +1,7 @@
 package mill.model.gridComponent.gridBase
 
 import com.google.inject.Inject
-import mill.controller.controllerBase.Controller
+import mill.model.Player
 import mill.model.gridComponent.State
 
 /*
@@ -9,16 +9,16 @@ import mill.model.gridComponent.State
  */
 
 case class GamePlay @Inject() (state: State) extends State {
-  def setStoneState(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.setStoneState(pos, grid, controller)
+  def setStoneState(pos :String, grid: Grid, player: Player):State = {
+    val newState = state.setStoneState(pos, grid, player)
     newState
   }
-  def moveStoneState(pos :String, grid: Grid, controller: Controller):State = {
-    val newState = state.moveStoneState(pos, grid, controller)
+  def moveStoneState(pos :String, grid: Grid, player: Player):State = {
+    val newState = state.moveStoneState(pos, grid, player)
     newState
   }
-  def jumpStoneState(pos :String, grid :Grid, controller: Controller):State = {
-    val newState = state.jumpStoneState(pos, grid, controller)
+  def jumpStoneState(pos :String, grid :Grid, player: Player):State = {
+    val newState = state.jumpStoneState(pos, grid, player)
     newState
   }
   def takeStoneState(pos :String, grid :Grid) :State = {

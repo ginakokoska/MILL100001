@@ -16,9 +16,9 @@ class TakeStoneSpec extends AnyWordSpec with Matchers{
       "-> build mill whilst moving a stone" +
       "-> build mill whilst jumping with a stone " should {
       tmpGrid.gridList(1)(0)(0) = Node(Some(Stone.black))
-      val stateHandle = TakeStone(Stone.white).setStoneState("OS: 00", tmpGrid, controller)
-      val stateHandle2 = gridBase.TakeStone(Stone.white).setStoneState("move OS: 00 to OS: 01", tmpGrid, controller)
-      val stateJumpStone = gridBase.TakeStone(Stone.white).setStoneState("jump OS: 01 to OS: 10", tmpGrid, controller)
+      val stateHandle = TakeStone(Stone.white).setStoneState("OS: 00", tmpGrid, controller.player1)
+      val stateHandle2 = gridBase.TakeStone(Stone.white).setStoneState("move OS: 00 to OS: 01", tmpGrid, controller.player1)
+      val stateJumpStone = gridBase.TakeStone(Stone.white).setStoneState("jump OS: 01 to OS: 10", tmpGrid, controller.player1)
       val stateTakeStoneCorrectly = gridBase.TakeStone(Stone.white).takeStoneState("MS: 00", tmpGrid)
       val stateTakeStoneInCorrectly = gridBase.TakeStone(Stone.white).takeStoneState("MS: 01", tmpGrid)
       "should result in either: " +

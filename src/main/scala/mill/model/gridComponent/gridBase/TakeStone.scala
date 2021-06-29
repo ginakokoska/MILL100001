@@ -1,9 +1,9 @@
 package mill.model.gridComponent.gridBase
 
-import mill.controller.controllerBase.Controller
 import mill.mill.controller
-import mill.model.Stone
+import mill.model.{Player, Stone}
 import mill.model.gridComponent.{State, gridBase}
+
 import scala.util.{Failure, Success}
 
 /*
@@ -13,9 +13,9 @@ import scala.util.{Failure, Success}
  */
 
 case class TakeStone(color: Stone.Value) extends State {
-  override def setStoneState(pos: String, grid: Grid, controller: Controller): State = GamePlay(new WhiteTurn).state
+  override def setStoneState(pos: String, grid: Grid, player: Player): State = GamePlay(new WhiteTurn).state
 
-  override def moveStoneState(pos: String, grid: Grid, controller: Controller): State = gridBase.GamePlay(new WhiteTurn).state
+  override def moveStoneState(pos: String, grid: Grid, player: Player): State = gridBase.GamePlay(new WhiteTurn).state
 
   override def takeStoneState(pos: String, grid: Grid): State = {
     if (color == Stone.white) {
@@ -39,5 +39,5 @@ case class TakeStone(color: Stone.Value) extends State {
     }
   }
 
-  override def jumpStoneState(pos: String, grid: Grid, controller: Controller): State = gridBase.GamePlay(new WhiteTurn).state
+  override def jumpStoneState(pos: String, grid: Grid, player: Player): State = gridBase.GamePlay(new WhiteTurn).state
 }
