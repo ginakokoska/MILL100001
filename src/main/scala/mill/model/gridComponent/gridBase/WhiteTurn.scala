@@ -20,12 +20,10 @@ case class WhiteTurn() extends State {
         controller.player1.setStone()
         GamePlay(new BlackTurn).state
       case Failure(f) =>
-        if (f.getMessage.equals("message:")) {
-          println("take a Stone!")
+        if (f.getMessage.equals("mill:")) {
           controller.player1.setStone()
           GamePlay(gridBase.TakeStone(Stone.white)).state
         } else {
-          println("Wrong input or already set! Please try again")
           gridBase.GamePlay(new WhiteTurn).state
         }
     }

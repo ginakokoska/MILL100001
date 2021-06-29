@@ -1,7 +1,8 @@
 package mill.util
 
 /*
-  This trait was used to update the TUI when notify observer was called. (Observer Pattern)
+  This trait was used to update the TUI when notify observer was called.
+  (Observer Pattern)
  */
 
 trait Observer {
@@ -15,5 +16,5 @@ class Observable {
 
   def remove(s: Observer): Unit = subscribers = subscribers.filterNot(o => o == s)
 
-  def notifyObservers: Unit = subscribers.foreach(o => o.update)
+  def notifyObservers(): Unit = subscribers.foreach(o => o.update)
 }
