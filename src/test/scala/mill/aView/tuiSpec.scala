@@ -2,7 +2,7 @@ package mill.aView
 
 import mill.aView.Tui
 import mill.controller.controllerBase.Controller
-import mill.model.gridComponent.gridBase.{BlackTurn, Grid, WhiteTurn}
+import mill.model.gridComponent.gridBase.{BlackTurn, Grid, TakeStone, WhiteTurn}
 import mill.model.{Player, Stone}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -53,6 +53,8 @@ class tuiSpec extends AnyWordSpec with Matchers {
         tui.gameState() should be(Console.println("White please set your Stone:"))
         controller.gamePlayState = BlackTurn()
         tui.gameState() should be(Console.println("Black please set your Stone:"))
+        controller.gamePlayState = TakeStone(Stone.white)
+        tui.gameState() should be(Console.println(""))
       }
       "stoneState should print what happens" in {
         tui.stoneSet("set to", "OS: 00") should be(Console.println("Stone set to OS: 00"))
