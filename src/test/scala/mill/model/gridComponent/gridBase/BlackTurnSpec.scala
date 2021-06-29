@@ -12,11 +12,11 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
     tmpGrid.gridList = Grid().createFullGrid()
     val controller = new Controller(Player("player1", Stone.white), mill.model.Player("player2", Stone.black), tmpGrid)
     "called with setStoneState() should return " should {
-      val state = BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
-      val state1 = BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
-      BlackTurn().setStoneState("MS: 00", tmpGrid, controller)
-      BlackTurn().setStoneState("MS: 01", tmpGrid, controller)
-      val stateMill = BlackTurn().setStoneState("MS: 02", tmpGrid, controller)
+      val state = BlackTurn().setStoneState("OS: 00", tmpGrid, controller.player2)
+      val state1 = BlackTurn().setStoneState("OS: 00", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("MS: 00", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("MS: 01", tmpGrid, controller.player2)
+      val stateMill = BlackTurn().setStoneState("MS: 02", tmpGrid, controller.player2)
       "WhiteTurn() if set to a valid node" in {
         state should be(GamePlay(new WhiteTurn).state)
       }
@@ -29,12 +29,12 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
     }
     "moveStoneState() should return" should {
       tmpGrid.createFullGrid()
-      BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
-      BlackTurn().setStoneState("MS: 01", tmpGrid, controller)
-      BlackTurn().setStoneState("OS: 12", tmpGrid, controller)
-      val state = BlackTurn().moveStoneState("move MS: 01 to OS: 01", tmpGrid, controller)
-      val state1 = BlackTurn().moveStoneState("move OS: 00 to OS: 02", tmpGrid, controller)
-      val stateMill = BlackTurn().moveStoneState("move OS: 12 to OS: 02", tmpGrid, controller)
+      BlackTurn().setStoneState("OS: 00", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("MS: 01", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("OS: 12", tmpGrid, controller.player2)
+      val state = BlackTurn().moveStoneState("move MS: 01 to OS: 01", tmpGrid, controller.player2)
+      val state1 = BlackTurn().moveStoneState("move OS: 00 to OS: 02", tmpGrid, controller.player2)
+      val stateMill = BlackTurn().moveStoneState("move OS: 12 to OS: 02", tmpGrid, controller.player2)
       "WhiteTurn(), when moving to an free, adjacent node " in {
         state should be(GamePlay(new WhiteTurn).state)
       }
@@ -53,12 +53,12 @@ case class BlackTurnSpec() extends AnyWordSpec with Matchers {
     }
     "jumpStone(), should return" should {
       tmpGrid.createFullGrid()
-      BlackTurn().setStoneState("OS: 00", tmpGrid, controller)
-      BlackTurn().setStoneState("OS: 01", tmpGrid, controller)
-      BlackTurn().setStoneState("IS: 00", tmpGrid, controller)
-      val state = BlackTurn().jumpStoneState("jump OS: 00 to OS: 02", tmpGrid, controller)
-      val state1 = BlackTurn().jumpStoneState("jump MS: 00 to MS: 02", tmpGrid, controller)
-      val stateMill = BlackTurn().jumpStoneState("jump IS: 00 to OS: 00", tmpGrid, controller)
+      BlackTurn().setStoneState("OS: 00", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("OS: 01", tmpGrid, controller.player2)
+      BlackTurn().setStoneState("IS: 00", tmpGrid, controller.player2)
+      val state = BlackTurn().jumpStoneState("jump OS: 00 to OS: 02", tmpGrid, controller.player2)
+      val state1 = BlackTurn().jumpStoneState("jump MS: 00 to MS: 02", tmpGrid, controller.player2)
+      val stateMill = BlackTurn().jumpStoneState("jump IS: 00 to OS: 00", tmpGrid, controller.player2)
       "WhiteTurn(), if jumped to invalid node" in {
         state should be(GamePlay(new WhiteTurn).state)
       }

@@ -13,8 +13,8 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
     tmpGrid.gridList = Grid().createFullGrid()
     val controller = new Controller(Player("player1", Stone.white), mill.model.Player("player2", Stone.black), tmpGrid)
     "called by setStoneState()" should {
-      val stateBlack = GamePlay(WhiteTurn()).setStoneState("OS: 00", tmpGrid, controller)
-      val stateWhite = GamePlay(BlackTurn()).setStoneState("OS: 10", tmpGrid, controller)
+      val stateBlack = GamePlay(WhiteTurn()).setStoneState("OS: 00", tmpGrid, controller.player1)
+      val stateWhite = GamePlay(BlackTurn()).setStoneState("OS: 10", tmpGrid, controller.player2)
       "with WhiteTurn() should return BlackTurn()" in {
         stateBlack should be(GamePlay(new BlackTurn).state)
       }
@@ -23,8 +23,8 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
       }
     }
     "called by moveStoneState()" should {
-      val stateBlack = GamePlay(WhiteTurn()).moveStoneState("move OS: 00 to OS: 01", tmpGrid, controller)
-      val stateWhite = GamePlay(BlackTurn()).moveStoneState("move OS: 10 to OS: 20", tmpGrid, controller)
+      val stateBlack = GamePlay(WhiteTurn()).moveStoneState("move OS: 00 to OS: 01", tmpGrid, controller.player1)
+      val stateWhite = GamePlay(BlackTurn()).moveStoneState("move OS: 10 to OS: 20", tmpGrid, controller.player2)
       "with WhiteTurn() should return BlackTurn()" in {
         stateBlack should be(GamePlay(new BlackTurn).state)
       }
@@ -33,8 +33,8 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
       }
     }
     "called by jumpStoneState" should {
-      val stateBlack = GamePlay(WhiteTurn()).jumpStoneState("jump OS: 01 to IS: 02", tmpGrid, controller)
-      val stateWhite = GamePlay(BlackTurn()).jumpStoneState("jump OS: 20 to IS: 20", tmpGrid, controller)
+      val stateBlack = GamePlay(WhiteTurn()).jumpStoneState("jump OS: 01 to IS: 02", tmpGrid, controller.player1)
+      val stateWhite = GamePlay(BlackTurn()).jumpStoneState("jump OS: 20 to IS: 20", tmpGrid, controller.player2)
       "with WhiteTurn() should return BlackTurn()" in {
         stateBlack should be(GamePlay(new BlackTurn).state)
       }
@@ -44,8 +44,8 @@ class GamePlaySpec extends AnyWordSpec with Matchers{
     }
     "called by takeStoneState" should {
       tmpGrid.createFullGrid()
-      WhiteTurn().setStoneState("IS: 02", tmpGrid, controller)
-      BlackTurn().setStoneState("IS: 20", tmpGrid, controller)
+      WhiteTurn().setStoneState("IS: 02", tmpGrid, controller.player1)
+      BlackTurn().setStoneState("IS: 20", tmpGrid, controller.player2)
       val stateBlack = GamePlay(TakeStone(Stone.white)).takeStoneState("IS: 20", tmpGrid)
       val stateWhite = GamePlay(gridBase.TakeStone(Stone.black)).takeStoneState("IS: 02", tmpGrid)
       "with WhiteTurn() should return BlackTurn()" in {
