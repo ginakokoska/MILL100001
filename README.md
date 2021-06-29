@@ -23,7 +23,6 @@ This phase ends when every player has placed his 9 stones.
   ![set1](https://user-images.githubusercontent.com/81410821/123563827-2aae8700-d7b7-11eb-83b1-18174e807db0.gif)
  
 
-
 ## Phase 2: Moving stones 
 When both players placed all their stones on the bord, the second phase starts. When it is your turn, you must move one of your stones to an *adjacent free place* (along a line). If you form a mill, you must remove an opposing stone from the board.
   > to move a stone click on your stone and release on desired position\
@@ -56,6 +55,23 @@ The computerversion of mill can be restarted.
 > to restart the game and start with a fresh board click the *restart arrow*
 \
 ![reset](https://user-images.githubusercontent.com/81410821/123560895-72c4ae00-d7a5-11eb-96fe-ff005b356cbd.gif)
+
+
+## TUI Steering
+> First enter the name of player 1 chosse "w" for white or "b" for black confirm with "enter"
+> Second enter name of player 2 confirm with "enter"
+> Third choose a grid size (3 for full grid) confirm with "enter"
+\
+![tuistart](https://user-images.githubusercontent.com/81410821/123832233-6a838480-d905-11eb-9a18-915273386d48.png)
+\
+> Type "OS: 00" to set stone
+\
+![tui23](https://user-images.githubusercontent.com/81410821/123832720-f0073480-d905-11eb-9a28-92cc25f93083.png)
+\
+
+> Type "move OS: 00 to OS: 01"
+> Type "jump OS: 00 to OS: 01"
+> Type "OS: 01" to take a stone
 
 
 # Strategy
