@@ -23,7 +23,13 @@ class tuiSpec extends AnyWordSpec with Matchers {
         controller.player1.color should be(Stone.white)
         controller.player2.name should be("Gina")
         controller.player2.color should be(Stone.black)
+        tui.createPlayers("Luca", "Gina")
+        controller.player1.name should be("Luca")
+        controller.player1.color should be(Stone.white)
+        controller.player2.name should be("Gina")
+        controller.player2.color should be(Stone.black)
       }
+
       "then tui should create a Grid, when size 1" in {
         tui.createGrid("1")
         controller.grid.gridList.size should be(1)
