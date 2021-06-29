@@ -13,7 +13,7 @@ import scala.util.{Failure, Success}
 
 case class WhiteTurn() extends State {
   override def setStoneState(pos: String, grid: Grid, controller: Controller): State = {
-    val tmp = grid.moveGrid(pos, Stone.white, controller.player1)
+    val tmp = grid.setStone(pos, Stone.white, controller.player1)
     tmp match {
       case Success(v) =>
         grid.gridList = v

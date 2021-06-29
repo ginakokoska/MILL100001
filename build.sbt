@@ -17,10 +17,9 @@ libraryDependencies += "org.scala-lang.modules" % "scala-xml_2.13" % "2.0.0"
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC2"
 
 coverageExcludedPackages := "mill.aView.Gui.*;" +
-  "mill.controller.stub.*;" +
-  "mill.model.gridComponent.gridMock.*;" +
+  "mill.controller.controllerStub.*;" +
+  "mill.model.gridComponent.gridStub.*;" +
   "mill.model.gridComponent.GridInterface;" +
-  "mill.model.gridComponent.GridSizeInterface;" +
   "mill.model.gridComponent.State;" +
   "mill.model.fileIOComponent.*;" +
   "mill.model.PlayerState;" +
