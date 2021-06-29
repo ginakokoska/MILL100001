@@ -133,7 +133,7 @@ case class Grid() extends GridInterface{
           gridList.head(intPos1)(intPos2) = Node(Some(color))
           if (ValidMill().proofTypeMid(0, intPos1, intPos2, color, this) ||
             ValidMill().proofTypeCorner(0, intPos1, intPos2, color, this)) {
-            println(color.toString + "have mill!")
+            println(color.toString + "has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -147,7 +147,7 @@ case class Grid() extends GridInterface{
           if (ValidMill().proofTypeMid(1, intPos1, intPos2, color, this) ||
             ValidMill().proofTypeCorner(1, intPos1, intPos2, color, this)) {
 //            player.takeStone()
-            println(color.toString + "have mill!")
+            println(color.toString + "has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -160,7 +160,7 @@ case class Grid() extends GridInterface{
           gridList(2)(intPos1)(intPos2) = Node(Some(color))
           if (ValidMill().proofTypeMid(2, intPos1, intPos2, color, this) ||
             ValidMill().proofTypeCorner(2, intPos1, intPos2, color, this)) {
-            println(color.toString + "have mill!")
+            println(color.toString + "has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -222,7 +222,7 @@ case class Grid() extends GridInterface{
           gridList.head(intNewPos1)(intNewPos2) = Node(Some(color))
           if (ValidMill().proofTypeMid(0, intNewPos1, intNewPos2, color, this) ||
             ValidMill().proofTypeCorner(0, intNewPos1, intNewPos2, color, this)) {
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -239,7 +239,7 @@ case class Grid() extends GridInterface{
           gridList(1)(intNewPos1)(intNewPos2) = Node(Some(color))
           if (ValidMill().proofTypeMid(1, intNewPos1, intNewPos2, color, this) ||
             ValidMill().proofTypeCorner(1, intNewPos1, intNewPos2, color, this)) {
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -256,7 +256,7 @@ case class Grid() extends GridInterface{
           gridList(2)(intNewPos1)(intNewPos2) = Node(Some(color))
           if (ValidMill().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
             ValidMill().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
@@ -322,7 +322,7 @@ case class Grid() extends GridInterface{
           if (ValidMill().proofTypeMid(2, intNewPos1, intNewPos2, color, this) ||
             ValidMill().proofTypeCorner(2, intNewPos1, intNewPos2, color, this)) {
             player.takeStone()
-            println(color.toString + " have mill1!")
+            println(color.toString + " has a mill!")
             Failure(new Exception("message:"))
           } else {
             Success(gridList)
