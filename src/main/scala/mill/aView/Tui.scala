@@ -46,7 +46,8 @@ class Tui(controller: ControllerInterface) extends Observer {
 
   def gameState(): Unit = {
     if(controller.gamePlayState == WhiteTurn()) println("White please set your stone:")
-    else println("Black please set your stone:")
+    else if(controller.gamePlayState == BlackTurn()) println("Black please set your stone:")
+    else println("")
   }
 
   def stoneSet(pos :String, act :String): Unit = {
