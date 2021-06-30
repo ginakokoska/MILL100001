@@ -69,8 +69,8 @@ The computerversion of mill can be restarted.
 ![tui23](https://user-images.githubusercontent.com/81410821/123832720-f0073480-d905-11eb-9a28-92cc25f93083.png)
 \
 
-> Type "move OS: 00 to OS: 01"
-> Type "jump OS: 00 to OS: 01"
+> Type "move OS: 00 to OS: 01" \
+> Type "jump OS: 00 to OS: 01" \
 > Type "OS: 01" to take a stone
 
 
