@@ -16,6 +16,7 @@ class Controller @Inject() (var player1: Player, var player2: Player, var grid: 
   grid = new Grid()
   override val undoManager: UndoManager = new UndoManager
   override var gamePlayState: State = new WhiteTurn
+  override var playerState: PlayerState = SetState()
 
   override def createPlayer1(name: String, tmpColor: String): Unit = {}
   override def createPlayer2(name: String): Unit = {}

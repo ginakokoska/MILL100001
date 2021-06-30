@@ -25,6 +25,7 @@ case class Board() extends Component {
 
   def setCords(p: (Point,Color)): Unit = {
     cordList += (p._1->p._2)
+    val debugg = 0
   }
 
   def remCoords(p: Point): Unit = {

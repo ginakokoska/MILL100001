@@ -1,8 +1,120 @@
 package mill.aView.Gui
 
+import mill.controller.{ControllerInterface, RedrawGrid}
+import mill.controller.controllerBase.Controller
+import mill.mill.{controller, publish}
+import mill.model.{JumpState, MoveState, SetState, Stone}
+import mill.model.gridComponent.gridBase.{BlackTurn, GamePlay, TakeStone, WhiteTurn}
+
+import scala.swing.Reactor
+import java.awt.Color
 import scala.swing.Point
 
-case class ValidMove() {
+case class ValidMove() extends Reactor {
+//  listenTo(controller)
+  def TuiToGui(pos:String, controller: ControllerInterface): Unit = {
+//    var boardGui = new Board()
+    var boardG = StartGui(controller).boardGui
+    var singlePointPos: Point = new Point(0,0)
+    var oldPointPos: Point = new Point(0,0)
+    var newPointPos: Point = new Point(0,0)
+
+    var sq = 999
+    var rowInt = 999
+    var colInt = 999
+
+    if(pos.length == 6) { //erzeugt aus pos den richtigen Point für Gui für Set und Take
+      val posInt = pos.split(" ") //OS:
+                                         //00
+      posInt(0) match {
+        case "OS:" => sq = 0
+        case "MS:" => sq = 1
+        case "IS:" => sq = 2
+      }
+      rowInt = posInt(1).charAt(0).asDigit
+      colInt = posInt(1).charAt(1).asDigit
+      singlePointPos = posToPoint(sq,rowInt,colInt)
+    } else { //erzeugt aus pos den richtigen alten Point und neuen Point für move und Jump
+      val posInt: Array[String] = pos.split(" ") //move OS: 00 to OS: 01
+
+      val intOldPos1 = posInt(2).charAt(0).asDigit
+      val intOldPos2 = posInt(2).charAt(1).asDigit
+      rowInt = posInt(5).charAt(0).asDigit
+      colInt = posInt(5).charAt(1).asDigit
+
+      var sqOld = 999
+      posInt(1) match {
+        case "OS:" => sqOld = 0
+        case "MS:" => sqOld = 1
+        case "IS:" => sqOld = 2
+      }
+      posInt(4) match {
+        case "OS:" => sq = 0
+        case "MS:" => sq = 1
+        case "IS:" => sq = 2
+      }
+      oldPointPos = posToPoint(sqOld,intOldPos1,intOldPos2)
+      newPointPos = posToPoint(sq,rowInt,colInt)
+    }
+
+    controller.gamePlayState match {
+      case WhiteTurn() =>
+        controller.playerState match {
+          case SetState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.white)) {
+//              Board().setCords(singlePointPos, Color.WHITE)
+              StartGui(controller).startGame()
+              StartGui(controller).boardGui.setCords(singlePointPos, Color.WHITE)
+              StartGui(controller).boardGui.repaint()
+            } else return
+          case MoveState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.white)) {
+              Board().remOldSetNew(oldPointPos, (newPointPos, Color.WHITE))
+            } else return
+          case JumpState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.white)) {
+              Board().remOldSetNew(oldPointPos, (newPointPos, Color.WHITE))
+            } else return
+        }
+      case BlackTurn() =>
+        controller.playerState match {
+          case SetState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.white)) {
+              StartGui(controller).boardGui.setCords(singlePointPos, Color.WHITE)
+//              StartGui(controller).boardGui.repaint()
+              StartGui(controller).drawStone()
+//              listenTo(controller)
+//              reactions += {
+//                case event: RedrawGrid => StartGui(controller).boardGui.repaint()
+//              }
+            } else {
+              return
+            }
+          case MoveState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.black)) {
+              Board().remOldSetNew(oldPointPos, (newPointPos, Color.BLACK))
+            } else return
+          case JumpState() =>
+            if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.black)) {
+              Board().remOldSetNew(oldPointPos, (newPointPos, Color.BLACK))
+            } else return
+        }
+      case TakeStone(Stone.white) =>
+        if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.white)) {
+          Board().remCoords(singlePointPos)
+        } else return
+      case TakeStone(Stone.black) =>
+        if(controller.grid.gridList(sq)(rowInt)(colInt).isColor.contains(Stone.black)) {
+          Board().remCoords(singlePointPos)
+        } else return
+    }
+//    reactions += {
+//      case event: RedrawGrid => boardGui.repaint()
+//    }
+//    publish(new RedrawGrid)
+//    boardGui.repaint()
+//    StartGui(controller).boardGui.repaint()
+  }
 
   def posToPoint(sq: Int, row: Int, col: Int): Point = {
     val p: Point = new Point(0,0)

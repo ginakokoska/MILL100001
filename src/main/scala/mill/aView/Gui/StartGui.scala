@@ -46,7 +46,7 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
   val myFont = new Font("monoSpaceD", Font.TYPE1_FONT, 40)
 
   title = "Mill"
-  preferredSize = new Dimension(400, 200)
+  preferredSize = new Dimension(850, 850)
   resizable = false
   centerOnScreen()
 
@@ -126,19 +126,28 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
     listenTo(mouse.clicks)
     reactions += {
       case buttonClicked : MouseClicked =>
-        board()
-        controller.createPlayer2(namePlayer2.text)
-        tui.createGrid("3")
-        tui.update
-        tui.gameState()
-        repaint()
+//        board()
+//        controller.createPlayer2(namePlayer2.text)
+//        tui.createGrid("3")
+//        tui.update
+//        tui.gameState()
+//        repaint()
+        startGame()
     }
   }
-  listenTo(startgameButton)
-  reactions += {
-    case clicked: ButtonClicked =>
-      controller.createPlayer2(namePlayer2.text)
-      preferredSize = new Dimension(750, 850)
+//  listenTo(startgameButton)
+//  reactions += {
+//    case clicked: ButtonClicked =>
+//      controller.createPlayer2(namePlayer2.text)
+//      preferredSize = new Dimension(750, 850)
+//  }
+  def startGame(): Unit = {
+    board()
+    controller.createPlayer2(namePlayer2.text)
+    tui.createGrid("3")
+    tui.update
+    tui.gameState()
+    repaint()
   }
 
   val saveButton = new Button {
@@ -338,7 +347,10 @@ case class StartGui(controller: ControllerInterface) extends MainFrame {
 
   listenTo(controller)
   reactions += {
-    case event: RedrawGrid => boardGui.repaint()
+    case event: RedrawGrid => drawStone()
+  }
+  def drawStone(): Unit = {
+    boardGui.repaint()
   }
 
   def board(): Unit = {

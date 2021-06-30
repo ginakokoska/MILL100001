@@ -3,6 +3,7 @@ package mill.aView
 
 import com.google.inject.{Guice, Injector}
 import mill.MillModule
+import mill.aView.Gui.{Board, StartGui}
 import mill.controller.ControllerInterface
 import mill.util._
 import mill.model.gridComponent.gridBase.{BlackTurn, WhiteTurn}
@@ -38,10 +39,13 @@ class Tui(controller: ControllerInterface) extends Observer {
       case "2" => controller.grid.gridList = controller.grid.gridOutMidSquare()
       case _ => controller.grid.gridList = controller.grid.createFullGrid()
     }
+    StartGui(controller).board()
   }
 
   def moveTui (pos :String) :Unit = {
     controller.moveController(pos)
+    //if(hat funktioniert)
+    Gui.ValidMove().TuiToGui(pos, controller)
   }
 
   def gameState(): Unit = {

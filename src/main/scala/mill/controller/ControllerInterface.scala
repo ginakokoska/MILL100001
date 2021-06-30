@@ -14,6 +14,7 @@ import scala.swing.Publisher
 trait ControllerInterface extends Publisher {
   val undoManager: UndoManager
   var gamePlayState: State
+  var playerState: PlayerState
   var grid: Grid
   var player1 :Player
   var player2 :Player
