@@ -101,11 +101,11 @@ At the beginning of the game, it is more important to place pieces in versatile 
 # Dockerhub
 
 ## TUI version
- > docker pull ginakokoska/mill:tui
+ > sudo docker pull ginakokoska/mill:tui
 
 ## GUI version
 To start a GUI with a container you might need to disable your access control
  > xhost +
  /
- > docker pull ginakokoska/mill:gui
+ > sudodocker pull ginakokoska/mill:gui
 
